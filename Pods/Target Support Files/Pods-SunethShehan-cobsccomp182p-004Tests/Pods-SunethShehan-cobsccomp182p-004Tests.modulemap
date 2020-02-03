@@ -1,0 +1,6 @@
+framework module Pods_SunethShehan_cobsccomp182p_004Tests {
+  umbrella header "Pods-SunethShehan-cobsccomp182p-004Tests-umbrella.h"
+
+  export *
+  module * { export * }
+}
