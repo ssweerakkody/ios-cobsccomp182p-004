@@ -18,6 +18,10 @@
 		9933C44623E82807000818B6 /* SunethShehan_cobsccomp182p_004Tests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9933C44523E82807000818B6 /* SunethShehan_cobsccomp182p_004Tests.swift */; };
 		9933C45123E82807000818B6 /* SunethShehan_cobsccomp182p_004UITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9933C45023E82807000818B6 /* SunethShehan_cobsccomp182p_004UITests.swift */; };
 		9933C45F23E82EFD000818B6 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 9933C45E23E82EFD000818B6 /* GoogleService-Info.plist */; };
+		997C811623EC6ED2003844D9 /* UserAuthentication.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 997C811523EC6ED2003844D9 /* UserAuthentication.storyboard */; };
+		997C811823EC7051003844D9 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 997C811723EC7051003844D9 /* LoginViewController.swift */; };
+		997C811C23EC7459003844D9 /* UIExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 997C811B23EC7459003844D9 /* UIExtensions.swift */; };
+		997C811E23EC7AC6003844D9 /* RegistrationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 997C811D23EC7AC6003844D9 /* RegistrationViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -58,6 +62,10 @@
 		9933C45023E82807000818B6 /* SunethShehan_cobsccomp182p_004UITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SunethShehan_cobsccomp182p_004UITests.swift; sourceTree = "<group>"; };
 		9933C45223E82807000818B6 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		9933C45E23E82EFD000818B6 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		997C811523EC6ED2003844D9 /* UserAuthentication.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = UserAuthentication.storyboard; sourceTree = "<group>"; };
+		997C811723EC7051003844D9 /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
+		997C811B23EC7459003844D9 /* UIExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIExtensions.swift; sourceTree = "<group>"; };
+		997C811D23EC7AC6003844D9 /* RegistrationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegistrationViewController.swift; sourceTree = "<group>"; };
 		B5789176E32A2B3AEACA7538 /* Pods-SunethShehan-cobsccomp182p-004Tests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SunethShehan-cobsccomp182p-004Tests.release.xcconfig"; path = "Target Support Files/Pods-SunethShehan-cobsccomp182p-004Tests/Pods-SunethShehan-cobsccomp182p-004Tests.release.xcconfig"; sourceTree = "<group>"; };
 		D24F3BD12FDD8C447809CA13 /* Pods_SunethShehan_cobsccomp182p_004.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_SunethShehan_cobsccomp182p_004.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		F9620E3644B4A65D9881240F /* Pods-SunethShehan-cobsccomp182p-004.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SunethShehan-cobsccomp182p-004.debug.xcconfig"; path = "Target Support Files/Pods-SunethShehan-cobsccomp182p-004/Pods-SunethShehan-cobsccomp182p-004.debug.xcconfig"; sourceTree = "<group>"; };
@@ -116,12 +124,13 @@
 		9933C42F23E82805000818B6 /* SunethShehan-cobsccomp182p-004 */ = {
 			isa = PBXGroup;
 			children = (
+				997C811A23EC7401003844D9 /* UIExtensions */,
+				995F3A3E23E9260F00E39A78 /* ViewControllers */,
+				995F3A3D23E924DF00E39A78 /* Storyboards */,
+				997C811923EC72EA003844D9 /* CustomUIControls */,
 				9933C45E23E82EFD000818B6 /* GoogleService-Info.plist */,
 				9933C43023E82805000818B6 /* AppDelegate.swift */,
-				9933C43223E82805000818B6 /* ViewController.swift */,
-				9933C43423E82805000818B6 /* Main.storyboard */,
 				9933C43723E82807000818B6 /* Assets.xcassets */,
-				9933C43923E82807000818B6 /* LaunchScreen.storyboard */,
 				9933C43C23E82807000818B6 /* Info.plist */,
 			);
 			path = "SunethShehan-cobsccomp182p-004";
@@ -143,6 +152,41 @@
 				9933C45223E82807000818B6 /* Info.plist */,
 			);
 			path = "SunethShehan-cobsccomp182p-004UITests";
+			sourceTree = "<group>";
+		};
+		995F3A3D23E924DF00E39A78 /* Storyboards */ = {
+			isa = PBXGroup;
+			children = (
+				9933C43923E82807000818B6 /* LaunchScreen.storyboard */,
+				9933C43423E82805000818B6 /* Main.storyboard */,
+				997C811523EC6ED2003844D9 /* UserAuthentication.storyboard */,
+			);
+			path = Storyboards;
+			sourceTree = "<group>";
+		};
+		995F3A3E23E9260F00E39A78 /* ViewControllers */ = {
+			isa = PBXGroup;
+			children = (
+				9933C43223E82805000818B6 /* ViewController.swift */,
+				997C811723EC7051003844D9 /* LoginViewController.swift */,
+				997C811D23EC7AC6003844D9 /* RegistrationViewController.swift */,
+			);
+			path = ViewControllers;
+			sourceTree = "<group>";
+		};
+		997C811923EC72EA003844D9 /* CustomUIControls */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = CustomUIControls;
+			sourceTree = "<group>";
+		};
+		997C811A23EC7401003844D9 /* UIExtensions */ = {
+			isa = PBXGroup;
+			children = (
+				997C811B23EC7459003844D9 /* UIExtensions.swift */,
+			);
+			path = UIExtensions;
 			sourceTree = "<group>";
 		};
 		BD6FB842AAED1613514B9B2C /* Frameworks */ = {
@@ -277,6 +321,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				997C811623EC6ED2003844D9 /* UserAuthentication.storyboard in Resources */,
 				9933C43B23E82807000818B6 /* LaunchScreen.storyboard in Resources */,
 				9933C45F23E82EFD000818B6 /* GoogleService-Info.plist in Resources */,
 				9933C43823E82807000818B6 /* Assets.xcassets in Resources */,
@@ -408,8 +453,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				997C811823EC7051003844D9 /* LoginViewController.swift in Sources */,
 				9933C43323E82805000818B6 /* ViewController.swift in Sources */,
 				9933C43123E82805000818B6 /* AppDelegate.swift in Sources */,
+				997C811C23EC7459003844D9 /* UIExtensions.swift in Sources */,
+				997C811E23EC7AC6003844D9 /* RegistrationViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
