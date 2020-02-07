@@ -54,30 +54,23 @@ class RegistrationViewController: UIViewController{
         
         ref = Database.database().reference()
         
-        //self.ref.child("df").child("articles") .setValue(["username": "testusername2"])
-        
         //create the user in authentication
         
         Auth.auth().createUser(withEmail: txtEmail.text!, password: txtPassword.text!) { authResult, error in
             
             if((error==nil)){
                 
-                self.showAlert(title: "Success", message: "User Registration Success !")
-//                let vc = UIStoryboard(name:"UserAuthentication",bundle: nil).instantiateViewController(withIdentifier: "login")
-//                
-//                self.present(vc,animated: true,completion: nil)
+                //self.showAlert(title: "Success", message: "User Registration Success !")
                 
             }
             else{
                 
                 self.showAlert(title: "Error", message: (error?.localizedDescription)!)
+                return
                 
             }
             
         }
-        
-//        self.ref.child("Users").childByAutoId().setValue(["FirstName":txtFName.text!,"LastName":txtLName.text!,"Email":txtEmail.text!,"Password":txtPassword.text!])
-
         
         guard let FirstName = txtFName.text, !FirstName.isEmpty else {
             
