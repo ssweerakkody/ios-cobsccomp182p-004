@@ -48,3 +48,11 @@ extension UIButton{
         self.clipsToBounds = true
     }
 }
+
+//extensions for View Controllers
+extension RegistrationViewController: ImagePickerDelegate {
+    
+    func didSelect(image: UIImage?) {
+        self.imgProPicture.image = image
+    }
+}

@@ -11,13 +11,17 @@ import Firebase
 
 class RegistrationViewController: UIViewController{
     
+    
+    @IBOutlet weak var imgProPicture: UIImageView!
     @IBOutlet weak var txtFName: UITextField!
     @IBOutlet weak var txtLName: UITextField!
     @IBOutlet weak var txtEmail: UITextField!
     @IBOutlet weak var txtPassword: UITextField!
     @IBOutlet weak var txtConfirmPassword: UITextField!
+    @IBOutlet weak var txtMobileNo: UITextField!
+    @IBOutlet weak var txtFBProfileUrl: UITextField!
     
-    
+   var imagePicker: ImagePicker!
     @IBAction func btnSignUp(_ sender: Any) {
         
         databaseOperation()
@@ -29,9 +33,22 @@ class RegistrationViewController: UIViewController{
     override func viewDidLoad() {
         super.viewDidLoad()
 //        addStylesToRegister()
+        imgProPicture.layer.masksToBounds = true
+        imgProPicture.layer.cornerRadius = imgProPicture.bounds.width / 2
+        
+      self.imagePicker = ImagePicker(presentationController: self, delegate: self)
+        
+        let tap = UITapGestureRecognizer(target: self.view, action: #selector(UIView.endEditing(_:)))
+        view.addGestureRecognizer(tap)
         
     }
     
+    
+    @IBAction func SetProfilePicture(_ sender: UIButton) {
+        
+      self.imagePicker.present(from: sender)
+        
+    }
     
     func databaseOperation(){
         

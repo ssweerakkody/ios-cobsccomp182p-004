@@ -18,6 +18,7 @@
 		9933C44623E82807000818B6 /* SunethShehan_cobsccomp182p_004Tests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9933C44523E82807000818B6 /* SunethShehan_cobsccomp182p_004Tests.swift */; };
 		9933C45123E82807000818B6 /* SunethShehan_cobsccomp182p_004UITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9933C45023E82807000818B6 /* SunethShehan_cobsccomp182p_004UITests.swift */; };
 		9933C45F23E82EFD000818B6 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 9933C45E23E82EFD000818B6 /* GoogleService-Info.plist */; };
+		993D093C23ED264C002F14FA /* ImagePicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 993D093B23ED264C002F14FA /* ImagePicker.swift */; };
 		997C811623EC6ED2003844D9 /* UserAuthentication.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 997C811523EC6ED2003844D9 /* UserAuthentication.storyboard */; };
 		997C811823EC7051003844D9 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 997C811723EC7051003844D9 /* LoginViewController.swift */; };
 		997C811C23EC7459003844D9 /* UIExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 997C811B23EC7459003844D9 /* UIExtensions.swift */; };
@@ -62,6 +63,7 @@
 		9933C45023E82807000818B6 /* SunethShehan_cobsccomp182p_004UITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SunethShehan_cobsccomp182p_004UITests.swift; sourceTree = "<group>"; };
 		9933C45223E82807000818B6 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		9933C45E23E82EFD000818B6 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		993D093B23ED264C002F14FA /* ImagePicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImagePicker.swift; sourceTree = "<group>"; };
 		997C811523EC6ED2003844D9 /* UserAuthentication.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = UserAuthentication.storyboard; sourceTree = "<group>"; };
 		997C811723EC7051003844D9 /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		997C811B23EC7459003844D9 /* UIExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIExtensions.swift; sourceTree = "<group>"; };
@@ -179,6 +181,7 @@
 		997C811923EC72EA003844D9 /* CustomUIControls */ = {
 			isa = PBXGroup;
 			children = (
+				993D093B23ED264C002F14FA /* ImagePicker.swift */,
 			);
 			path = CustomUIControls;
 			sourceTree = "<group>";
@@ -472,6 +475,7 @@
 				997C811823EC7051003844D9 /* LoginViewController.swift in Sources */,
 				9933C43323E82805000818B6 /* ViewController.swift in Sources */,
 				9933C43123E82805000818B6 /* AppDelegate.swift in Sources */,
+				993D093C23ED264C002F14FA /* ImagePicker.swift in Sources */,
 				997C811C23EC7459003844D9 /* UIExtensions.swift in Sources */,
 				997C811E23EC7AC6003844D9 /* RegistrationViewController.swift in Sources */,
 			);
