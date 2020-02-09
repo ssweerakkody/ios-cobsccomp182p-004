@@ -56,3 +56,10 @@ extension RegistrationViewController: ImagePickerDelegate {
         self.imgProPicture.image = image
     }
 }
+
+extension PostEventViewController: ImagePickerDelegate {
+    
+    func didSelect(image: UIImage?) {
+        self.imgEventImage.image = image
+    }
+}

@@ -36,7 +36,7 @@ class RegistrationViewController: UIViewController{
         imgProPicture.layer.masksToBounds = true
         imgProPicture.layer.cornerRadius = imgProPicture.bounds.width / 2
         
-      self.imagePicker = ImagePicker(presentationController: self, delegate: self)
+        self.imagePicker = ImagePicker(presentationController: self, delegate: self)
         
         let tap = UITapGestureRecognizer(target: self.view, action: #selector(UIView.endEditing(_:)))
         view.addGestureRecognizer(tap)
