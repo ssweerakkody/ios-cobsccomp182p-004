@@ -16,12 +16,16 @@ class RegistrationViewController: UIViewController{
     @IBOutlet weak var txtFName: UITextField!
     @IBOutlet weak var txtLName: UITextField!
     @IBOutlet weak var txtEmail: UITextField!
+    @IBOutlet weak var txtDisplayName: UITextField!
     @IBOutlet weak var txtPassword: UITextField!
     @IBOutlet weak var txtConfirmPassword: UITextField!
     @IBOutlet weak var txtMobileNo: UITextField!
     @IBOutlet weak var txtFBProfileUrl: UITextField!
     
    var imagePicker: ImagePicker!
+    
+    var userID :String = ""
+    
     @IBAction func btnSignUp(_ sender: Any) {
         
         databaseOperation()
@@ -61,6 +65,8 @@ class RegistrationViewController: UIViewController{
             if((error==nil)){
                 
                 //self.showAlert(title: "Success", message: "User Registration Success !")
+                self.userID = (authResult?.user.uid)!
+                
                 
             }
             else{
@@ -74,19 +80,25 @@ class RegistrationViewController: UIViewController{
         
         guard let FirstName = txtFName.text, !FirstName.isEmpty else {
             
-            showAlert(title: "Check input",message: "FirstName cannot be empty")
+            showAlert(title: "Check input",message: "First Name cannot be empty")
             return
         }
         
         guard let LastName = txtLName.text, !LastName.isEmpty else {
             
-            showAlert(title: "Check input",message: "LastName cannot be empty")
+            showAlert(title: "Check input",message: "Last Name cannot be empty")
             return
         }
         
         guard let Email = txtEmail.text, !Email.isEmpty else {
             
             showAlert(title: "Check input",message: "Email cannot be empty")
+            return
+        }
+        
+        guard let DisplayName = txtDisplayName.text, !Email.isEmpty else {
+            
+            showAlert(title: "Check input",message: "Display Name cannot be empty")
             return
         }
         
@@ -160,7 +172,6 @@ class RegistrationViewController: UIViewController{
                 
                 let imgUrl = url.absoluteString
                 
-                
                 let dbRef = Database.database().reference().child("Users").childByAutoId()
                 
                 
@@ -170,8 +181,11 @@ class RegistrationViewController: UIViewController{
                     "Email":Email,
                     "MobileNo": MobileNo,
                     "ProfileImageUrl" : imgUrl,
-                    "FBProfileUrl":FBProfileUrl
+                    "FBProfileUrl":FBProfileUrl,
+                    "UserID":self.userID,
+                    "DisplayName": DisplayName
                     ]
+                
                 
                 dbRef.setValue(data, withCompletionBlock: { ( err , dbRef) in
                     if let err = err {
@@ -180,7 +194,13 @@ class RegistrationViewController: UIViewController{
                     }
                     alert.dismiss(animated: false, completion: nil)
                     
-                    self.showAlert(title: "Success", message: "User Saved !")
+                    //Redirect to the feed view
+                    let tabVC = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "EventNavigation") as! UITabBarController
+                    tabVC.selectedIndex = 1
+                    
+                    self.present(tabVC, animated: true, completion: nil)
+                    self.loadView()
+                    self.view.setNeedsLayout()
                     
                     
                 })

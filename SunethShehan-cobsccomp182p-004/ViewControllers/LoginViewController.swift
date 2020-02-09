@@ -8,6 +8,7 @@
 
 import UIKit
 import Firebase
+import SwiftyJSON
 
 class LoginViewController: UIViewController ,UITextFieldDelegate {
     
@@ -32,8 +33,33 @@ class LoginViewController: UIViewController ,UITextFieldDelegate {
     @IBAction func SignIn(_ sender: Any) {
         
         
+        txtEmail.text = "rumesh@mail.com"
+        txtPassword.text = "123456"
+        
         Auth.auth().signIn(withEmail: txtEmail.text!, password: txtPassword.text!) { (user, error) in
             if error == nil{
+
+                
+                let userRef = Database.database().reference().child("Users")
+                userRef.queryOrdered(byChild: "UserID").queryEqual(toValue: (user?.user.uid)!).observeSingleEvent(of: .value, with: { snapshot in
+                    
+                    
+                    if !snapshot.exists() { return }
+
+                    let dict = snapshot.value as? [String: AnyObject]
+                    
+                    print("User :",dict?.first?.value["UserID"] as! String)
+                    print("ProfileImageUrl :",dict?.first?.value["ProfileImageUrl"] as! String)
+                    print("DisplayName :",dict?.first?.value["DisplayName"] as! String)
+
+                    UserDefaults.standard.set(dict?.first?.value["UserID"] as! String, forKey: "UserID")
+                    UserDefaults.standard.set(dict?.first?.value["ProfileImageUrl"] as! String, forKey: "ProfileImageUrl")
+                    UserDefaults.standard.set(dict?.first?.value["DisplayName"] as! String, forKey: "DisplayName")
+                    UserDefaults.standard.synchronize()
+                    
+                    
+                })
+                
                 
                 let tabVC = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "EventNavigation") as! UITabBarController
                 tabVC.selectedIndex = 1

@@ -35,7 +35,7 @@ final class EventsTableViewController: UITableViewController {
             for object in json{
              
                 self.Events.append(object.1)
-                print(object.1)
+                //print(object.1)
                 //print(self.items)
             }
         })

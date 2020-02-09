@@ -124,10 +124,15 @@ class PostEventViewController: UIViewController {
                 
                 
                 let data = [
+                    
                     "Title" : EventTitle,
                     "Descrption" : EventDescription,
                     "Location":EventLocation,
-                    "EventImageUrl": imgUrl
+                    "EventImageUrl": imgUrl,
+                    "CreatedBy":UserDefaults.standard.string(forKey: "UserUID"),
+                    "UserDisplayName":UserDefaults.standard.string(forKey: "DisplayName"),
+                    "UserProfileURL":UserDefaults.standard.string(forKey: "ProfileImageUrl")
+                    
                 ]
                 
                 dbRef.setValue(data, withCompletionBlock: { ( err , dbRef) in
