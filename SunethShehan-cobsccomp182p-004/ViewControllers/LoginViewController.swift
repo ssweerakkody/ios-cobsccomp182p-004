@@ -34,13 +34,15 @@ class LoginViewController: UIViewController ,UITextFieldDelegate {
         
         Auth.auth().signIn(withEmail: txtEmail.text!, password: txtPassword.text!) { (user, error) in
             if error == nil{
-                //self.performSegue(withIdentifier: "loginToHome", sender: self)
                 
-                let alertController = UIAlertController(title: "Success", message: "Login Success !", preferredStyle: .alert)
-                let defaultAction = UIAlertAction(title: "OK", style: .cancel, handler: nil)
+                let tabVC = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "EventNavigation") as! UITabBarController
+                tabVC.selectedIndex = 1
                 
-                alertController.addAction(defaultAction)
-                self.present(alertController, animated: true, completion: nil)
+                self.present(tabVC, animated: true, completion: nil)
+                self.loadView()
+                self.view.setNeedsLayout()
+                
+                
             }
             else{
                 let alertController = UIAlertController(title: "Error", message: error?.localizedDescription, preferredStyle: .alert)
