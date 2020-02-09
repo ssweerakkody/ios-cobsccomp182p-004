@@ -10,6 +10,7 @@ import UIKit
 
 class EventsTableViewCell: UITableViewCell {
     
+    @IBOutlet weak var imgUserAvatar: UIImageView!
     @IBOutlet weak var imgEvent: UIImageView!
     
     @IBOutlet weak var lblEventTitle: UILabel!
@@ -19,8 +20,13 @@ class EventsTableViewCell: UITableViewCell {
     @IBOutlet weak var lblLocation: UILabel!
     
     
+    @IBOutlet weak var lblCreatedBy: UILabel!
     override func awakeFromNib() {
         super.awakeFromNib()
+        
+        imgUserAvatar.layer.masksToBounds = true
+        imgUserAvatar.layer.cornerRadius = imgUserAvatar.bounds.width / 2
+        
     }
     
     override func setSelected(_ selected: Bool, animated: Bool) {

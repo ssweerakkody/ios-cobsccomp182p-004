@@ -51,12 +51,17 @@ final class EventsTableViewController: UITableViewController {
     }
     
     override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return 370
+        return 430
     }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "EventCell",for: indexPath) as! EventsTableViewCell
         
+
+        cell.lblCreatedBy.text =  Events[indexPath.row]["UserDisplayName"].stringValue
+
+        let avatarImageURL = URL(string: Events[indexPath.row]["UserProfileURL"].stringValue)
+        cell.imgUserAvatar.kf.setImage(with: avatarImageURL)
         
         cell.lblEventTitle.text = Events[indexPath.row]["Title"].stringValue
         
