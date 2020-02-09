@@ -99,10 +99,10 @@
             </objects>
             <point key="canvasLocation" x="0.0" y="739"/>
         </scene>
-        <!--Feed-->
+        <!--Event Feed-->
         <scene sceneID="RDp-NB-7kF">
             <objects>
-                <tableViewController storyboardIdentifier="FeedStoryboard" id="GDa-fx-vBu" customClass="EventsTableViewController" customModule="SunethShehan_cobsccomp182p_004" customModuleProvider="target" sceneMemberID="viewController">
+                <tableViewController storyboardIdentifier="FeedStoryboard" title="Event Feed" id="GDa-fx-vBu" customClass="EventsTableViewController" customModule="SunethShehan_cobsccomp182p_004" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="MEV-UP-tkv">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
