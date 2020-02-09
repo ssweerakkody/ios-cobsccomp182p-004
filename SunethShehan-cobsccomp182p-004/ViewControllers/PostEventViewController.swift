@@ -20,7 +20,7 @@ class PostEventViewController: UIViewController {
     @IBOutlet weak var txtEventLocation: UITextField!
     
     
-       var ref: DatabaseReference!
+     var ref: DatabaseReference!
     
      var imagePicker: ImagePicker!
     
@@ -137,11 +137,15 @@ class PostEventViewController: UIViewController {
                     }
                     alert.dismiss(animated: false, completion: nil)
                     
-                    self.showAlert(title: "Success", message: "Event Created !")
+                   
+                    self.clearFields()
                     
-                    //fileds should be cleared and redirect to the feed
-                    //alert message should be removed and is there any error only error message should be shown
+                    let tabVC = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "EventNavigation") as! UITabBarController
+                    tabVC.selectedIndex = 1
                     
+                    self.present(tabVC, animated: true, completion: nil)
+                    self.loadView()
+                    self.view.setNeedsLayout()
                     
                 })
                 
@@ -158,6 +162,16 @@ class PostEventViewController: UIViewController {
         
         alertController.addAction(defaultAction)
         self.present(alertController, animated: true, completion: nil)
+        
+        
+    }
+    
+    func clearFields(){
+        
+        self.txtEventTitle.text = ""
+        self.txtEventDescription.text = ""
+        self.txtEventLocation.text = ""
+        self.imgEventImage.image = nil
         
         
     }

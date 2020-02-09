@@ -102,7 +102,7 @@
         <!--Feed-->
         <scene sceneID="RDp-NB-7kF">
             <objects>
-                <tableViewController id="GDa-fx-vBu" customClass="EventsTableViewController" customModule="SunethShehan_cobsccomp182p_004" customModuleProvider="target" sceneMemberID="viewController">
+                <tableViewController storyboardIdentifier="FeedStoryboard" id="GDa-fx-vBu" customClass="EventsTableViewController" customModule="SunethShehan_cobsccomp182p_004" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="MEV-UP-tkv">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -164,7 +164,7 @@
         <!--Tab Bar Controller-->
         <scene sceneID="ZQd-bv-qBd">
             <objects>
-                <tabBarController id="slW-EE-kDf" sceneMemberID="viewController">
+                <tabBarController storyboardIdentifier="EventNavigation" id="slW-EE-kDf" sceneMemberID="viewController">
                     <tabBar key="tabBar" contentMode="scaleToFill" id="ihE-uG-PQd">
                         <rect key="frame" x="0.0" y="975" width="768" height="49"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
