@@ -48,9 +48,9 @@ class LoginViewController: UIViewController ,UITextFieldDelegate {
 
                     let dict = snapshot.value as? [String: AnyObject]
                     
-                    print("User :",dict?.first?.value["UserID"] as! String)
-                    print("ProfileImageUrl :",dict?.first?.value["ProfileImageUrl"] as! String)
-                    print("DisplayName :",dict?.first?.value["DisplayName"] as! String)
+                    // print("User :",dict?.first?.value["UserID"] as! String)
+                    // print("ProfileImageUrl :",dict?.first?.value["ProfileImageUrl"] as! String)
+                    // print("DisplayName :",dict?.first?.value["DisplayName"] as! String)
 
                     UserDefaults.standard.set(dict?.first?.value["UserID"] as! String, forKey: "UserID")
                     UserDefaults.standard.set(dict?.first?.value["ProfileImageUrl"] as! String, forKey: "ProfileImageUrl")
