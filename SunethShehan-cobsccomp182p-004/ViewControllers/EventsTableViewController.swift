@@ -76,6 +76,21 @@ final class EventsTableViewController: UITableViewController {
         return cell
     }
     
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath)
+    {
+
+        
+//            Create a new view to diplay the event send the selected values of row item also
+//            it will appear in detial page
+//            let vc = ViewPostViewController(nibName: "ViewPostViewController", bundle: nil)
+//            navigationController?.pushViewController(vc, animated: true)
+//            vc.article = items[indexPath.row]
+//            print("view post")
+        
+        
+        
+    }
+    
     
     
 }
