@@ -8,6 +8,7 @@
 
 import UIKit
 import Firebase
+import SwiftyJSON
 
 class PostEventViewController: UIViewController {
     
@@ -19,11 +20,16 @@ class PostEventViewController: UIViewController {
     
     @IBOutlet weak var txtEventLocation: UITextField!
     
+    @IBOutlet weak var lblEventType: UILabel!
+    
+    @IBOutlet weak var btnPostEvent: UIButton!
+    
     
      var ref: DatabaseReference!
     
      var imagePicker: ImagePicker!
     
+    var selectedEvent: JSON?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -32,6 +38,22 @@ class PostEventViewController: UIViewController {
         
         let tap = UITapGestureRecognizer(target: self.view, action: #selector(UIView.endEditing(_:)))
         view.addGestureRecognizer(tap)
+        
+        if(selectedEvent != nil && !selectedEvent!.isEmpty){
+            
+            txtEventTitle.text = selectedEvent!["Title"].stringValue
+            txtEventDescription.text = selectedEvent!["Descrption"].stringValue
+            txtEventLocation.text = selectedEvent!["Location"].stringValue
+            
+            let imageURL = URL(string: selectedEvent!["EventImageUrl"].stringValue)
+            imgEventImage.kf.setImage(with: imageURL)
+            
+            btnPostEvent.setTitle("Update Event", for: .normal)
+            lblEventType.text = "Update Event"
+            
+        }
+        
+        
     }
     
     
@@ -125,6 +147,7 @@ class PostEventViewController: UIViewController {
                 
                 let data = [
                     
+                    "MovieID": UUID().uuidString,
                     "Title" : EventTitle,
                     "Descrption" : EventDescription,
                     "Location":EventLocation,
