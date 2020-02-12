@@ -82,11 +82,18 @@ final class EventsTableViewController: UITableViewController {
         
 //            Create a new view to diplay the event send the selected values of row item also
 //            it will appear in detial page
-//            let vc = ViewPostViewController(nibName: "ViewPostViewController", bundle: nil)
+//embedded the navigation controller check the source code
+        let vc = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "EventsViewController") as! EventViewController
+//        self.present(vc, animated: true, completion: nil)
+//            let vc = EventViewController(nibName: "EventViewController", bundle: nil)
 //            navigationController?.pushViewController(vc, animated: true)
-//            vc.article = items[indexPath.row]
-//            print("view post")
+            vc.event = Events[indexPath.row]
         
+           // navigationController?.pushViewController(vc, animated: true)
+            print("view post")
+        
+        navigationController?.pushViewController(vc, animated: true)
+        //self.present(vc, animated: true, completion: nil)
         
         
     }
