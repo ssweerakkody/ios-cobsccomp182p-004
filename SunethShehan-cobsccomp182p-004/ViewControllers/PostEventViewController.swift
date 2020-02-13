@@ -25,11 +25,13 @@ class PostEventViewController: UIViewController {
     @IBOutlet weak var btnPostEvent: UIButton!
     
     
-     var ref: DatabaseReference!
+    var ref: DatabaseReference!
     
-     var imagePicker: ImagePicker!
+    var imagePicker: ImagePicker!
     
     var selectedEvent: JSON?
+    
+    var selectedEventID :String?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -59,7 +61,7 @@ class PostEventViewController: UIViewController {
     
     @IBAction func SetEventImage(_ sender: UIButton) {
         
-           self.imagePicker.present(from: sender)
+        self.imagePicker.present(from: sender)
         
     }
     
@@ -84,7 +86,7 @@ class PostEventViewController: UIViewController {
             showAlert(title: "Check input",message: "Event Description cannot be empty")
             return
         }
-
+        
         guard let EventLocation = txtEventLocation.text, !EventLocation.isEmpty else {
             
             showAlert(title: "Check input",message: "Event Location cannot be empty")
@@ -142,40 +144,78 @@ class PostEventViewController: UIViewController {
                 let imgUrl = url.absoluteString
                 
                 
-                let dbRef = Database.database().reference().child("Events").childByAutoId()
+                //Databsae Operations
+                //Edit Operation
+                if(self.selectedEvent != nil && !self.selectedEvent!.isEmpty && !self.selectedEventID!.isEmpty){
+                    
+                    let dbRef = Database.database().reference().child("Events").child(self.selectedEventID!)
+                    
+                    
+                    let data = [
+                        "Title" : EventTitle,
+                        "Descrption" : EventDescription,
+                        "Location":EventLocation,
+                        "EventImageUrl": imgUrl,
+                        "CreatedBy":UserDefaults.standard.string(forKey: "UserUID"),
+                        "UserDisplayName":UserDefaults.standard.string(forKey: "DisplayName"),
+                        "UserProfileURL":UserDefaults.standard.string(forKey: "ProfileImageUrl")
+                    ]
+                    
+                    dbRef.setValue(data, withCompletionBlock: { ( err , dbRef) in
+                        if let err = err {
+                            self.showAlert(title: "Eror",message: "Error uploading data: \(err.localizedDescription)")
+                            return
+                        }
+                        
+                        alert.dismiss(animated: false, completion: nil)
+                        
+                        self.clearFields()
+                        
+                        self.redirectToFeed()
+                        
+                        
+                        
+                    })
+                    
+                    return
+                    
+                }
+                // Add Operation
+                else{
+                    
+                    let dbRef = Database.database().reference().child("Events").childByAutoId()
+                    
+                    
+                    let data = [
+                        
+                        "Title" : EventTitle,
+                        "Descrption" : EventDescription,
+                        "Location":EventLocation,
+                        "EventImageUrl": imgUrl,
+                        "CreatedBy":UserDefaults.standard.string(forKey: "UserUID"),
+                        "UserDisplayName":UserDefaults.standard.string(forKey: "DisplayName"),
+                        "UserProfileURL":UserDefaults.standard.string(forKey: "ProfileImageUrl")
+                        
+                    ]
+                    
+                    dbRef.setValue(data, withCompletionBlock: { ( err , dbRef) in
+                        if let err = err {
+                            self.showAlert(title: "Eror",message: "Error uploading data: \(err.localizedDescription)")
+                            return
+                        }
+                        alert.dismiss(animated: false, completion: nil)
+                        
+                        
+                        self.clearFields()
+                        
+                        self.redirectToFeed()
+                        
+                    })
+                    
+                }
                 
                 
-                let data = [
-                    
-                    "MovieID": UUID().uuidString,
-                    "Title" : EventTitle,
-                    "Descrption" : EventDescription,
-                    "Location":EventLocation,
-                    "EventImageUrl": imgUrl,
-                    "CreatedBy":UserDefaults.standard.string(forKey: "UserUID"),
-                    "UserDisplayName":UserDefaults.standard.string(forKey: "DisplayName"),
-                    "UserProfileURL":UserDefaults.standard.string(forKey: "ProfileImageUrl")
-                    
-                ]
                 
-                dbRef.setValue(data, withCompletionBlock: { ( err , dbRef) in
-                    if let err = err {
-                        self.showAlert(title: "Eror",message: "Error uploading data: \(err.localizedDescription)")
-                        return
-                    }
-                    alert.dismiss(animated: false, completion: nil)
-                    
-                   
-                    self.clearFields()
-                    
-                    let tabVC = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "EventNavigation") as! UITabBarController
-                    tabVC.selectedIndex = 1
-                    
-                    self.present(tabVC, animated: true, completion: nil)
-                    self.loadView()
-                    self.view.setNeedsLayout()
-                    
-                })
                 
             }
         }
@@ -201,6 +241,18 @@ class PostEventViewController: UIViewController {
         self.txtEventLocation.text = ""
         self.imgEventImage.image = nil
         
+        
+    }
+    
+    
+    func redirectToFeed(){
+        
+        let tabVC = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "EventNavigation") as! UITabBarController
+        tabVC.selectedIndex = 1
+        
+        self.present(tabVC, animated: true, completion: nil)
+        self.loadView()
+        self.view.setNeedsLayout()
         
     }
     

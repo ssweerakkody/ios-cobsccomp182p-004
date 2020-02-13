@@ -13,13 +13,13 @@
         <!--New Event-->
         <scene sceneID="vML-Cq-T1v">
             <objects>
-                <viewController id="Vcd-UL-KIm" customClass="PostEventViewController" customModule="SunethShehan_cobsccomp182p_004" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="PostEventView" id="Vcd-UL-KIm" customClass="PostEventViewController" customModule="SunethShehan_cobsccomp182p_004" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="9B3-cq-I2n">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Create New Event" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gWg-WK-UeT">
-                                <rect key="frame" x="118" y="104" width="178" height="28"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Create New Event" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gWg-WK-UeT">
+                                <rect key="frame" x="43" y="104" width="328" height="28"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="23"/>
                                 <nil key="textColor"/>
@@ -44,7 +44,7 @@
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="srp-ZR-tre">
-                                <rect key="frame" x="163" y="701" width="92" height="36"/>
+                                <rect key="frame" x="43" y="701" width="328" height="36"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="20"/>
                                 <state key="normal" title="Post Event"/>
@@ -73,7 +73,9 @@
                     </view>
                     <tabBarItem key="tabBarItem" title="New Event" id="Ctr-0q-eIt"/>
                     <connections>
+                        <outlet property="btnPostEvent" destination="srp-ZR-tre" id="eWl-ms-yan"/>
                         <outlet property="imgEventImage" destination="o2h-rQ-ugo" id="VMc-ob-jtH"/>
+                        <outlet property="lblEventType" destination="gWg-WK-UeT" id="znQ-Ua-gmC"/>
                         <outlet property="txtEventDescription" destination="USH-Ke-Kjn" id="4yu-AM-HOQ"/>
                         <outlet property="txtEventLocation" destination="uiB-0f-X0r" id="JnL-Kq-qph"/>
                         <outlet property="txtEventTitle" destination="y7B-Mv-DJY" id="Vbe-pc-oBL"/>

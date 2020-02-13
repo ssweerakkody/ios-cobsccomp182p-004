@@ -13,7 +13,7 @@ import Firebase
 
 final class EventsTableViewController: UITableViewController {
  
-    
+    var EventIDs = [String]()
     private var Events = [JSON]() {
         didSet {
             tableView.reloadData()
@@ -28,12 +28,14 @@ final class EventsTableViewController: UITableViewController {
         ref.observe(.value, with: { snapshot in
            
             self.Events.removeAll()
+            self.EventIDs.removeAll()
             
             let dict = snapshot.value as? [String: AnyObject]
             let json = JSON(dict as Any)
             
             for object in json{
              
+                self.EventIDs.append(object.0)
                 self.Events.append(object.1)
                 //print(object.1)
                 //print(self.items)
@@ -80,20 +82,30 @@ final class EventsTableViewController: UITableViewController {
     {
 
         
-//            Create a new view to diplay the event send the selected values of row item also
-//            it will appear in detial page
-//embedded the navigation controller check the source code
-        let vc = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "EventsViewController") as! EventViewController
-//        self.present(vc, animated: true, completion: nil)
-//            let vc = EventViewController(nibName: "EventViewController", bundle: nil)
-//            navigationController?.pushViewController(vc, animated: true)
+        if(UserDefaults.standard.string(forKey: "UserUID") == Events[indexPath.row]["CreatedBy"].stringValue){
+            
+            let vc = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "EventsViewController") as! EventViewController
+            
             vc.event = Events[indexPath.row]
-        
-           // navigationController?.pushViewController(vc, animated: true)
+            
+            
             print("view post")
-        
-        navigationController?.pushViewController(vc, animated: true)
-        //self.present(vc, animated: true, completion: nil)
+            
+            navigationController?.pushViewController(vc, animated: true)
+            
+        }
+        else{
+            
+            let vc = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "PostEventView") as! PostEventViewController
+            
+            vc.selectedEvent = Events[indexPath.row]
+            vc.selectedEventID = EventIDs[indexPath.row]
+            
+            navigationController?.pushViewController(vc, animated: true)
+            
+        }
+       
+
         
         
     }
