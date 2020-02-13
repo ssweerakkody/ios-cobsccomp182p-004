@@ -22,7 +22,7 @@ class RegistrationViewController: UIViewController{
     @IBOutlet weak var txtMobileNo: UITextField!
     @IBOutlet weak var txtFBProfileUrl: UITextField!
     
-   var imagePicker: ImagePicker!
+    var imagePicker: ImagePicker!
     
     var userID :String = ""
     
@@ -36,7 +36,7 @@ class RegistrationViewController: UIViewController{
     
     override func viewDidLoad() {
         super.viewDidLoad()
-//        addStylesToRegister()
+        //        addStylesToRegister()
         imgProPicture.layer.masksToBounds = true
         imgProPicture.layer.cornerRadius = imgProPicture.bounds.width / 2
         
@@ -50,7 +50,7 @@ class RegistrationViewController: UIViewController{
     
     @IBAction func SetProfilePicture(_ sender: UIButton) {
         
-      self.imagePicker.present(from: sender)
+        self.imagePicker.present(from: sender)
         
     }
     
@@ -184,7 +184,7 @@ class RegistrationViewController: UIViewController{
                     "FBProfileUrl":FBProfileUrl,
                     "UserID":self.userID,
                     "DisplayName": DisplayName
-                    ]
+                ]
                 
                 
                 dbRef.setValue(data, withCompletionBlock: { ( err , dbRef) in
@@ -212,34 +212,34 @@ class RegistrationViewController: UIViewController{
     }
     
     
-//    func addStylesToRegister()  {
-//        self.navigationController?.navigationBar.tintColor = UIColor.white
-//        self.navigationController?.navigationBar.barStyle = UIBarStyle.black
-//
-//
-//        txtFName.roundCorners([.topLeft,], radius: 10)
-//        txtLName.roundCorners([.topRight,], radius: 10)
-//        txtEmail.roundCorners([.bottomLeft,.bottomRight], radius: 10)
-//        txtPassword.roundCorners([.topLeft,.topRight], radius: 10)
-//        txtConfirmPassword.roundCorners([.bottomLeft,.bottomRight], radius: 10)
-//        txtZipCode.roundCorners([.bottomLeft,.bottomRight,.topRight,.topLeft], radius:10)
-//
-//        txtFName.setLeftPaddingPoints(8)
-//        txtLName.setLeftPaddingPoints(8)
-//        txtEmail.setLeftPaddingPoints(8)
-//        txtPassword.setLeftPaddingPoints(8)
-//        txtConfirmPassword.setLeftPaddingPoints(8)
-//        txtZipCode.setLeftPaddingPoints(8)
-//
-//
-//
-//        txtFName.placeholderColor(color: UIColor.white)
-//        txtLName.placeholderColor(color: UIColor.white)
-//        txtEmail.placeholderColor(color: UIColor.white)
-//        txtPassword.placeholderColor(color: UIColor.white)
-//        txtConfirmPassword.placeholderColor(color: UIColor.white)
-//        txtZipCode.placeholderColor(color: UIColor.white)
-//    }
+    //    func addStylesToRegister()  {
+    //        self.navigationController?.navigationBar.tintColor = UIColor.white
+    //        self.navigationController?.navigationBar.barStyle = UIBarStyle.black
+    //
+    //
+    //        txtFName.roundCorners([.topLeft,], radius: 10)
+    //        txtLName.roundCorners([.topRight,], radius: 10)
+    //        txtEmail.roundCorners([.bottomLeft,.bottomRight], radius: 10)
+    //        txtPassword.roundCorners([.topLeft,.topRight], radius: 10)
+    //        txtConfirmPassword.roundCorners([.bottomLeft,.bottomRight], radius: 10)
+    //        txtZipCode.roundCorners([.bottomLeft,.bottomRight,.topRight,.topLeft], radius:10)
+    //
+    //        txtFName.setLeftPaddingPoints(8)
+    //        txtLName.setLeftPaddingPoints(8)
+    //        txtEmail.setLeftPaddingPoints(8)
+    //        txtPassword.setLeftPaddingPoints(8)
+    //        txtConfirmPassword.setLeftPaddingPoints(8)
+    //        txtZipCode.setLeftPaddingPoints(8)
+    //
+    //
+    //
+    //        txtFName.placeholderColor(color: UIColor.white)
+    //        txtLName.placeholderColor(color: UIColor.white)
+    //        txtEmail.placeholderColor(color: UIColor.white)
+    //        txtPassword.placeholderColor(color: UIColor.white)
+    //        txtConfirmPassword.placeholderColor(color: UIColor.white)
+    //        txtZipCode.placeholderColor(color: UIColor.white)
+    //    }
     
     
     func showAlert(title:String,message:String){
