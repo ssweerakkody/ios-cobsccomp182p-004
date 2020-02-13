@@ -232,9 +232,6 @@ class PostEventViewController: UIViewController {
                     
                 }
                 
-                
-                
-                
             }
         }
         
