@@ -92,6 +92,12 @@
                     <view key="view" contentMode="scaleToFill" id="qMa-5H-Zd1">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="cEt-4T-ffc">
+                                <rect key="frame" x="137" y="91" width="140" height="125"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            </imageView>
+                        </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <viewLayoutGuide key="safeArea" id="cXy-rX-ef5"/>
                     </view>
@@ -99,7 +105,15 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="DgY-CQ-ttr" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="0.0" y="739"/>
+            <point key="canvasLocation" x="0.0" y="738.61607142857144"/>
+        </scene>
+        <!--UserDetails-->
+        <scene sceneID="VzI-zw-ZN0">
+            <objects>
+                <viewControllerPlaceholder storyboardName="UserAuthentication" referencedIdentifier="UserDetails" id="Afr-Qz-j4n" sceneMemberID="viewController"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="ios-lS-8N1" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-533" y="504"/>
         </scene>
         <!--Event Feed-->
         <scene sceneID="RDp-NB-7kF">
