@@ -21,11 +21,11 @@ class LoginViewController: UIViewController ,UITextFieldDelegate {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-//      Do any additional setup after loading the view.
+        //      Do any additional setup after loading the view.
         txtEmail.delegate = self
         txtEmail.toStyledTextField()
         txtPassword.toStyledTextField()
-
+        
         btnSignIn.toRoundButtonEdges()
         
     }
@@ -38,23 +38,31 @@ class LoginViewController: UIViewController ,UITextFieldDelegate {
         
         Auth.auth().signIn(withEmail: txtEmail.text!, password: txtPassword.text!) { (user, error) in
             if error == nil{
-
+                
                 
                 let userRef = Database.database().reference().child("Users")
                 userRef.queryOrdered(byChild: "UserID").queryEqual(toValue: (user?.user.uid)!).observeSingleEvent(of: .value, with: { snapshot in
                     
                     
                     if !snapshot.exists() { return }
-
+                    
                     let dict = snapshot.value as? [String: AnyObject]
                     
                     // print("User :",dict?.first?.value["UserID"] as! String)
                     // print("ProfileImageUrl :",dict?.first?.value["ProfileImageUrl"] as! String)
                     // print("DisplayName :",dict?.first?.value["DisplayName"] as! String)
-
-                    UserDefaults.standard.set(dict?.first?.value["UserID"] as! String, forKey: "UserID")
-                    UserDefaults.standard.set(dict?.first?.value["ProfileImageUrl"] as! String, forKey: "ProfileImageUrl")
+                    
                     UserDefaults.standard.set(dict?.first?.value["DisplayName"] as! String, forKey: "DisplayName")
+                    UserDefaults.standard.set(dict?.first?.value["Email"] as! String, forKey: "Email")
+                    UserDefaults.standard.set(dict?.first?.value["FBProfileUrl"] as! String, forKey: "FBProfileUrl")
+                    UserDefaults.standard.set(dict?.first?.value["FirstName"] as! String, forKey: "FirstName")
+                    UserDefaults.standard.set(dict?.first?.value["LastName"] as! String, forKey: "LastName")
+                    UserDefaults.standard.set(dict?.first?.value["MobileNo"] as! String, forKey: "MobileNo")
+                    UserDefaults.standard.set(dict?.first?.value["ProfileImageUrl"] as! String, forKey: "ProfileImageUrl")
+                    UserDefaults.standard.set(dict?.first?.value["UserID"] as! String, forKey: "UserID")
+                    
+                    
+                    
                     UserDefaults.standard.synchronize()
                     
                     
@@ -100,7 +108,7 @@ class LoginViewController: UIViewController ,UITextFieldDelegate {
                 self.present(alertController, animated: true, completion: nil)
             }
         }
-
+        
         
     }
     
