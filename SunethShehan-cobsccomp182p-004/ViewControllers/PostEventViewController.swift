@@ -104,10 +104,10 @@ class PostEventViewController: UIViewController {
         let alert : UIAlertController
         
         if(self.selectedEvent != nil && !self.selectedEvent!.isEmpty && !self.selectedEventID!.isEmpty){
-             alert = UIAlertController(title: nil, message: "Updating ", preferredStyle: .alert)
+            alert = UIAlertController(title: nil, message: "Updating ", preferredStyle: .alert)
         }
         else{
-             alert = UIAlertController(title: nil, message: "Posting ", preferredStyle: .alert)
+            alert = UIAlertController(title: nil, message: "Posting ", preferredStyle: .alert)
         }
         
         let loadingIndicator = UIActivityIndicatorView(frame: CGRect(x: 10, y: 5, width: 50, height: 50))
@@ -161,10 +161,10 @@ class PostEventViewController: UIViewController {
                     // Delete the file
                     desertRef.delete { error in
                         if let error = error {
-                          print("Cannot remove the image",error)
+                            print("Cannot remove the image",error)
                         }
                     }
-
+                    
                     
                     let dbRef = Database.database().reference().child("Events").child(self.selectedEventID!)
                     
@@ -198,7 +198,7 @@ class PostEventViewController: UIViewController {
                     return
                     
                 }
-                // Add Operation
+                    // Add Operation
                 else{
                     
                     let dbRef = Database.database().reference().child("Events").childByAutoId()
