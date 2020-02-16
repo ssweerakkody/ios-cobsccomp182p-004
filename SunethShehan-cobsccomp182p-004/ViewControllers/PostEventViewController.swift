@@ -174,7 +174,7 @@ class PostEventViewController: UIViewController {
                         "Descrption" : EventDescription,
                         "Location":EventLocation,
                         "EventImageUrl": imgUrl,
-                        "CreatedBy":UserDefaults.standard.string(forKey: "UserUID"),
+                        "CreatedBy":UserDefaults.standard.string(forKey: "UserID"),
                         "UserDisplayName":UserDefaults.standard.string(forKey: "DisplayName"),
                         "UserProfileURL":UserDefaults.standard.string(forKey: "ProfileImageUrl")
                     ]
@@ -210,7 +210,7 @@ class PostEventViewController: UIViewController {
                         "Descrption" : EventDescription,
                         "Location":EventLocation,
                         "EventImageUrl": imgUrl,
-                        "CreatedBy":UserDefaults.standard.string(forKey: "UserUID"),
+                        "CreatedBy":UserDefaults.standard.string(forKey: "UserID"),
                         "UserDisplayName":UserDefaults.standard.string(forKey: "DisplayName"),
                         "UserProfileURL":UserDefaults.standard.string(forKey: "ProfileImageUrl")
                         
