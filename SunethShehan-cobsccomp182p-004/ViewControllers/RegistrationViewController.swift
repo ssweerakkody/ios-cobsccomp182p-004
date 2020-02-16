@@ -34,9 +34,26 @@ class RegistrationViewController: UIViewController{
     
     var ref: DatabaseReference!
     
+    @IBAction func Logout(_ sender: Any) {
+        
+        try! Auth.auth().signOut()
+        
+        let domain = Bundle.main.bundleIdentifier!
+        
+        UserDefaults.standard.removePersistentDomain(forName: domain)
+        UserDefaults.standard.synchronize()
+        
+        let vc = UIStoryboard(name: "UserAuthentication", bundle: nil).instantiateViewController(withIdentifier: "RootUserNavigation")
+        self.present(vc, animated: true, completion: nil)
+        
+        
+    }
     override func viewDidLoad() {
         super.viewDidLoad()
         //        addStylesToRegister()
+        
+        
+        
         imgProPicture.layer.masksToBounds = true
         imgProPicture.layer.cornerRadius = imgProPicture.bounds.width / 2
         
@@ -45,8 +62,24 @@ class RegistrationViewController: UIViewController{
         let tap = UITapGestureRecognizer(target: self.view, action: #selector(UIView.endEditing(_:)))
         view.addGestureRecognizer(tap)
         
+        
+        
+//        Load the exsting data values to view and update functionality should be done
+//                print("Current User ",Auth.auth().currentUser?.email)
+        
+                if Auth.auth().currentUser != nil {
+                    
+                    txtFName.text  = UserDefaults.standard.string(forKey: "FirstName")
+                    txtLName.text  = UserDefaults.standard.string(forKey: "LastName")
+                    txtEmail.text  = UserDefaults.standard.string(forKey: "Email")
+                    txtDisplayName.text = UserDefaults.standard.string(forKey: "DisplayName")
+                    txtMobileNo.text  = UserDefaults.standard.string(forKey: "MobileNo")
+                    txtFBProfileUrl.text  = UserDefaults.standard.string(forKey: "FBProfileUrl")
+                   
+                    txtPassword.placeholder = "Enter your New Password Here"
+                    
+                }
     }
-    
     
     @IBAction func SetProfilePicture(_ sender: UIButton) {
         

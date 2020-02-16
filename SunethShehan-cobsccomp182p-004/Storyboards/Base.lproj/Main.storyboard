@@ -271,7 +271,7 @@
         <!--Profile-->
         <scene sceneID="g3E-sE-YQD">
             <objects>
-                <viewController storyboardIdentifier="UserDetails" id="b7b-1G-xgV" customClass="RegistrationViewController" customModule="SunethShehan_cobsccomp182p_004" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="UpdateUserStoryboard" id="b7b-1G-xgV" customClass="RegistrationViewController" customModule="SunethShehan_cobsccomp182p_004" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="PEt-u1-hgc">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -352,6 +352,14 @@
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="MUv-c9-Myu">
+                                <rect key="frame" x="345" y="60" width="55" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="Log Out"/>
+                                <connections>
+                                    <action selector="Logout:" destination="b7b-1G-xgV" eventType="touchUpInside" id="aIr-e4-iVc"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <viewLayoutGuide key="safeArea" id="bkw-3r-ubZ"/>
