@@ -56,6 +56,8 @@ class LoginViewController: UIViewController ,UITextFieldDelegate {
                     // print("ProfileImageUrl :",dict?.first?.value["ProfileImageUrl"] as! String)
                     // print("DisplayName :",dict?.first?.value["DisplayName"] as! String)
                     
+                    UserDefaults.standard.set(dict?.keys.first as! String, forKey: "UserDocID")
+                    
                     UserDefaults.standard.set(dict?.first?.value["DisplayName"] as! String, forKey: "DisplayName")
                     UserDefaults.standard.set(dict?.first?.value["Email"] as! String, forKey: "Email")
                     UserDefaults.standard.set(dict?.first?.value["FBProfileUrl"] as! String, forKey: "FBProfileUrl")
