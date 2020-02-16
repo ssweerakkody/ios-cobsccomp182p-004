@@ -22,15 +22,12 @@ class UpdateProfileViewController: UIViewController{
     @IBOutlet weak var txtMobileNo: UITextField!
     @IBOutlet weak var txtFBProfileUrl: UITextField!
     
-    @IBOutlet weak var btnSetImage: UIButton!
-    
-    @IBOutlet weak var btnSaveInfo: UIButton!
     
     var imagePicker: ImagePicker!
     
     var userID :String = ""
     
-    @IBAction func btnSignUp(_ sender: Any) {
+    @IBAction func SaveUserInfo(_ sender: Any) {
         
         databaseOperation()
         
@@ -55,7 +52,7 @@ class UpdateProfileViewController: UIViewController{
     override func viewDidLoad() {
         super.viewDidLoad()
         //        addStylesToRegister()
-
+        
         imgProPicture.layer.masksToBounds = true
         imgProPicture.layer.cornerRadius = imgProPicture.bounds.width / 2
         
@@ -64,10 +61,6 @@ class UpdateProfileViewController: UIViewController{
         let tap = UITapGestureRecognizer(target: self.view, action: #selector(UIView.endEditing(_:)))
         view.addGestureRecognizer(tap)
         
-        
-        
-        //        Load the exsting data values to view and update functionality should be done
-        //                print("Current User ",Auth.auth().currentUser?.email)
         
         if Auth.auth().currentUser != nil {
             
@@ -91,28 +84,27 @@ class UpdateProfileViewController: UIViewController{
     }
     
     func databaseOperation(){
-        
         ref = Database.database().reference()
         
         //create the user in authentication
         
-        Auth.auth().createUser(withEmail: txtEmail.text!, password: txtPassword.text!) { authResult, error in
-            
-            if((error==nil)){
-                
-                //self.showAlert(title: "Success", message: "User Registration Success !")
-                self.userID = (authResult?.user.uid)!
-                
-                
-            }
-            else{
-                
-                self.showAlert(title: "Error", message: (error?.localizedDescription)!)
-                return
-                
-            }
-            
-        }
+//        Auth.auth().createUser(withEmail: txtEmail.text!, password: txtPassword.text!) { authResult, error in
+//
+//            if((error==nil)){
+//
+//                //self.showAlert(title: "Success", message: "User Registration Success !")
+//                self.userID = (authResult?.user.uid)!
+//
+//
+//            }
+//            else{
+//
+//                self.showAlert(title: "Error", message: (error?.localizedDescription)!)
+//                return
+//
+//            }
+//
+//        }
         
         guard let FirstName = txtFName.text, !FirstName.isEmpty else {
             
@@ -208,8 +200,8 @@ class UpdateProfileViewController: UIViewController{
                 
                 let imgUrl = url.absoluteString
                 
-                let dbRef = Database.database().reference().child("Users").childByAutoId()
                 
+                let dbRef = Database.database().reference().child("Users").child(UserDefaults.standard.string(forKey: "UserDocID")!)
                 
                 let data = [
                     "FirstName" : FirstName,
@@ -218,66 +210,25 @@ class UpdateProfileViewController: UIViewController{
                     "MobileNo": MobileNo,
                     "ProfileImageUrl" : imgUrl,
                     "FBProfileUrl":FBProfileUrl,
-                    "UserID":self.userID,
+                    "UserID":UserDefaults.standard.string(forKey: "UserID"),
                     "DisplayName": DisplayName
                 ]
-                
                 
                 dbRef.setValue(data, withCompletionBlock: { ( err , dbRef) in
                     if let err = err {
                         self.showAlert(title: "Eror",message: "Error uploading data: \(err.localizedDescription)")
                         return
                     }
+                    
                     alert.dismiss(animated: false, completion: nil)
-                    
-                    //Redirect to the feed view
-                    let tabVC = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "EventNavigation") as! UITabBarController
-                    tabVC.selectedIndex = 1
-                    
-                    self.present(tabVC, animated: true, completion: nil)
-                    self.loadView()
-                    self.view.setNeedsLayout()
-                    
                     
                 })
                 
+                
             }
         }
-        
-        
+      
     }
-    
-    
-    //    func addStylesToRegister()  {
-    //        self.navigationController?.navigationBar.tintColor = UIColor.white
-    //        self.navigationController?.navigationBar.barStyle = UIBarStyle.black
-    //
-    //
-    //        txtFName.roundCorners([.topLeft,], radius: 10)
-    //        txtLName.roundCorners([.topRight,], radius: 10)
-    //        txtEmail.roundCorners([.bottomLeft,.bottomRight], radius: 10)
-    //        txtPassword.roundCorners([.topLeft,.topRight], radius: 10)
-    //        txtConfirmPassword.roundCorners([.bottomLeft,.bottomRight], radius: 10)
-    //        txtZipCode.roundCorners([.bottomLeft,.bottomRight,.topRight,.topLeft], radius:10)
-    //
-    //        txtFName.setLeftPaddingPoints(8)
-    //        txtLName.setLeftPaddingPoints(8)
-    //        txtEmail.setLeftPaddingPoints(8)
-    //        txtPassword.setLeftPaddingPoints(8)
-    //        txtConfirmPassword.setLeftPaddingPoints(8)
-    //        txtZipCode.setLeftPaddingPoints(8)
-    //
-    //
-    //
-    //        txtFName.placeholderColor(color: UIColor.white)
-    //        txtLName.placeholderColor(color: UIColor.white)
-    //        txtEmail.placeholderColor(color: UIColor.white)
-    //        txtPassword.placeholderColor(color: UIColor.white)
-    //        txtConfirmPassword.placeholderColor(color: UIColor.white)
-    //        txtZipCode.placeholderColor(color: UIColor.white)
-    //    }
-    
-    
     func showAlert(title:String,message:String){
         
         let alertController = UIAlertController(title: title, message: message, preferredStyle: .alert)
@@ -289,9 +240,7 @@ class UpdateProfileViewController: UIViewController{
         
     }
     
-    
 }
-
 
 
 
