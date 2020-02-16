@@ -82,7 +82,7 @@ final class EventsTableViewController: UITableViewController {
     {
 
         
-        if(UserDefaults.standard.string(forKey: "UserUID") == Events[indexPath.row]["CreatedBy"].stringValue){
+        if(UserDefaults.standard.string(forKey: "UserID") != Events[indexPath.row]["CreatedBy"].stringValue){
             
             let vc = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "EventsViewController") as! EventViewController
             
