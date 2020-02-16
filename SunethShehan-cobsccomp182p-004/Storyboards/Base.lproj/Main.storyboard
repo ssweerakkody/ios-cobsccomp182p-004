@@ -281,7 +281,7 @@
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" title="Update Profile"/>
                                 <connections>
-                                    <action selector="btnSignUp:" destination="b7b-1G-xgV" eventType="touchUpInside" id="Vn1-IR-aO6"/>
+                                    <action selector="SaveUserInfo:" destination="b7b-1G-xgV" eventType="touchUpInside" id="cem-1q-Wgd"/>
                                 </connections>
                             </button>
                             <textField opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="bezel" placeholder="FirstName" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="MCJ-ox-gSl">
@@ -366,8 +366,6 @@
                     </view>
                     <tabBarItem key="tabBarItem" title="Profile" id="VRV-pY-DIj"/>
                     <connections>
-                        <outlet property="btnSaveInfo" destination="Viy-Qy-q96" id="N3f-PJ-CYy"/>
-                        <outlet property="btnSetImage" destination="7hW-xE-EKx" id="KFZ-AI-Gwg"/>
                         <outlet property="imgProPicture" destination="lLV-06-cpr" id="4Uw-rh-SIF"/>
                         <outlet property="txtConfirmPassword" destination="O2n-gJ-ThH" id="IcX-lr-1zl"/>
                         <outlet property="txtDisplayName" destination="cIb-H7-WBp" id="jtY-F4-jnQ"/>
