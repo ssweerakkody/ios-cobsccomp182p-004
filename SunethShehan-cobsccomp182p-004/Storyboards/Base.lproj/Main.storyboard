@@ -271,15 +271,15 @@
         <!--Profile-->
         <scene sceneID="g3E-sE-YQD">
             <objects>
-                <viewController storyboardIdentifier="UpdateUserStoryboard" id="b7b-1G-xgV" customClass="RegistrationViewController" customModule="SunethShehan_cobsccomp182p_004" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="UpdateUserStoryboard" id="b7b-1G-xgV" customClass="UpdateProfileViewController" customModule="SunethShehan_cobsccomp182p_004" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="PEt-u1-hgc">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Viy-Qy-q96">
-                                <rect key="frame" x="180" y="706" width="54" height="30"/>
+                                <rect key="frame" x="20" y="706" width="374" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <state key="normal" title="Sign Up"/>
+                                <state key="normal" title="Update Profile"/>
                                 <connections>
                                     <action selector="btnSignUp:" destination="b7b-1G-xgV" eventType="touchUpInside" id="Vn1-IR-aO6"/>
                                 </connections>
@@ -310,9 +310,9 @@
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             </imageView>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="7hW-xE-EKx">
-                                <rect key="frame" x="173" y="271" width="69" height="30"/>
+                                <rect key="frame" x="20" y="271" width="380" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <state key="normal" title="Set Image"/>
+                                <state key="normal" title="Update Image"/>
                                 <connections>
                                     <action selector="SetProfilePicture:" destination="b7b-1G-xgV" eventType="touchUpInside" id="9wK-Xa-KSv"/>
                                 </connections>
@@ -324,7 +324,7 @@
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
-                            <textField opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="bezel" placeholder="Password" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="oxn-M9-WWu">
+                            <textField opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="bezel" placeholder="Enter your New Password Here" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="oxn-M9-WWu">
                                 <rect key="frame" x="20" y="484" width="374" height="41"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <nil key="textColor"/>
@@ -366,6 +366,8 @@
                     </view>
                     <tabBarItem key="tabBarItem" title="Profile" id="VRV-pY-DIj"/>
                     <connections>
+                        <outlet property="btnSaveInfo" destination="Viy-Qy-q96" id="N3f-PJ-CYy"/>
+                        <outlet property="btnSetImage" destination="7hW-xE-EKx" id="KFZ-AI-Gwg"/>
                         <outlet property="imgProPicture" destination="lLV-06-cpr" id="4Uw-rh-SIF"/>
                         <outlet property="txtConfirmPassword" destination="O2n-gJ-ThH" id="IcX-lr-1zl"/>
                         <outlet property="txtDisplayName" destination="cIb-H7-WBp" id="jtY-F4-jnQ"/>
@@ -379,7 +381,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="cBd-vr-4hs" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="0.0" y="719"/>
+            <point key="canvasLocation" x="0.0" y="718.52678571428567"/>
         </scene>
     </scenes>
     <resources>

@@ -18,6 +18,7 @@
 		9933C44623E82807000818B6 /* SunethShehan_cobsccomp182p_004Tests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9933C44523E82807000818B6 /* SunethShehan_cobsccomp182p_004Tests.swift */; };
 		9933C45123E82807000818B6 /* SunethShehan_cobsccomp182p_004UITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9933C45023E82807000818B6 /* SunethShehan_cobsccomp182p_004UITests.swift */; };
 		9933C45F23E82EFD000818B6 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 9933C45E23E82EFD000818B6 /* GoogleService-Info.plist */; };
+		9939FB8E23F965D200E75238 /* UpdateProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9939FB8D23F965D200E75238 /* UpdateProfileViewController.swift */; };
 		993A2FC323F1D4DA00E38439 /* EventViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 993A2FC223F1D4DA00E38439 /* EventViewController.swift */; };
 		993D093C23ED264C002F14FA /* ImagePicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 993D093B23ED264C002F14FA /* ImagePicker.swift */; };
 		993D742F23ED76D80093A197 /* FirstViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 993D742E23ED76D80093A197 /* FirstViewController.swift */; };
@@ -69,6 +70,7 @@
 		9933C45023E82807000818B6 /* SunethShehan_cobsccomp182p_004UITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SunethShehan_cobsccomp182p_004UITests.swift; sourceTree = "<group>"; };
 		9933C45223E82807000818B6 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		9933C45E23E82EFD000818B6 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		9939FB8D23F965D200E75238 /* UpdateProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpdateProfileViewController.swift; sourceTree = "<group>"; };
 		993A2FC223F1D4DA00E38439 /* EventViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventViewController.swift; sourceTree = "<group>"; };
 		993D093B23ED264C002F14FA /* ImagePicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImagePicker.swift; sourceTree = "<group>"; };
 		993D742E23ED76D80093A197 /* FirstViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FirstViewController.swift; sourceTree = "<group>"; };
@@ -200,6 +202,7 @@
 				995B9D7C23EFAE3800F1A970 /* PostEventViewController.swift */,
 				995B9D8023EFB81A00F1A970 /* EventsTableViewController.swift */,
 				993A2FC223F1D4DA00E38439 /* EventViewController.swift */,
+				9939FB8D23F965D200E75238 /* UpdateProfileViewController.swift */,
 			);
 			path = ViewControllers;
 			sourceTree = "<group>";
@@ -498,6 +501,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				9939FB8E23F965D200E75238 /* UpdateProfileViewController.swift in Sources */,
 				995B9D7D23EFAE3800F1A970 /* PostEventViewController.swift in Sources */,
 				993D743123ED76E50093A197 /* SecondViewController.swift in Sources */,
 				997C811823EC7051003844D9 /* LoginViewController.swift in Sources */,

@@ -1,15 +1,15 @@
 //
-//  RegistrationViewController.swift
+//  UpdateProfileViewController.swift
 //  SunethShehan-cobsccomp182p-004
 //
-//  Created by Suneth on 2/6/20.
+//  Created by Suneth on 2/16/20.
 //  Copyright © 2020 Suneth. All rights reserved.
 //
 
 import UIKit
 import Firebase
 
-class RegistrationViewController: UIViewController{
+class UpdateProfileViewController: UIViewController{
     
     
     @IBOutlet weak var imgProPicture: UIImageView!
@@ -21,6 +21,10 @@ class RegistrationViewController: UIViewController{
     @IBOutlet weak var txtConfirmPassword: UITextField!
     @IBOutlet weak var txtMobileNo: UITextField!
     @IBOutlet weak var txtFBProfileUrl: UITextField!
+    
+    @IBOutlet weak var btnSetImage: UIButton!
+    
+    @IBOutlet weak var btnSaveInfo: UIButton!
     
     var imagePicker: ImagePicker!
     
@@ -34,12 +38,24 @@ class RegistrationViewController: UIViewController{
     
     var ref: DatabaseReference!
     
+    @IBAction func Logout(_ sender: Any) {
+        
+        try! Auth.auth().signOut()
+        
+        let domain = Bundle.main.bundleIdentifier!
+        
+        UserDefaults.standard.removePersistentDomain(forName: domain)
+        UserDefaults.standard.synchronize()
+        
+        let vc = UIStoryboard(name: "UserAuthentication", bundle: nil).instantiateViewController(withIdentifier: "RootUserNavigation")
+        self.present(vc, animated: true, completion: nil)
+        
+        
+    }
     override func viewDidLoad() {
         super.viewDidLoad()
         //        addStylesToRegister()
-        
-        
-        
+
         imgProPicture.layer.masksToBounds = true
         imgProPicture.layer.cornerRadius = imgProPicture.bounds.width / 2
         
@@ -50,10 +66,22 @@ class RegistrationViewController: UIViewController{
         
         
         
-//        Load the exsting data values to view and update functionality should be done
-//                print("Current User ",Auth.auth().currentUser?.email)
+        //        Load the exsting data values to view and update functionality should be done
+        //                print("Current User ",Auth.auth().currentUser?.email)
         
-                
+        if Auth.auth().currentUser != nil {
+            
+            txtFName.text  = UserDefaults.standard.string(forKey: "FirstName")
+            txtLName.text  = UserDefaults.standard.string(forKey: "LastName")
+            txtEmail.text  = UserDefaults.standard.string(forKey: "Email")
+            txtDisplayName.text = UserDefaults.standard.string(forKey: "DisplayName")
+            txtMobileNo.text  = UserDefaults.standard.string(forKey: "MobileNo")
+            txtFBProfileUrl.text  = UserDefaults.standard.string(forKey: "FBProfileUrl")
+            let imageURL = URL(string: UserDefaults.standard.string(forKey: "ProfileImageUrl")!)
+            imgProPicture.kf.setImage(with: imageURL)
+            
+            
+        }
     }
     
     @IBAction func SetProfilePicture(_ sender: UIButton) {
@@ -206,23 +234,13 @@ class RegistrationViewController: UIViewController{
                     let tabVC = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "EventNavigation") as! UITabBarController
                     tabVC.selectedIndex = 1
                     
-                    UserDefaults.standard.set(DisplayName, forKey: "DisplayName")
-                    UserDefaults.standard.set(Email, forKey: "Email")
-                    UserDefaults.standard.set(FBProfileUrl, forKey: "FBProfileUrl")
-                    UserDefaults.standard.set(FirstName, forKey: "FirstName")
-                    UserDefaults.standard.set(LastName, forKey: "LastName")
-                    UserDefaults.standard.set(MobileNo, forKey: "MobileNo")
-                    UserDefaults.standard.set(imgUrl, forKey: "ProfileImageUrl")
-                    UserDefaults.standard.set(self.userID, forKey: "UserID")
-                    
-                    UserDefaults.standard.synchronize()
-                    
                     self.present(tabVC, animated: true, completion: nil)
                     self.loadView()
                     self.view.setNeedsLayout()
                     
                     
                 })
+                
             }
         }
         
@@ -273,6 +291,7 @@ class RegistrationViewController: UIViewController{
     
     
 }
+
 
 
 

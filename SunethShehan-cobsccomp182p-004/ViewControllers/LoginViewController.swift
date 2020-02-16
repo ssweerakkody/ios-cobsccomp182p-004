@@ -39,6 +39,10 @@ class LoginViewController: UIViewController ,UITextFieldDelegate {
         Auth.auth().signIn(withEmail: txtEmail.text!, password: txtPassword.text!) { (user, error) in
             if error == nil{
                 
+                let domain = Bundle.main.bundleIdentifier!
+                
+                UserDefaults.standard.removePersistentDomain(forName: domain)
+                UserDefaults.standard.synchronize()
                 
                 let userRef = Database.database().reference().child("Users")
                 userRef.queryOrdered(byChild: "UserID").queryEqual(toValue: (user?.user.uid)!).observeSingleEvent(of: .value, with: { snapshot in

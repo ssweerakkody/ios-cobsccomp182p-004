@@ -63,3 +63,11 @@ extension PostEventViewController: ImagePickerDelegate {
         self.imgEventImage.image = image
     }
 }
+
+extension UpdateProfileViewController: ImagePickerDelegate {
+    
+    func didSelect(image: UIImage?) {
+        self.imgProPicture.image = image
+    }
+}
+
