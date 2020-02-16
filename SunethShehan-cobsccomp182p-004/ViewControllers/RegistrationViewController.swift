@@ -50,10 +50,10 @@ class RegistrationViewController: UIViewController{
         
         
         
-//        Load the exsting data values to view and update functionality should be done
-//                print("Current User ",Auth.auth().currentUser?.email)
+        //        Load the exsting data values to view and update functionality should be done
+        //                print("Current User ",Auth.auth().currentUser?.email)
         
-                
+        
     }
     
     @IBAction func SetProfilePicture(_ sender: UIButton) {
@@ -205,6 +205,8 @@ class RegistrationViewController: UIViewController{
                     //Redirect to the feed view
                     let tabVC = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "EventNavigation") as! UITabBarController
                     tabVC.selectedIndex = 1
+                    
+                    UserDefaults.standard.set(dbRef.key, forKey: "UserDocID")
                     
                     UserDefaults.standard.set(DisplayName, forKey: "DisplayName")
                     UserDefaults.standard.set(Email, forKey: "Email")
