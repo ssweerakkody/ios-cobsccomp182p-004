@@ -86,7 +86,7 @@ class UpdateProfileViewController: UIViewController{
     func databaseOperation(){
         ref = Database.database().reference()
         
-        //create the user in authentication
+        // use update values with firebase
         
 //        Auth.auth().createUser(withEmail: txtEmail.text!, password: txtPassword.text!) { authResult, error in
 //
