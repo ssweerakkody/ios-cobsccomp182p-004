@@ -24,24 +24,29 @@ final class EventsTableViewController: UITableViewController {
         super.viewDidLoad()
         
         
-        let ref = Database.database().reference().child("Events")
-        ref.observe(.value, with: { snapshot in
-           
-            self.Events.removeAll()
-            self.EventIDs.removeAll()
-            
-            let dict = snapshot.value as? [String: AnyObject]
-            let json = JSON(dict as Any)
-            
-            for object in json{
-             
-                self.EventIDs.append(object.0)
-                self.Events.append(object.1)
-                //print(object.1)
-                //print(self.items)
-            }
-        })
-        
+        let db = Firestore.firestore()
+
+        db.collection("events").getDocuments() { (querySnapshot, err) in
+                if let err = err {
+                    print("Error getting documents: \(err)")
+                } else {
+                    
+                    self.Events.removeAll()
+                    self.EventIDs.removeAll()
+                    
+                    for document in querySnapshot!.documents {
+                        
+                        self.EventIDs.append(document.documentID)
+                        print(document.documentID)
+                        
+                        let data = document.data()
+                        let json = JSON(data as Any)
+
+                        self.Events.append(json)
+                        print(data)
+                    }
+                }
+        }
     }
     
     override func numberOfSections(in tableView: UITableView) -> Int {
@@ -60,7 +65,7 @@ final class EventsTableViewController: UITableViewController {
         let cell = tableView.dequeueReusableCell(withIdentifier: "EventCell",for: indexPath) as! EventsTableViewCell
         
 
-        cell.lblCreatedBy.text =  Events[indexPath.row]["UserDisplayName"].stringValue
+        cell.lblCreatedBy.text =  Events[indexPath.row]["CreatedBy/UserDisplayName"].stringValue
 
         let avatarImageURL = URL(string: Events[indexPath.row]["UserProfileURL"].stringValue)
         cell.imgUserAvatar.kf.setImage(with: avatarImageURL)
