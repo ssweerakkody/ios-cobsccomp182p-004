@@ -9,6 +9,7 @@
 import UIKit
 import Firebase
 import SwiftyJSON
+import CodableFirebase
 
 class LoginViewController: UIViewController ,UITextFieldDelegate {
     
@@ -44,35 +45,28 @@ class LoginViewController: UIViewController ,UITextFieldDelegate {
                 UserDefaults.standard.removePersistentDomain(forName: domain)
                 UserDefaults.standard.synchronize()
                 
-                let userRef = Database.database().reference().child("Users")
-                userRef.queryOrdered(byChild: "UserID").queryEqual(toValue: (user?.user.uid)!).observeSingleEvent(of: .value, with: { snapshot in
-                    
-                    
-                    if !snapshot.exists() { return }
-                    
-                    let dict = snapshot.value as? [String: AnyObject]
-                    
-                    // print("User :",dict?.first?.value["UserID"] as! String)
-                    // print("ProfileImageUrl :",dict?.first?.value["ProfileImageUrl"] as! String)
-                    // print("DisplayName :",dict?.first?.value["DisplayName"] as! String)
-                    
-                    UserDefaults.standard.set(dict?.keys.first as! String, forKey: "UserDocID")
-                    
-                    UserDefaults.standard.set(dict?.first?.value["DisplayName"] as! String, forKey: "DisplayName")
-                    UserDefaults.standard.set(dict?.first?.value["Email"] as! String, forKey: "Email")
-                    UserDefaults.standard.set(dict?.first?.value["FBProfileUrl"] as! String, forKey: "FBProfileUrl")
-                    UserDefaults.standard.set(dict?.first?.value["FirstName"] as! String, forKey: "FirstName")
-                    UserDefaults.standard.set(dict?.first?.value["LastName"] as! String, forKey: "LastName")
-                    UserDefaults.standard.set(dict?.first?.value["MobileNo"] as! String, forKey: "MobileNo")
-                    UserDefaults.standard.set(dict?.first?.value["ProfileImageUrl"] as! String, forKey: "ProfileImageUrl")
-                    UserDefaults.standard.set(dict?.first?.value["UserID"] as! String, forKey: "UserID")
-                    
-                    
-                    
-                    UserDefaults.standard.synchronize()
-                    
-                    
-                })
+                
+                let db = Firestore.firestore()
+                let docRef = db.collection("users").document((user?.user.uid)!)
+                
+                docRef.getDocument { (document, error) in
+                    if(error == nil){
+                        
+                        UserDefaults.standard.set(document!.get("DisplayName") as! String, forKey: "DisplayName")
+                        UserDefaults.standard.set(document!.get("Email") as! String, forKey: "Email")
+                        UserDefaults.standard.set(document!.get("FBProfileUrl") as! String, forKey: "FBProfileUrl")
+                        UserDefaults.standard.set(document!.get("FirstName") as! String, forKey: "FirstName")
+                        UserDefaults.standard.set(document!.get("LastName") as! String, forKey: "LastName")
+                        UserDefaults.standard.set(document!.get("MobileNo") as! String, forKey: "MobileNo")
+                        UserDefaults.standard.set(document!.get("ProfileImageUrl") as! String, forKey: "ProfileImageUrl")
+                        UserDefaults.standard.set(user?.user.uid, forKey: "UserID")
+                        
+                        
+                        
+                        UserDefaults.standard.synchronize()
+                        
+                    }
+                }
                 
                 
                 let tabVC = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "EventNavigation") as! UITabBarController
