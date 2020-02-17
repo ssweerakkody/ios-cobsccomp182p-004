@@ -180,8 +180,7 @@ class RegistrationViewController: UIViewController{
                 
                 let imgUrl = url.absoluteString
                 
-                let dbRef = Database.database().reference().child("Users").childByAutoId()
-                
+                let db = Firestore.firestore()
                 
                 let data = [
                     "FirstName" : FirstName,
@@ -190,44 +189,39 @@ class RegistrationViewController: UIViewController{
                     "MobileNo": MobileNo,
                     "ProfileImageUrl" : imgUrl,
                     "FBProfileUrl":FBProfileUrl,
-                    "UserID":self.userID,
                     "DisplayName": DisplayName
                 ]
                 
-                
-                dbRef.setValue(data, withCompletionBlock: { ( err , dbRef) in
+                db.collection("users").document(self.userID).setData(data) { err in
                     if let err = err {
                         self.showAlert(title: "Eror",message: "Error uploading data: \(err.localizedDescription)")
                         return
+                    } else {
+                        alert.dismiss(animated: false, completion: nil)
+                        
+                        //Redirect to the feed view
+                        let tabVC = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "EventNavigation") as! UITabBarController
+                        tabVC.selectedIndex = 1
+                        
+                        UserDefaults.standard.set(DisplayName, forKey: "DisplayName")
+                        UserDefaults.standard.set(Email, forKey: "Email")
+                        UserDefaults.standard.set(FBProfileUrl, forKey: "FBProfileUrl")
+                        UserDefaults.standard.set(FirstName, forKey: "FirstName")
+                        UserDefaults.standard.set(LastName, forKey: "LastName")
+                        UserDefaults.standard.set(MobileNo, forKey: "MobileNo")
+                        UserDefaults.standard.set(imgUrl, forKey: "ProfileImageUrl")
+                        UserDefaults.standard.set(self.userID, forKey: "UserID")
+                        
+                        UserDefaults.standard.synchronize()
+                        
+                        self.present(tabVC, animated: true, completion: nil)
+                        self.loadView()
+                        self.view.setNeedsLayout()
                     }
-                    alert.dismiss(animated: false, completion: nil)
-                    
-                    //Redirect to the feed view
-                    let tabVC = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "EventNavigation") as! UITabBarController
-                    tabVC.selectedIndex = 1
-                    
-                    UserDefaults.standard.set(dbRef.key, forKey: "UserDocID")
-                    
-                    UserDefaults.standard.set(DisplayName, forKey: "DisplayName")
-                    UserDefaults.standard.set(Email, forKey: "Email")
-                    UserDefaults.standard.set(FBProfileUrl, forKey: "FBProfileUrl")
-                    UserDefaults.standard.set(FirstName, forKey: "FirstName")
-                    UserDefaults.standard.set(LastName, forKey: "LastName")
-                    UserDefaults.standard.set(MobileNo, forKey: "MobileNo")
-                    UserDefaults.standard.set(imgUrl, forKey: "ProfileImageUrl")
-                    UserDefaults.standard.set(self.userID, forKey: "UserID")
-                    
-                    UserDefaults.standard.synchronize()
-                    
-                    self.present(tabVC, animated: true, completion: nil)
-                    self.loadView()
-                    self.view.setNeedsLayout()
-                    
-                    
-                })
+                }
+            
             }
         }
-        
         
     }
     
