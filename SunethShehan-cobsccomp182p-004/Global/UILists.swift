@@ -5,5 +5,10 @@
 //  Created by Suneth on 2/18/20.
 //  Copyright © 2020 Suneth. All rights reserved.
 //
+import SwiftyJSON
 
-import Foundation
+class Users{
+    
+//    static var UsersList: [String: JSON] = [:]
+    
+}

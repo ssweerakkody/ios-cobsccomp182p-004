@@ -13,15 +13,16 @@ target 'SunethShehan-cobsccomp182p-004' do
   pod 'SwiftyJSON'
   pod 'Firebase/Storage'
   
-  #pod 'Firebase/Firestore'
+  pod 'Firebase/Firestore'
   
   pod 'Kingfisher', '~> 5.9'
   pod 'BiometricAuthentication'
 
   #Build failed on GoogleSignIn	
   #pod 'GoogleSignIn'
-  
 
+  #Codable
+  pod 'CodableFirebase'
 
   target 'SunethShehan-cobsccomp182p-004Tests' do
     inherit! :search_paths
