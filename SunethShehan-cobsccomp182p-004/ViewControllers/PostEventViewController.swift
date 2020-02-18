@@ -9,6 +9,7 @@
 import UIKit
 import Firebase
 import SwiftyJSON
+import CodableFirebase
 
 class PostEventViewController: UIViewController {
     
@@ -166,8 +167,8 @@ class PostEventViewController: UIViewController {
                     }
                     
                     
-                    let dbRef = Database.database().reference().child("Events").child(self.selectedEventID!)
-                    
+                    //                    let dbRef = Database.database().reference().child("Events").child(self.selectedEventID!)
+                    let db = Firestore.firestore().collection("events").document(self.selectedEventID!)
                     
                     let data = [
                         "Title" : EventTitle,
@@ -179,7 +180,7 @@ class PostEventViewController: UIViewController {
                         "UserProfileURL":UserDefaults.standard.string(forKey: "ProfileImageUrl")
                     ]
                     
-                    dbRef.setValue(data, withCompletionBlock: { ( err , dbRef) in
+                    db.setData(data as [String : Any]) { err in
                         if let err = err {
                             self.showAlert(title: "Eror",message: "Error uploading data: \(err.localizedDescription)")
                             return
@@ -193,7 +194,7 @@ class PostEventViewController: UIViewController {
                         
                         
                         
-                    })
+                    }
                     
                     return
                     
@@ -201,7 +202,8 @@ class PostEventViewController: UIViewController {
                     // Add Operation
                 else{
                     
-                    let dbRef = Database.database().reference().child("Events").childByAutoId()
+                    let db = Firestore.firestore()
+                    
                     
                     
                     let data = [
@@ -216,11 +218,13 @@ class PostEventViewController: UIViewController {
                         
                     ]
                     
-                    dbRef.setValue(data, withCompletionBlock: { ( err , dbRef) in
+                    db.collection("events").document().setData(data as [String : Any]) { err in
                         if let err = err {
                             self.showAlert(title: "Eror",message: "Error uploading data: \(err.localizedDescription)")
                             return
                         }
+                        
+                        
                         alert.dismiss(animated: false, completion: nil)
                         
                         
@@ -228,8 +232,8 @@ class PostEventViewController: UIViewController {
                         
                         self.redirectToFeed()
                         
-                    })
-                    
+                        
+                    }
                 }
                 
             }

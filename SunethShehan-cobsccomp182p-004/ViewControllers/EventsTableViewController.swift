@@ -10,10 +10,15 @@ import UIKit
 import SwiftyJSON
 import Kingfisher
 import Firebase
+import CodableFirebase
 
 final class EventsTableViewController: UITableViewController {
- 
+    
+    
     var EventIDs = [String]()
+    
+    var Users = [String]()
+    
     private var Events = [JSON]() {
         didSet {
             tableView.reloadData()
@@ -23,30 +28,9 @@ final class EventsTableViewController: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        setData()
         
-        let db = Firestore.firestore()
-
-        db.collection("events").getDocuments() { (querySnapshot, err) in
-                if let err = err {
-                    print("Error getting documents: \(err)")
-                } else {
-                    
-                    self.Events.removeAll()
-                    self.EventIDs.removeAll()
-                    
-                    for document in querySnapshot!.documents {
-                        
-                        self.EventIDs.append(document.documentID)
-                        print(document.documentID)
-                        
-                        let data = document.data()
-                        let json = JSON(data as Any)
-
-                        self.Events.append(json)
-                        print(data)
-                    }
-                }
-        }
+        
     }
     
     override func numberOfSections(in tableView: UITableView) -> Int {
@@ -64,9 +48,9 @@ final class EventsTableViewController: UITableViewController {
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "EventCell",for: indexPath) as! EventsTableViewCell
         
-
-        cell.lblCreatedBy.text =  Events[indexPath.row]["CreatedBy/UserDisplayName"].stringValue
-
+        
+        cell.lblCreatedBy.text =  Events[indexPath.row]["UserDisplayName"].stringValue
+        
         let avatarImageURL = URL(string: Events[indexPath.row]["UserProfileURL"].stringValue)
         cell.imgUserAvatar.kf.setImage(with: avatarImageURL)
         
@@ -78,14 +62,14 @@ final class EventsTableViewController: UITableViewController {
         
         let imageURL = URL(string: Events[indexPath.row]["EventImageUrl"].stringValue)
         cell.imgEvent.kf.setImage(with: imageURL)
-
+        
         
         return cell
     }
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath)
     {
-
+        
         
         if(UserDefaults.standard.string(forKey: "UserID") != Events[indexPath.row]["CreatedBy"].stringValue){
             
@@ -109,12 +93,45 @@ final class EventsTableViewController: UITableViewController {
             navigationController?.pushViewController(vc, animated: true)
             
         }
-       
-
+        
+        
         
         
     }
     
+    func setData(){
+        
+        let db = Firestore.firestore()
+        
+        db.collection("events").getDocuments() { (querySnapshot, err) in
+            if let err = err {
+                print("Error getting documents: \(err)")
+            } else {
+                
+                self.Events.removeAll()
+                self.EventIDs.removeAll()
+                
+                for document in querySnapshot!.documents {
+                    
+                    self.EventIDs.append(document.documentID)
+                    
+                    let data = document.data()
+                    let json = JSON(data as Any)
+                    
+                    self.Events.append(json)
+                    
+                    
+                    
+                }
+            }
+            
+            
+            
+        }
+        
+    }
     
     
 }
+
+
