@@ -24,6 +24,8 @@
 	<true/>
 	<key>UILaunchStoryboardName</key>
 	<string>LaunchScreen</string>
+	<key>NSLocationWhenInUseUsageDescription</key>
+	<string>Request permission to use location service when the apps is in background.</string>
 	<key>UIMainStoryboardFile</key>
 	<string>UserAuthentication</string>
 	<key>UIRequiredDeviceCapabilities</key>

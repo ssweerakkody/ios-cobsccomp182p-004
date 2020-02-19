@@ -10,8 +10,9 @@ import UIKit
 import Firebase
 import SwiftyJSON
 import CodableFirebase
+import CoreLocation
 
-class PostEventViewController: UIViewController {
+class PostEventViewController: UIViewController ,CLLocationManagerDelegate{
     
     @IBOutlet weak var imgEventImage: UIImageView!
     
@@ -25,6 +26,7 @@ class PostEventViewController: UIViewController {
     
     @IBOutlet weak var btnPostEvent: UIButton!
     
+    let locationManager = CLLocationManager()
     
     var ref: DatabaseReference!
     
@@ -274,6 +276,61 @@ class PostEventViewController: UIViewController {
         self.view.setNeedsLayout()
         
     }
+        
+    @IBAction func GetCurrentLocation(_ sender: Any) {
+        
+        txtEventLocation.placeholder = "Fetching..."
+        
+        locationManager.delegate = self
+        locationManager.desiredAccuracy = kCLLocationAccuracyBest
+        locationManager.requestWhenInUseAuthorization()
+        locationManager.startUpdatingLocation()
+        
+
+        
+    }
     
+    func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
+        CLGeocoder().reverseGeocodeLocation(manager.location!, completionHandler: {(placemarks, error)->Void in
+            
+            if (error != nil) {
+                print("Reverse geocoder failed with error" + (error?.localizedDescription)!)
+                return
+            }
+            
+            if (placemarks?.count)! > 0 {
+                let pm = placemarks?[0]
+                self.displayLocationInfo(pm)
+            } else {
+                print("Problem with the data received from geocoder")
+            }
+        })
+    }
+    
+    func displayLocationInfo(_ placemark: CLPlacemark?) {
+        if let containsPlacemark = placemark {
+            //stop updating location to save battery life
+            locationManager.stopUpdatingLocation()
+            let locality = (containsPlacemark.locality != nil) ? containsPlacemark.locality : "" as String
+            //let postalCode = (containsPlacemark.postalCode != nil) ? containsPlacemark.postalCode : ""
+            let administrativeArea = (containsPlacemark.administrativeArea != nil) ? containsPlacemark.administrativeArea : "" as String
+            //let country = (containsPlacemark.country != nil) ? containsPlacemark.country : ""
+            
+            txtEventLocation.placeholder = "Event Location"
+            txtEventLocation.text = "\(locality!) \(administrativeArea!)"
+            
+        }
+        
+    }
+    
+    
+    func locationManager(_ manager: CLLocationManager, didFailWithError error: Error) {
+        print("Error while updating location " + error.localizedDescription)
+    }
+    
+    override func didReceiveMemoryWarning() {
+        super.didReceiveMemoryWarning()
+        // Dispose of any resources that can be recreated.
+    }
     
 }

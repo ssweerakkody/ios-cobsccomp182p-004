@@ -29,6 +29,8 @@
 		995B9D8423EFB95600F1A970 /* EventsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 995B9D8323EFB95600F1A970 /* EventsTableViewCell.swift */; };
 		995EFE5823FA7C73000FA9E4 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 995EFE5723FA7C73000FA9E4 /* User.swift */; };
 		995EFE5B23FA7D67000FA9E4 /* Event.swift in Sources */ = {isa = PBXBuildFile; fileRef = 995EFE5A23FA7D67000FA9E4 /* Event.swift */; };
+		99631BE023FDAB2F00F0F7C0 /* Location.swift in Sources */ = {isa = PBXBuildFile; fileRef = 99631BDF23FDAB2F00F0F7C0 /* Location.swift */; };
+		99631BE223FDABB800F0F7C0 /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 99631BE123FDABB800F0F7C0 /* CoreLocation.framework */; };
 		997C811623EC6ED2003844D9 /* UserAuthentication.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 997C811523EC6ED2003844D9 /* UserAuthentication.storyboard */; };
 		997C811823EC7051003844D9 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 997C811723EC7051003844D9 /* LoginViewController.swift */; };
 		997C811C23EC7459003844D9 /* UIExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 997C811B23EC7459003844D9 /* UIExtensions.swift */; };
@@ -84,6 +86,8 @@
 		995B9D8323EFB95600F1A970 /* EventsTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventsTableViewCell.swift; sourceTree = "<group>"; };
 		995EFE5723FA7C73000FA9E4 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		995EFE5A23FA7D67000FA9E4 /* Event.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Event.swift; sourceTree = "<group>"; };
+		99631BDF23FDAB2F00F0F7C0 /* Location.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Location.swift; sourceTree = "<group>"; };
+		99631BE123FDABB800F0F7C0 /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
 		997C811523EC6ED2003844D9 /* UserAuthentication.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = UserAuthentication.storyboard; sourceTree = "<group>"; };
 		997C811723EC7051003844D9 /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		997C811B23EC7459003844D9 /* UIExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIExtensions.swift; sourceTree = "<group>"; };
@@ -98,6 +102,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				99631BE223FDABB800F0F7C0 /* CoreLocation.framework in Frameworks */,
 				5E1029F611EBE91DC3290302 /* Pods_SunethShehan_cobsccomp182p_004.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -187,6 +192,7 @@
 			isa = PBXGroup;
 			children = (
 				99591B0423FBCD7800F191FB /* UILists.swift */,
+				99631BDF23FDAB2F00F0F7C0 /* Location.swift */,
 			);
 			path = Global;
 			sourceTree = "<group>";
@@ -265,6 +271,7 @@
 		BD6FB842AAED1613514B9B2C /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				99631BE123FDABB800F0F7C0 /* CoreLocation.framework */,
 				D24F3BD12FDD8C447809CA13 /* Pods_SunethShehan_cobsccomp182p_004.framework */,
 				306CC0F7DDB9C253BE4FFA9E /* Pods_SunethShehan_cobsccomp182p_004_SunethShehan_cobsccomp182p_004UITests.framework */,
 				6519F23492E0202D5CE3BC00 /* Pods_SunethShehan_cobsccomp182p_004Tests.framework */,
@@ -531,6 +538,7 @@
 				993D743123ED76E50093A197 /* SecondViewController.swift in Sources */,
 				997C811823EC7051003844D9 /* LoginViewController.swift in Sources */,
 				995EFE5B23FA7D67000FA9E4 /* Event.swift in Sources */,
+				99631BE023FDAB2F00F0F7C0 /* Location.swift in Sources */,
 				99591B0523FBCD7800F191FB /* UILists.swift in Sources */,
 				9933C43323E82805000818B6 /* ViewController.swift in Sources */,
 				9933C43123E82805000818B6 /* AppDelegate.swift in Sources */,
