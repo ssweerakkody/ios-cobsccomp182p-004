@@ -36,6 +36,8 @@ class PostEventViewController: UIViewController ,CLLocationManagerDelegate{
     
     var selectedEventID :String?
     
+    @IBOutlet weak var dtEventDate: UIDatePicker!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
@@ -52,6 +54,16 @@ class PostEventViewController: UIViewController ,CLLocationManagerDelegate{
             
             let imageURL = URL(string: selectedEvent!["EventImageUrl"].stringValue)
             imgEventImage.kf.setImage(with: imageURL)
+
+            let dateFormatter = DateFormatter()
+            
+            dateFormatter.dateStyle = DateFormatter.Style.short
+            dateFormatter.timeStyle = DateFormatter.Style.short
+            
+            let eventDate = dateFormatter.date(from: selectedEvent!["EventDate"].stringValue)
+    
+            dtEventDate.date = eventDate!
+
             
             btnPostEvent.setTitle("Update Event", for: .normal)
             lblEventType.text = "Update Event"
@@ -153,6 +165,14 @@ class PostEventViewController: UIViewController ,CLLocationManagerDelegate{
                 
                 let imgUrl = url.absoluteString
                 
+                let dateFormatter = DateFormatter()
+                
+                dateFormatter.dateStyle = DateFormatter.Style.short
+                dateFormatter.timeStyle = DateFormatter.Style.short
+                
+                let strDate = dateFormatter.string(from: self.dtEventDate.date)
+                
+                let EventDate = strDate
                 
                 //Databsae Operations
                 //Edit Operation
@@ -173,14 +193,17 @@ class PostEventViewController: UIViewController ,CLLocationManagerDelegate{
                     let db = Firestore.firestore().collection("events").document(self.selectedEventID!)
                     
                     let data = [
+                        
                         "Title" : EventTitle,
                         "Descrption" : EventDescription,
                         "Location":EventLocation,
                         "EventImageUrl": imgUrl,
-                        "CreatedBy":UserDefaults.standard.string(forKey: "UserID"),
-                        "UserDisplayName":UserDefaults.standard.string(forKey: "DisplayName"),
-                        "UserProfileURL":UserDefaults.standard.string(forKey: "ProfileImageUrl")
-                    ]
+                        "CreatedBy":UserDefaults.standard.string(forKey: "UserID") as Any,
+                        "UserDisplayName":UserDefaults.standard.string(forKey: "DisplayName") as Any,
+                        "UserProfileURL":UserDefaults.standard.string(forKey: "ProfileImageUrl") as Any,
+                        "EventDate":EventDate
+                        
+                        ] as [String : Any]
                     
                     db.setData(data as [String : Any]) { err in
                         if let err = err {
@@ -214,11 +237,12 @@ class PostEventViewController: UIViewController ,CLLocationManagerDelegate{
                         "Descrption" : EventDescription,
                         "Location":EventLocation,
                         "EventImageUrl": imgUrl,
-                        "CreatedBy":UserDefaults.standard.string(forKey: "UserID"),
-                        "UserDisplayName":UserDefaults.standard.string(forKey: "DisplayName"),
-                        "UserProfileURL":UserDefaults.standard.string(forKey: "ProfileImageUrl")
+                        "CreatedBy":UserDefaults.standard.string(forKey: "UserID") as Any,
+                        "UserDisplayName":UserDefaults.standard.string(forKey: "DisplayName") as Any,
+                        "UserProfileURL":UserDefaults.standard.string(forKey: "ProfileImageUrl") as Any,
+                        "EventDate":EventDate
                         
-                    ]
+                        ] as [String : Any]
                     
                     db.collection("events").document().setData(data as [String : Any]) { err in
                         if let err = err {

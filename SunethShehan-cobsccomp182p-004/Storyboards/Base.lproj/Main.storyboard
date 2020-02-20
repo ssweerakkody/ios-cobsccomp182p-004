@@ -96,6 +96,7 @@
                     <tabBarItem key="tabBarItem" title="New Event" id="Ctr-0q-eIt"/>
                     <connections>
                         <outlet property="btnPostEvent" destination="srp-ZR-tre" id="eWl-ms-yan"/>
+                        <outlet property="dtEventDate" destination="bkU-pA-3Q3" id="wiB-ya-kx6"/>
                         <outlet property="imgEventImage" destination="o2h-rQ-ugo" id="VMc-ob-jtH"/>
                         <outlet property="lblEventType" destination="gWg-WK-UeT" id="znQ-Ua-gmC"/>
                         <outlet property="txtEventDescription" destination="USH-Ke-Kjn" id="4yu-AM-HOQ"/>
