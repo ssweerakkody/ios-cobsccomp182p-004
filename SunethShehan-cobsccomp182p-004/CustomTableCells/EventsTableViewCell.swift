@@ -22,11 +22,21 @@ class EventsTableViewCell: UITableViewCell {
     @IBOutlet weak var imgUserAvatar: UIImageView!
     @IBOutlet weak var lblCreatedBy: UILabel!
     
+    @IBOutlet weak var btnAttend: UIButton!
+    
+    
+    @IBOutlet weak var lblEventDate: UILabel!
+    
     override func awakeFromNib() {
         super.awakeFromNib()
         
         imgUserAvatar.layer.masksToBounds = true
         imgUserAvatar.layer.cornerRadius = imgUserAvatar.bounds.width / 2
+        
+        btnAttend.backgroundColor = .clear
+        btnAttend.layer.cornerRadius = 5
+        btnAttend.layer.borderWidth = 1
+        btnAttend.layer.borderColor = UIColor.black.cgColor
         
     }
     

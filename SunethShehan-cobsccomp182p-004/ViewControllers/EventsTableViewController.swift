@@ -42,12 +42,13 @@ final class EventsTableViewController: UITableViewController {
     }
     
     override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return 430
+        return 500
     }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "EventCell",for: indexPath) as! EventsTableViewCell
         
+        cell.lblEventDate.text = Events[indexPath.row]["EventDate"].stringValue
         
         cell.lblCreatedBy.text =  Events[indexPath.row]["UserDisplayName"].stringValue
         

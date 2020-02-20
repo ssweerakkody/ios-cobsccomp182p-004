@@ -20,6 +20,7 @@
 		9933C45F23E82EFD000818B6 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 9933C45E23E82EFD000818B6 /* GoogleService-Info.plist */; };
 		9939FB8E23F965D200E75238 /* UpdateProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9939FB8D23F965D200E75238 /* UpdateProfileViewController.swift */; };
 		993A2FC323F1D4DA00E38439 /* EventViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 993A2FC223F1D4DA00E38439 /* EventViewController.swift */; };
+		993AED5023FE6BB60030BA47 /* DateHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 993AED4F23FE6BB60030BA47 /* DateHandler.swift */; };
 		993D093C23ED264C002F14FA /* ImagePicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 993D093B23ED264C002F14FA /* ImagePicker.swift */; };
 		993D742F23ED76D80093A197 /* FirstViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 993D742E23ED76D80093A197 /* FirstViewController.swift */; };
 		993D743123ED76E50093A197 /* SecondViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 993D743023ED76E50093A197 /* SecondViewController.swift */; };
@@ -77,6 +78,7 @@
 		9933C45E23E82EFD000818B6 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		9939FB8D23F965D200E75238 /* UpdateProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpdateProfileViewController.swift; sourceTree = "<group>"; };
 		993A2FC223F1D4DA00E38439 /* EventViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventViewController.swift; sourceTree = "<group>"; };
+		993AED4F23FE6BB60030BA47 /* DateHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateHandler.swift; sourceTree = "<group>"; };
 		993D093B23ED264C002F14FA /* ImagePicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImagePicker.swift; sourceTree = "<group>"; };
 		993D742E23ED76D80093A197 /* FirstViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FirstViewController.swift; sourceTree = "<group>"; };
 		993D743023ED76E50093A197 /* SecondViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SecondViewController.swift; sourceTree = "<group>"; };
@@ -151,6 +153,7 @@
 		9933C42F23E82805000818B6 /* SunethShehan-cobsccomp182p-004 */ = {
 			isa = PBXGroup;
 			children = (
+				993AED4E23FE6B6E0030BA47 /* Helpers */,
 				99591B0123FBCD3400F191FB /* Global */,
 				995EFE5623FA7C17000FA9E4 /* Models */,
 				993D743023ED76E50093A197 /* SecondViewController.swift */,
@@ -186,6 +189,14 @@
 				9933C45223E82807000818B6 /* Info.plist */,
 			);
 			path = "SunethShehan-cobsccomp182p-004UITests";
+			sourceTree = "<group>";
+		};
+		993AED4E23FE6B6E0030BA47 /* Helpers */ = {
+			isa = PBXGroup;
+			children = (
+				993AED4F23FE6BB60030BA47 /* DateHandler.swift */,
+			);
+			path = Helpers;
 			sourceTree = "<group>";
 		};
 		99591B0123FBCD3400F191FB /* Global */ = {
@@ -535,6 +546,7 @@
 			files = (
 				9939FB8E23F965D200E75238 /* UpdateProfileViewController.swift in Sources */,
 				995B9D7D23EFAE3800F1A970 /* PostEventViewController.swift in Sources */,
+				993AED5023FE6BB60030BA47 /* DateHandler.swift in Sources */,
 				993D743123ED76E50093A197 /* SecondViewController.swift in Sources */,
 				997C811823EC7051003844D9 /* LoginViewController.swift in Sources */,
 				995EFE5B23FA7D67000FA9E4 /* Event.swift in Sources */,

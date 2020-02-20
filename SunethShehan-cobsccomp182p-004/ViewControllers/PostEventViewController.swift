@@ -60,9 +60,7 @@ class PostEventViewController: UIViewController ,CLLocationManagerDelegate{
             dateFormatter.dateStyle = DateFormatter.Style.short
             dateFormatter.timeStyle = DateFormatter.Style.short
             
-            let eventDate = dateFormatter.date(from: selectedEvent!["EventDate"].stringValue)
-    
-            dtEventDate.date = eventDate!
+            dtEventDate.date = DateHandler.castStringToDate(date:selectedEvent!["EventDate"].stringValue)
 
             
             btnPostEvent.setTitle("Update Event", for: .normal)
@@ -165,14 +163,7 @@ class PostEventViewController: UIViewController ,CLLocationManagerDelegate{
                 
                 let imgUrl = url.absoluteString
                 
-                let dateFormatter = DateFormatter()
-                
-                dateFormatter.dateStyle = DateFormatter.Style.short
-                dateFormatter.timeStyle = DateFormatter.Style.short
-                
-                let strDate = dateFormatter.string(from: self.dtEventDate.date)
-                
-                let EventDate = strDate
+                let EventDate = DateHandler.castDateToString(date: self.dtEventDate.date)
                 
                 //Databsae Operations
                 //Edit Operation
