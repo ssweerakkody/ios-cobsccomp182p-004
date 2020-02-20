@@ -44,7 +44,7 @@
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="srp-ZR-tre">
-                                <rect key="frame" x="43" y="701" width="328" height="36"/>
+                                <rect key="frame" x="43" y="766" width="328" height="36"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="20"/>
                                 <state key="normal" title="Post Event"/>
@@ -67,10 +67,10 @@
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="vMl-et-oEZ">
-                                <rect key="frame" x="135" y="585" width="144" height="30"/>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="vMl-et-oEZ">
+                                <rect key="frame" x="334" y="526" width="31" height="31"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <state key="normal" title="Get Current Location"/>
+                                <state key="normal" image="ios_location_services"/>
                                 <connections>
                                     <action selector="GetCurrentLocation:" destination="Vcd-UL-KIm" eventType="touchUpInside" id="iLN-KG-m6N"/>
                                 </connections>
@@ -424,6 +424,7 @@
         </scene>
     </scenes>
     <resources>
+        <image name="ios_location_services" width="800" height="800"/>
         <image name="user" width="225" height="225"/>
     </resources>
 </document>
