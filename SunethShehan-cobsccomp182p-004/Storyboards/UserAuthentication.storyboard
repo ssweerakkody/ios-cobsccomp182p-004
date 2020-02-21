@@ -56,6 +56,14 @@
                                     <segue destination="48x-eS-oNU" kind="show" id="wkO-gC-Ule"/>
                                 </connections>
                             </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="utK-7U-DfJ">
+                                <rect key="frame" x="156" y="699" width="102" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="Login as Guest"/>
+                                <connections>
+                                    <action selector="LoginAsGuest:" destination="3a1-Gh-g6p" eventType="touchUpInside" id="tDV-GA-kwz"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <viewLayoutGuide key="safeArea" id="tRf-XY-qU6"/>
