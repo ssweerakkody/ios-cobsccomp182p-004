@@ -84,76 +84,61 @@ class PostEventViewController: UIViewController ,CLLocationManagerDelegate{
     
     func databaseOperation(){
         
-        
-        guard let EventTitle = txtEventTitle.text, !EventTitle.isEmpty else {
+
+        if(self.validateInputs())
+        {
+            //Make this optional or alternation
+            guard let image = imgEventImage.image,
+                let imgData = image.jpegData(compressionQuality: 1.0) else {
+                    
+                    Alerts.showAlert(title: "Check input",message: "Event Image must be selected",presentingVC: self)
+                    return
+            }
             
-            Alerts.showAlert(title: "Check input",message: "Event Title cannot be empty",presentingVC: self)
-            return
-        }
-        
-        guard let EventDescription = txtEventDescription.text, !EventDescription.isEmpty else {
+            let alert : UIAlertController
             
-            Alerts.showAlert(title: "Check input",message: "Event Description cannot be empty",presentingVC: self)
-            return
-        }
-        
-        guard let EventLocation = txtEventLocation.text, !EventLocation.isEmpty else {
+            if(self.selectedEvent != nil && !self.selectedEvent!.isEmpty && !self.selectedEventID!.isEmpty){
+                alert = Alerts.showLoadingAlert(message: "Updating ", presentingVC: self)
+            }
+            else{
+                alert = Alerts.showLoadingAlert(message: "Posting ", presentingVC: self)
+            }
             
-            Alerts.showAlert(title: "Check input",message: "Event Location cannot be empty",presentingVC: self)
-            return
-        }
-        
-        //Make this optional or alternation
-        guard let image = imgEventImage.image,
-            let imgData = image.jpegData(compressionQuality: 1.0) else {
+            let imgUrl =   FirebaseStorageClient.getImageUrl(imgData: imgData, presentingVC: self)
+            
+            
+            let EventDate = DateHandler.castDateToString(date: self.dtEventDate.date)
+            
+            
+            let event = Event(Title: txtEventTitle.text!, Descrption: txtEventDescription.text!, Location: txtEventLocation.text!, EventImageUrl: imgUrl, EventDate: EventDate)
+            
+            //Databsae Operations
+            //Edit Operation
+            if(self.selectedEvent != nil && !self.selectedEvent!.isEmpty && !self.selectedEventID!.isEmpty){
                 
-                Alerts.showAlert(title: "Check input",message: "Event Image must be selected",presentingVC: self)
-                return
+                //delete existing image
+                FirebaseStorageClient.removeExistingImageUrl(url: self.selectedEvent!["EventImageUrl"].stringValue)
+                
+                
+                FirestoreClient.updateExistingEvent(selectedEventID: self.selectedEventID!, updatedEvent: event, viewController: self)
+                
+                
+            }
+                
+                // Add Operation
+            else{
+                
+                FirestoreClient.AddEvent(selectedEventID: self.selectedEventID!, updatedEvent: event, viewController: self)
+                
+                
+            }
+            
+            alert.dismiss(animated: false, completion: nil)
+            
+            self.clearFields()
+            
+            Routes.redirectToFeed(presentingVC: self)
         }
-        
-        let alert : UIAlertController
-        
-        if(self.selectedEvent != nil && !self.selectedEvent!.isEmpty && !self.selectedEventID!.isEmpty){
-            alert = Alerts.showLoadingAlert(message: "Updating ", presentingVC: self)
-        }
-        else{
-            alert = Alerts.showLoadingAlert(message: "Posting ", presentingVC: self)
-        }
-        
-        let imgUrl =   FirebaseStorageClient.getImageUrl(imgData: imgData, presentingVC: self)
-        
-        
-        let EventDate = DateHandler.castDateToString(date: self.dtEventDate.date)
-        
-        
-        let event = Event(Title: EventTitle, Descrption: EventDescription, Location: EventLocation, EventImageUrl: imgUrl, EventDate: EventDate)
-        
-        //Databsae Operations
-        //Edit Operation
-        if(self.selectedEvent != nil && !self.selectedEvent!.isEmpty && !self.selectedEventID!.isEmpty){
-            
-            //delete existing image
-            FirebaseStorageClient.removeExistingImageUrl(url: self.selectedEvent!["EventImageUrl"].stringValue)
-            
-            
-            FirestoreClient.updateExistingEvent(selectedEventID: self.selectedEventID!, updatedEvent: event, viewController: self)
-            
-            
-        }
-            
-            // Add Operation
-        else{
-            
-            FirestoreClient.AddEvent(selectedEventID: self.selectedEventID!, updatedEvent: event, viewController: self)
-            
-            
-        }
-        
-        alert.dismiss(animated: false, completion: nil)
-        
-        self.clearFields()
-        
-        Routes.redirectToFeed(presentingVC: self)
         
         
     }
@@ -169,8 +154,25 @@ class PostEventViewController: UIViewController ,CLLocationManagerDelegate{
         
     }
     
+    func validateInputs()->Bool{
+        
+        if(!FormValidation.isValidField(textField: txtEventTitle, textFiledName: "Event Title", presentingVC: self))
+        {
+            return false
+        }
+        if(!FormValidation.isValidField(textField: txtEventDescription, textFiledName: "Event Description", presentingVC: self))
+        {
+            return false
+        }
+        if(!FormValidation.isValidField(textField: txtEventLocation, textFiledName: "Event Description", presentingVC: self))
+        {
+            return false
+        }
+        
+        return true
+        
+    }
     
-  
     
     @IBAction func GetCurrentLocation(_ sender: Any) {
         
