@@ -112,4 +112,11 @@ class LoginViewController: UIViewController ,UITextFieldDelegate {
         
     }
     
+    @IBAction func LoginAsGuest(_ sender: Any) {
+
+        
+        let vc = UIStoryboard(name: "Guest", bundle: nil).instantiateViewController(withIdentifier: "GuestNavigation")
+        self.present(vc, animated: true, completion: nil)
+        
+    }
 }
