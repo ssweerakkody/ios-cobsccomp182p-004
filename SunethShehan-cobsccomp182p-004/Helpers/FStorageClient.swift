@@ -11,13 +11,14 @@ import Firebase
 
 class FirebaseStorageClient{
     
-    static var StorageRef = Storage.storage()
-    static var UserImageRef = StorageRef.reference().child("UserProfileImages")
-    static var EventImageRef = StorageRef.reference().child("EventImages")
-    static var metaData = StorageMetadata()
+    var StorageRef = Storage.storage()
+//     var UserImageRef = self.StorageRef.reference().child("UserProfileImages")
+//     var EventImageRef = self.StorageRef.reference().child("EventImages")
+     var metaData = StorageMetadata()
     
     
-    static func getImageUrl(imgData : Data,presentingVC :UIViewController)->String{
+    func getImageUrl(imgData : Data,presentingVC :UIViewController)->String{
+
         
         let imageName = UUID().uuidString
         var imageUrl :String = ""
@@ -25,13 +26,15 @@ class FirebaseStorageClient{
         let metaData = StorageMetadata()
         metaData.contentType = "image/jpg"
         
-        EventImageRef.child(imageName).putData(imgData, metadata: metaData) { (meta, err) in
+        let imgRef = Storage.storage().reference().child("EventImages").child(imageName)
+        
+        imgRef.putData(imgData, metadata: metaData) { (meta, err) in
             if let err = err {
                 Alerts.showAlert(title: "Eror",message: "Error uploading image: \(err.localizedDescription)",presentingVC: presentingVC)
                
             }
             
-            EventImageRef.downloadURL { (url, err) in
+            imgRef.downloadURL { (url, err) in
                 if let err = err {
                   
                     Alerts.showAlert(title: "Eror",message: "Error fetching url: \(err.localizedDescription)",presentingVC: presentingVC)
@@ -48,15 +51,16 @@ class FirebaseStorageClient{
                 
             }
             
+            
         }
-        
         return imageUrl
+        
     }
     
-    static func removeExistingImageUrl(url:String){
+     func removeExistingImageUrl(url:String){
         
         //delete existing image
-        let desertRef = StorageRef.reference(forURL: url)
+        let desertRef = self.StorageRef.reference(forURL: url)
         
         // Delete the file
         desertRef.delete { error in

@@ -11,7 +11,6 @@
 		7654480DB04744873AF38005 /* Pods_SunethShehan_cobsccomp182p_004_SunethShehan_cobsccomp182p_004UITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 306CC0F7DDB9C253BE4FFA9E /* Pods_SunethShehan_cobsccomp182p_004_SunethShehan_cobsccomp182p_004UITests.framework */; };
 		894B5D0AC1107D9CE3ECFCC1 /* Pods_SunethShehan_cobsccomp182p_004Tests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6519F23492E0202D5CE3BC00 /* Pods_SunethShehan_cobsccomp182p_004Tests.framework */; };
 		9933C43123E82805000818B6 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9933C43023E82805000818B6 /* AppDelegate.swift */; };
-		9933C43323E82805000818B6 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9933C43223E82805000818B6 /* ViewController.swift */; };
 		9933C43623E82805000818B6 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9933C43423E82805000818B6 /* Main.storyboard */; };
 		9933C43823E82807000818B6 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 9933C43723E82807000818B6 /* Assets.xcassets */; };
 		9933C43B23E82807000818B6 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9933C43923E82807000818B6 /* LaunchScreen.storyboard */; };
@@ -26,6 +25,9 @@
 		993AED5723FE72320030BA47 /* FStorageClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 993AED5623FE72320030BA47 /* FStorageClient.swift */; };
 		993D093C23ED264C002F14FA /* ImagePicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 993D093B23ED264C002F14FA /* ImagePicker.swift */; };
 		99591B0523FBCD7800F191FB /* UILists.swift in Sources */ = {isa = PBXBuildFile; fileRef = 99591B0423FBCD7800F191FB /* UILists.swift */; };
+		9959E30A23FFEE6F0069D7F4 /* Guest.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9959E30923FFEE6F0069D7F4 /* Guest.storyboard */; };
+		9959E30C23FFEF670069D7F4 /* GuestTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9959E30B23FFEF670069D7F4 /* GuestTableViewController.swift */; };
+		9959E30E23FFFFF00069D7F4 /* LocalAuthentication.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9959E30D23FFFFF00069D7F4 /* LocalAuthentication.framework */; };
 		995B9D7D23EFAE3800F1A970 /* PostEventViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 995B9D7C23EFAE3800F1A970 /* PostEventViewController.swift */; };
 		995B9D8123EFB81A00F1A970 /* EventsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 995B9D8023EFB81A00F1A970 /* EventsTableViewController.swift */; };
 		995B9D8423EFB95600F1A970 /* EventsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 995B9D8323EFB95600F1A970 /* EventsTableViewCell.swift */; };
@@ -67,7 +69,6 @@
 		70300C1D5FF32A6D718EE357 /* Pods-SunethShehan-cobsccomp182p-004Tests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SunethShehan-cobsccomp182p-004Tests.debug.xcconfig"; path = "Target Support Files/Pods-SunethShehan-cobsccomp182p-004Tests/Pods-SunethShehan-cobsccomp182p-004Tests.debug.xcconfig"; sourceTree = "<group>"; };
 		9933C42D23E82805000818B6 /* SunethShehan-cobsccomp182p-004.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "SunethShehan-cobsccomp182p-004.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		9933C43023E82805000818B6 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		9933C43223E82805000818B6 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		9933C43523E82805000818B6 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		9933C43723E82807000818B6 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		9933C43A23E82807000818B6 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -87,6 +88,9 @@
 		993AED5623FE72320030BA47 /* FStorageClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FStorageClient.swift; sourceTree = "<group>"; };
 		993D093B23ED264C002F14FA /* ImagePicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImagePicker.swift; sourceTree = "<group>"; };
 		99591B0423FBCD7800F191FB /* UILists.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UILists.swift; sourceTree = "<group>"; };
+		9959E30923FFEE6F0069D7F4 /* Guest.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Guest.storyboard; sourceTree = "<group>"; };
+		9959E30B23FFEF670069D7F4 /* GuestTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GuestTableViewController.swift; sourceTree = "<group>"; };
+		9959E30D23FFFFF00069D7F4 /* LocalAuthentication.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = LocalAuthentication.framework; path = System/Library/Frameworks/LocalAuthentication.framework; sourceTree = SDKROOT; };
 		995B9D7C23EFAE3800F1A970 /* PostEventViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostEventViewController.swift; sourceTree = "<group>"; };
 		995B9D8023EFB81A00F1A970 /* EventsTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventsTableViewController.swift; sourceTree = "<group>"; };
 		995B9D8323EFB95600F1A970 /* EventsTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventsTableViewCell.swift; sourceTree = "<group>"; };
@@ -110,6 +114,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				9959E30E23FFFFF00069D7F4 /* LocalAuthentication.framework in Frameworks */,
 				99631BE223FDABB800F0F7C0 /* CoreLocation.framework in Frameworks */,
 				5E1029F611EBE91DC3290302 /* Pods_SunethShehan_cobsccomp182p_004.framework in Frameworks */,
 			);
@@ -248,6 +253,7 @@
 				9933C43923E82807000818B6 /* LaunchScreen.storyboard */,
 				9933C43423E82805000818B6 /* Main.storyboard */,
 				997C811523EC6ED2003844D9 /* UserAuthentication.storyboard */,
+				9959E30923FFEE6F0069D7F4 /* Guest.storyboard */,
 			);
 			path = Storyboards;
 			sourceTree = "<group>";
@@ -294,11 +300,11 @@
 		9980DD8823FF94CA000BEEBC /* Events */ = {
 			isa = PBXGroup;
 			children = (
-				9933C43223E82805000818B6 /* ViewController.swift */,
 				995B9D8023EFB81A00F1A970 /* EventsTableViewController.swift */,
 				995B9D7C23EFAE3800F1A970 /* PostEventViewController.swift */,
 				993A2FC223F1D4DA00E38439 /* EventViewController.swift */,
 				9939FB8D23F965D200E75238 /* UpdateProfileViewController.swift */,
+				9959E30B23FFEF670069D7F4 /* GuestTableViewController.swift */,
 			);
 			path = Events;
 			sourceTree = "<group>";
@@ -315,6 +321,7 @@
 		BD6FB842AAED1613514B9B2C /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				9959E30D23FFFFF00069D7F4 /* LocalAuthentication.framework */,
 				99631BE123FDABB800F0F7C0 /* CoreLocation.framework */,
 				D24F3BD12FDD8C447809CA13 /* Pods_SunethShehan_cobsccomp182p_004.framework */,
 				306CC0F7DDB9C253BE4FFA9E /* Pods_SunethShehan_cobsccomp182p_004_SunethShehan_cobsccomp182p_004UITests.framework */,
@@ -448,6 +455,7 @@
 				997C811623EC6ED2003844D9 /* UserAuthentication.storyboard in Resources */,
 				9933C43B23E82807000818B6 /* LaunchScreen.storyboard in Resources */,
 				9933C45F23E82EFD000818B6 /* GoogleService-Info.plist in Resources */,
+				9959E30A23FFEE6F0069D7F4 /* Guest.storyboard in Resources */,
 				9933C43823E82807000818B6 /* Assets.xcassets in Resources */,
 				9933C43623E82805000818B6 /* Main.storyboard in Resources */,
 			);
@@ -578,13 +586,13 @@
 			buildActionMask = 2147483647;
 			files = (
 				9939FB8E23F965D200E75238 /* UpdateProfileViewController.swift in Sources */,
+				9959E30C23FFEF670069D7F4 /* GuestTableViewController.swift in Sources */,
 				995B9D7D23EFAE3800F1A970 /* PostEventViewController.swift in Sources */,
 				993AED5023FE6BB60030BA47 /* DateHandler.swift in Sources */,
 				997C811823EC7051003844D9 /* LoginViewController.swift in Sources */,
 				995EFE5B23FA7D67000FA9E4 /* Event.swift in Sources */,
 				99631BE023FDAB2F00F0F7C0 /* Location.swift in Sources */,
 				99591B0523FBCD7800F191FB /* UILists.swift in Sources */,
-				9933C43323E82805000818B6 /* ViewController.swift in Sources */,
 				993AED5223FE6F2E0030BA47 /* FirestoreClient.swift in Sources */,
 				993AED5723FE72320030BA47 /* FStorageClient.swift in Sources */,
 				9933C43123E82805000818B6 /* AppDelegate.swift in Sources */,

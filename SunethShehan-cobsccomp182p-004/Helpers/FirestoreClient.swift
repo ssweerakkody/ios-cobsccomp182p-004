@@ -33,11 +33,12 @@ class FirestoreClient{
 
     }
     
-    static func AddEvent(selectedEventID : String,updatedEvent:Event,viewController:UIViewController){
+    static func AddEvent(newEvent:Event,viewController:UIViewController){
+        
         
         let eventDoc = eventsCollection.document()
         
-        let docData = try! FirestoreEncoder().encode(updatedEvent)
+        let docData = try! FirestoreEncoder().encode(newEvent)
         
         eventDoc.setData(docData) { err in
             if let err = err {

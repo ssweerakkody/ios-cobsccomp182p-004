@@ -8,6 +8,7 @@
 
 import UIKit
 import Firebase
+import LocalAuthentication
 
 class UpdateProfileViewController: UIViewController{
     
@@ -51,30 +52,36 @@ class UpdateProfileViewController: UIViewController{
     }
     override func viewDidLoad() {
         super.viewDidLoad()
-        //        addStylesToRegister()
         
-        imgProPicture.layer.masksToBounds = true
-        imgProPicture.layer.cornerRadius = imgProPicture.bounds.width / 2
-        
-        self.imagePicker = ImagePicker(presentationController: self, delegate: self)
-        
-        let tap = UITapGestureRecognizer(target: self.view, action: #selector(UIView.endEditing(_:)))
-        view.addGestureRecognizer(tap)
-        
-        
-        if Auth.auth().currentUser != nil {
+        if(authenticationWithTouchID())
+        {
+            imgProPicture.layer.masksToBounds = true
+            imgProPicture.layer.cornerRadius = imgProPicture.bounds.width / 2
             
-            txtFName.text  = UserDefaults.standard.string(forKey: "FirstName")
-            txtLName.text  = UserDefaults.standard.string(forKey: "LastName")
-            txtEmail.text  = UserDefaults.standard.string(forKey: "Email")
-            txtDisplayName.text = UserDefaults.standard.string(forKey: "DisplayName")
-            txtMobileNo.text  = UserDefaults.standard.string(forKey: "MobileNo")
-            txtFBProfileUrl.text  = UserDefaults.standard.string(forKey: "FBProfileUrl")
-            let imageURL = URL(string: UserDefaults.standard.string(forKey: "ProfileImageUrl")!)
-            imgProPicture.kf.setImage(with: imageURL)
+            self.imagePicker = ImagePicker(presentationController: self, delegate: self)
+            
+            let tap = UITapGestureRecognizer(target: self.view, action: #selector(UIView.endEditing(_:)))
+            view.addGestureRecognizer(tap)
+            
+            
+            if Auth.auth().currentUser != nil {
+                
+                txtFName.text  = UserDefaults.standard.string(forKey: "FirstName")
+                txtLName.text  = UserDefaults.standard.string(forKey: "LastName")
+                txtEmail.text  = UserDefaults.standard.string(forKey: "Email")
+                txtDisplayName.text = UserDefaults.standard.string(forKey: "DisplayName")
+                txtMobileNo.text  = UserDefaults.standard.string(forKey: "MobileNo")
+                txtFBProfileUrl.text  = UserDefaults.standard.string(forKey: "FBProfileUrl")
+                let imageURL = URL(string: UserDefaults.standard.string(forKey: "ProfileImageUrl")!)
+                imgProPicture.kf.setImage(with: imageURL)
+                
+                
+            }
             
             
         }
+        
+        
     }
     
     @IBAction func SetProfilePicture(_ sender: UIButton) {
@@ -238,6 +245,41 @@ class UpdateProfileViewController: UIViewController{
         self.present(alertController, animated: true, completion: nil)
         
         
+    }
+    
+    func authenticationWithTouchID()->Bool {
+        let localAuthenticationContext = LAContext()
+        localAuthenticationContext.localizedFallbackTitle = "Please use your Passcode"
+        
+        var authorizationError: NSError?
+        let reason = "Authentication required to access the secure data"
+        
+        if localAuthenticationContext.canEvaluatePolicy(.deviceOwnerAuthentication, error: &authorizationError) {
+            
+            localAuthenticationContext.evaluatePolicy(.deviceOwnerAuthentication, localizedReason: reason) { success, evaluateError in
+                
+                if success {
+                    DispatchQueue.main.async() {
+                       return true
+                    }
+                    
+                } else {
+                    // Failed to authenticate
+                    guard let error = evaluateError else {
+                        return
+                    }
+                    print(error)
+                    
+                }
+            }
+        } else {
+            
+            guard let error = authorizationError else {
+                return false
+            }
+            print(error)
+        }
+        return true
     }
     
 }

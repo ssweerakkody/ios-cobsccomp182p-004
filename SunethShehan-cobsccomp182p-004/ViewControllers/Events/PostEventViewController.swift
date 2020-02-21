@@ -5,7 +5,6 @@
 //  Created by Suneth on 2/9/20.
 //  Copyright © 2020 Suneth. All rights reserved.
 //
-
 import UIKit
 import Firebase
 import SwiftyJSON
@@ -27,6 +26,8 @@ class PostEventViewController: UIViewController ,CLLocationManagerDelegate{
     @IBOutlet weak var btnPostEvent: UIButton!
     
     let locationManager = CLLocationManager()
+    
+    var ref: DatabaseReference!
     
     var imagePicker: ImagePicker!
     
@@ -84,65 +85,191 @@ class PostEventViewController: UIViewController ,CLLocationManagerDelegate{
     
     func databaseOperation(){
         
-
-        if(self.validateInputs())
-        {
-            //Make this optional or alternation
-            guard let image = imgEventImage.image,
-                let imgData = image.jpegData(compressionQuality: 1.0) else {
-                    
-                    Alerts.showAlert(title: "Check input",message: "Event Image must be selected",presentingVC: self)
+        ref = Database.database().reference()
+        
+        guard let EventTitle = txtEventTitle.text, !EventTitle.isEmpty else {
+            
+            showAlert(title: "Check input",message: "Event Title cannot be empty")
+            return
+        }
+        
+        guard let EventDescription = txtEventDescription.text, !EventDescription.isEmpty else {
+            
+            showAlert(title: "Check input",message: "Event Description cannot be empty")
+            return
+        }
+        
+        guard let EventLocation = txtEventLocation.text, !EventLocation.isEmpty else {
+            
+            showAlert(title: "Check input",message: "Event Location cannot be empty")
+            return
+        }
+        
+        //Make this optional or alternation
+        guard let image = imgEventImage.image,
+            let imgData = image.jpegData(compressionQuality: 1.0) else {
+                
+                showAlert(title: "Check input",message: "Event Image must be selected")
+                return
+        }
+        
+        let alert : UIAlertController
+        
+        if(self.selectedEvent != nil && !self.selectedEvent!.isEmpty && !self.selectedEventID!.isEmpty){
+            alert = UIAlertController(title: nil, message: "Updating ", preferredStyle: .alert)
+        }
+        else{
+            alert = UIAlertController(title: nil, message: "Posting ", preferredStyle: .alert)
+        }
+        
+        let loadingIndicator = UIActivityIndicatorView(frame: CGRect(x: 10, y: 5, width: 50, height: 50))
+        loadingIndicator.hidesWhenStopped = true
+        loadingIndicator.style = UIActivityIndicatorView.Style.gray
+        loadingIndicator.startAnimating();
+        
+        alert.view.addSubview(loadingIndicator)
+        present(alert, animated: true, completion: nil)
+        
+        
+        let imageName = UUID().uuidString
+        
+        let reference = Storage.storage().reference().child("EventImages").child(imageName)
+        
+        
+        let metaData = StorageMetadata()
+        metaData.contentType = "image/jpg"
+        
+        
+        reference.putData(imgData, metadata: metaData) { (meta, err) in
+            if let err = err {
+                alert.dismiss(animated: false, completion: nil)
+                self.showAlert(title: "Eror",message: "Error uploading image: \(err.localizedDescription)")
+                return
+            }
+            
+            reference.downloadURL { (url, err) in
+                if let err = err {
+                    alert.dismiss(animated: false, completion: nil)
+                    self.showAlert(title: "Eror",message: "Error fetching url: \(err.localizedDescription)")
                     return
+                }
+                
+                guard let url = url else {
+                    alert.dismiss(animated: false, completion: nil)
+                    self.showAlert(title: "Eror",message: "Error getting url")
+                    return
+                }
+                
+                let imgUrl = url.absoluteString
+                
+                let EventDate = DateHandler.castDateToString(date: self.dtEventDate.date)
+                
+                //Databsae Operations
+                //Edit Operation
+                if(self.selectedEvent != nil && !self.selectedEvent!.isEmpty && !self.selectedEventID!.isEmpty){
+                    
+                    //delete existing image
+                    let desertRef = Storage.storage().reference(forURL: self.selectedEvent!["EventImageUrl"].stringValue)
+                    
+                    // Delete the file
+                    desertRef.delete { error in
+                        if let error = error {
+                            print("Cannot remove the image",error)
+                        }
+                    }
+                    
+                    
+                    //                    let dbRef = Database.database().reference().child("Events").child(self.selectedEventID!)
+                    let db = Firestore.firestore().collection("events").document(self.selectedEventID!)
+                    
+                    let data = [
+                        
+                        "Title" : EventTitle,
+                        "Descrption" : EventDescription,
+                        "Location":EventLocation,
+                        "EventImageUrl": imgUrl,
+                        "CreatedBy":UserDefaults.standard.string(forKey: "UserID") as Any,
+                        "UserDisplayName":UserDefaults.standard.string(forKey: "DisplayName") as Any,
+                        "UserProfileURL":UserDefaults.standard.string(forKey: "ProfileImageUrl") as Any,
+                        "EventDate":EventDate,
+                        "Attendees":0
+                        
+                        ] as [String : Any]
+                    
+                    db.setData(data as [String : Any]) { err in
+                        if let err = err {
+                            self.showAlert(title: "Eror",message: "Error uploading data: \(err.localizedDescription)")
+                            return
+                        }
+                        
+                        alert.dismiss(animated: false, completion: nil)
+                        
+                        self.clearFields()
+                        
+                        self.redirectToFeed()
+                        
+                        
+                        
+                    }
+                    
+                    return
+                    
+                }
+                    // Add Operation
+                else{
+                    
+                    let db = Firestore.firestore()
+                    
+                    
+                    
+                    let data = [
+                        
+                        "Title" : EventTitle,
+                        "Descrption" : EventDescription,
+                        "Location":EventLocation,
+                        "EventImageUrl": imgUrl,
+                        "CreatedBy":UserDefaults.standard.string(forKey: "UserID") as Any,
+                        "UserDisplayName":UserDefaults.standard.string(forKey: "DisplayName") as Any,
+                        "UserProfileURL":UserDefaults.standard.string(forKey: "ProfileImageUrl") as Any,
+                        "EventDate":EventDate,
+                        "Attendees":0
+                        
+                        ] as [String : Any]
+                    
+                    db.collection("events").document().setData(data as [String : Any]) { err in
+                        if let err = err {
+                            self.showAlert(title: "Eror",message: "Error uploading data: \(err.localizedDescription)")
+                            return
+                        }
+                        
+                        
+                        alert.dismiss(animated: false, completion: nil)
+                        
+                        
+                        self.clearFields()
+                        
+                        self.redirectToFeed()
+                        
+                        
+                    }
+                }
+                
             }
-            
-            let alert : UIAlertController
-            
-            if(self.selectedEvent != nil && !self.selectedEvent!.isEmpty && !self.selectedEventID!.isEmpty){
-                alert = Alerts.showLoadingAlert(message: "Updating ", presentingVC: self)
-            }
-            else{
-                alert = Alerts.showLoadingAlert(message: "Posting ", presentingVC: self)
-            }
-            
-            let imgUrl =   FirebaseStorageClient.getImageUrl(imgData: imgData, presentingVC: self)
-            
-            
-            let EventDate = DateHandler.castDateToString(date: self.dtEventDate.date)
-            
-            
-            let event = Event(Title: txtEventTitle.text!, Descrption: txtEventDescription.text!, Location: txtEventLocation.text!, EventImageUrl: imgUrl, EventDate: EventDate)
-            
-            //Databsae Operations
-            //Edit Operation
-            if(self.selectedEvent != nil && !self.selectedEvent!.isEmpty && !self.selectedEventID!.isEmpty){
-                
-                //delete existing image
-                FirebaseStorageClient.removeExistingImageUrl(url: self.selectedEvent!["EventImageUrl"].stringValue)
-                
-                
-                FirestoreClient.updateExistingEvent(selectedEventID: self.selectedEventID!, updatedEvent: event, viewController: self)
-                
-                
-            }
-                
-                // Add Operation
-            else{
-                
-                FirestoreClient.AddEvent(selectedEventID: self.selectedEventID!, updatedEvent: event, viewController: self)
-                
-                
-            }
-            
-            alert.dismiss(animated: false, completion: nil)
-            
-            self.clearFields()
-            
-            Routes.redirectToFeed(presentingVC: self)
         }
         
         
     }
     
+    func showAlert(title:String,message:String){
+        
+        let alertController = UIAlertController(title: title, message: message, preferredStyle: .alert)
+        let defaultAction = UIAlertAction(title: "OK", style: .cancel, handler: nil)
+        
+        alertController.addAction(defaultAction)
+        self.present(alertController, animated: true, completion: nil)
+        
+        
+    }
     
     func clearFields(){
         
@@ -154,25 +281,17 @@ class PostEventViewController: UIViewController ,CLLocationManagerDelegate{
         
     }
     
-    func validateInputs()->Bool{
+    
+    func redirectToFeed(){
         
-        if(!FormValidation.isValidField(textField: txtEventTitle, textFiledName: "Event Title", presentingVC: self))
-        {
-            return false
-        }
-        if(!FormValidation.isValidField(textField: txtEventDescription, textFiledName: "Event Description", presentingVC: self))
-        {
-            return false
-        }
-        if(!FormValidation.isValidField(textField: txtEventLocation, textFiledName: "Event Description", presentingVC: self))
-        {
-            return false
-        }
+        let tabVC = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "EventNavigation") as! UITabBarController
+        tabVC.selectedIndex = 1
         
-        return true
+        self.present(tabVC, animated: true, completion: nil)
+        self.loadView()
+        self.view.setNeedsLayout()
         
     }
-    
     
     @IBAction func GetCurrentLocation(_ sender: Any) {
         
