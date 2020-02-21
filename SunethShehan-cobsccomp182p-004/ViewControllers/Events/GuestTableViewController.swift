@@ -58,7 +58,7 @@ final class GuestTableViewController: UITableViewController {
         
         cell.lblEventTitle.text = Events[indexPath.row]["Title"].stringValue
         
-        cell.lblDescription.text = Events[indexPath.row]["Descrption"].stringValue
+        //cell.lblDescription.text = Events[indexPath.row]["Descrption"].stringValue
         
         cell.lblLocation.text = Events[indexPath.row]["Location"].stringValue
         

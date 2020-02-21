@@ -32,13 +32,6 @@
                                             <nil key="textColor"/>
                                             <nil key="highlightedColor"/>
                                         </label>
-                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Description" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vKz-2B-Vvi">
-                                            <rect key="frame" x="20" y="395" width="374" height="21"/>
-                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                            <nil key="textColor"/>
-                                            <nil key="highlightedColor"/>
-                                        </label>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Location" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fjE-Q3-y96">
                                             <rect key="frame" x="20" y="423" width="374" height="21"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -108,7 +101,6 @@
                                     <outlet property="imgEvent" destination="iuy-lI-6ad" id="kvE-QJ-gVp"/>
                                     <outlet property="imgUserAvatar" destination="ZGu-4P-USM" id="2C7-w5-pYD"/>
                                     <outlet property="lblCreatedBy" destination="3zt-Ir-RUH" id="ekd-g8-ZwO"/>
-                                    <outlet property="lblDescription" destination="vKz-2B-Vvi" id="O7L-2K-lpk"/>
                                     <outlet property="lblEventDate" destination="Ubl-Vy-LT5" id="tnY-7r-svp"/>
                                     <outlet property="lblEventTitle" destination="aTG-mL-rfQ" id="wOh-Lk-RVl"/>
                                     <outlet property="lblLocation" destination="fjE-Q3-y96" id="YuS-M4-Tno"/>
