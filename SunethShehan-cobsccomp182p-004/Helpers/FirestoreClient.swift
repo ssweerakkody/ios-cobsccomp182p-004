@@ -20,9 +20,15 @@ class FirestoreClient{
         
         let eventDoc = eventsCollection.document(selectedEventID)
         
-        let docData = try! FirestoreEncoder().encode(updatedEvent)
-        
-        eventDoc.setData(docData) { err in
+        eventDoc.updateData(
+            [
+                "Title":updatedEvent.Title,
+                "Descrption":updatedEvent.Descrption,
+                "Location":updatedEvent.Location,
+                "EventImageUrl":updatedEvent.EventImageUrl,
+                "EventDate":updatedEvent.EventDate
+            ]
+        ) { err in
             if let err = err {
                 Alerts.showAlert(title: "Eror", message: "Error uploading data: \(err.localizedDescription)", presentingVC: viewController)
                 return
@@ -30,7 +36,7 @@ class FirestoreClient{
             
             
         }
-
+        
     }
     
     static func AddEvent(newEvent:Event,viewController:UIViewController){
@@ -62,10 +68,10 @@ class FirestoreClient{
                 var udpatedEvent = try! FirestoreDecoder().decode(Event.self, from: document!.data()!)
                 var attendeesList = document!.get("Attendees") as! [String]
                 attendeesList.append(UserDefaults.standard.string(forKey: "UserID") as Any as! String)
-               
+                
                 udpatedEvent.Attendees = attendeesList
                 udpatedEvent.AttendeesCount = udpatedEvent.AttendeesCount + 1
-               
+                
                 eventDoc.updateData(["Attendees":attendeesList,"AttendeesCount":udpatedEvent.AttendeesCount]){ err in
                     if let err = err {
                         //Alerts.showAlert(title: "Eror", message: "Error uploading data: \(err.localizedDescription)", presentingVC: viewController)
