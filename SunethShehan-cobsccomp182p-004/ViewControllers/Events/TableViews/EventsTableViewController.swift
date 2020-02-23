@@ -54,31 +54,36 @@ final class EventsTableViewController: UITableViewController {
         let cell = tableView.dequeueReusableCell(withIdentifier: "EventCell",for: indexPath) as! EventsTableViewCell
         
         
-            let event = Events[indexPath.row]
+        let event = Events[indexPath.row]
         
-            cell.lblDocID.text = EventIDs[indexPath.row]
+        cell.lblDocID.text = EventIDs[indexPath.row]
         
         
-            cell.lblEventDate.text = event.EventDate
-            
-            cell.lblCreatedBy.text =  event.UserDisplayName
-            
-            let avatarImageURL = URL(string: event.UserProfileURL)
-            cell.imgUserAvatar.kf.setImage(with: avatarImageURL)
-            
-            cell.lblEventTitle.text = event.Title
-            
-            //cell.lblDescription.text = Events[indexPath.row]["Descrption"].stringValue
-            
-            cell.lblLocation.text = event.Location
-            
-            let imageURL = URL(string: event.EventImageUrl)
-            cell.imgEvent.kf.setImage(with: imageURL)
-            
-       
+        cell.lblEventDate.text = event.EventDate
+        
+        cell.lblCreatedBy.text =  event.UserDisplayName
+        
+        let avatarImageURL = URL(string: event.UserProfileURL)
+        cell.imgUserAvatar.kf.setImage(with: avatarImageURL)
+        
+        cell.lblEventTitle.text = event.Title
+        
+        //cell.lblDescription.text = Events[indexPath.row]["Descrption"].stringValue
+        
+        cell.lblLocation.text = event.Location
+        
+        let imageURL = URL(string: event.EventImageUrl)
+        cell.imgEvent.kf.setImage(with: imageURL)
+        
+        if (event.Attendees.contains(UserDefaults.standard.string(forKey: "UserID")!)) {
+            cell.btnAttend.setTitle("Going",for: .normal)
+            cell.btnAttend.isUserInteractionEnabled = false
+        }
         
         return cell
     }
+    
+    
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath)
     {
@@ -111,6 +116,8 @@ final class EventsTableViewController: UITableViewController {
         
         
     }
+    
+    
     
 }
 

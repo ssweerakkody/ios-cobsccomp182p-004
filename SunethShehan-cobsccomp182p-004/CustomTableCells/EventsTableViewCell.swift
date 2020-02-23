@@ -52,7 +52,8 @@ class EventsTableViewCell: UITableViewCell {
     @IBAction func AttendEvent(_ sender: Any) {
         
         FirestoreClient.updateAttendees(selectedEventID: lblDocID.text!)
-        
+        btnAttend.setTitle("Going", for: .normal)
+        btnAttend.isUserInteractionEnabled = false
     }
 }
 
