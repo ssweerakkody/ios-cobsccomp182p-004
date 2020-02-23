@@ -45,14 +45,3 @@ struct Comment : Codable {
     let CommentValue:String
     
 }
-
-//
-//let data = [
-//    "Title" : EventTitle,
-//    "Descrption" : EventDescription,
-//    "Location":EventLocation,
-//    "EventImageUrl": imgUrl,
-//    "CreatedBy":UserDefaults.standard.string(forKey: "UserID"),
-//    "UserDisplayName":UserDefaults.standard.string(forKey: "DisplayName"),
-//    "UserProfileURL":UserDefaults.standard.string(forKey: "ProfileImageUrl")
-//]
