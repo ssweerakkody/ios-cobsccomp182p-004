@@ -143,7 +143,7 @@ class PostEventViewController: UIViewController ,CLLocationManagerDelegate{
                 // Add Operation
             else{
                 
-                FirestoreClient.AddEvent(newEvent: event, viewController: self)
+                FirestoreClient.addEvent(newEvent: event, viewController: self)
                 
                 
             }

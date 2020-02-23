@@ -29,9 +29,10 @@ final class GuestTableViewController: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        setData()
-        
-        
+        FirestoreClient.getAllEvents(completion: {events , eventIDs in
+            self.Events = events
+            self.EventIDs = eventIDs
+        })
     }
     
     override func numberOfSections(in tableView: UITableView) -> Int {
@@ -82,35 +83,7 @@ final class GuestTableViewController: UITableViewController {
         navigationController?.pushViewController(vc, animated: true)
         
     }
-    
-    func setData(){
-        
-        let db = Firestore.firestore()
-        
-        db.collection("events").getDocuments() { (querySnapshot, err) in
-            if let err = err {
-                print("Error getting documents: \(err)")
-            } else {
-                
-                self.Events.removeAll()
-                self.EventIDs.removeAll()
-                
-                for document in querySnapshot!.documents {
-                    
-                    self.EventIDs.append(document.documentID)
-                    
-                    let event = try! FirestoreDecoder().decode(Event.self, from: document.data())
-                    
-                    self.Events.append(event)
-                    
-                }
-            }
-            
-            
-            
-        }
-        
-    }
+   
     
     
 }

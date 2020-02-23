@@ -51,7 +51,7 @@ class EventsTableViewCell: UITableViewCell {
     
     @IBAction func AttendEvent(_ sender: Any) {
         
-        FirestoreClient.UpdateAttendees(selectedEventID: lblDocID.text!)
+        FirestoreClient.updateAttendees(selectedEventID: lblDocID.text!)
         
     }
 }

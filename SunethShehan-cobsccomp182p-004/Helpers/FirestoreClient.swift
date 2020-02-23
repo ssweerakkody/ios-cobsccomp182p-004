@@ -39,7 +39,7 @@ class FirestoreClient{
         
     }
     
-    static func AddEvent(newEvent:Event,viewController:UIViewController){
+    static func addEvent(newEvent:Event,viewController:UIViewController){
         
         
         let eventDoc = eventsCollection.document()
@@ -57,7 +57,7 @@ class FirestoreClient{
         
     }
     
-    static func UpdateAttendees(selectedEventID:String)
+    static func updateAttendees(selectedEventID:String)
     {
         let eventDoc = eventsCollection.document(selectedEventID)
         
@@ -87,5 +87,34 @@ class FirestoreClient{
         
         
     }
+    
+    static func getAllEvents(completion:@escaping ([Event],[String])->()){
+        
+       var events = [Event]()
+       var eventIDs = [String]()
+        
+       eventsCollection.getDocuments() { (querySnapshot, err) in
+            if let err = err {
+                print("Error getting documents: \(err)")
+            } else {
+                
+                for document in querySnapshot!.documents {
+                    
+                    eventIDs.append(document.documentID)
+                    
+                    let event = try! FirestoreDecoder().decode(Event.self, from: document.data())
+                    
+                    events.append(event)
+                    
+                }
+                
+                completion(events,eventIDs)
+                
+            }
+        
+        }
+        
+    }
+    
     
 }
