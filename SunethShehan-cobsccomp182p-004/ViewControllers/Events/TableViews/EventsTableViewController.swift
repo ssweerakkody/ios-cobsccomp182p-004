@@ -54,27 +54,28 @@ final class EventsTableViewController: UITableViewController {
         let cell = tableView.dequeueReusableCell(withIdentifier: "EventCell",for: indexPath) as! EventsTableViewCell
         
         
+            let event = Events[indexPath.row]
+        
             cell.lblDocID.text = EventIDs[indexPath.row]
         
         
-            cell.lblEventDate.text = Events[indexPath.row].EventDate
+            cell.lblEventDate.text = event.EventDate
             
-            cell.lblCreatedBy.text =  Events[indexPath.row].UserDisplayName
+            cell.lblCreatedBy.text =  event.UserDisplayName
             
-            let avatarImageURL = URL(string: Events[indexPath.row].UserProfileURL)
+            let avatarImageURL = URL(string: event.UserProfileURL)
             cell.imgUserAvatar.kf.setImage(with: avatarImageURL)
             
-            cell.lblEventTitle.text = Events[indexPath.row].Title
+            cell.lblEventTitle.text = event.Title
             
             //cell.lblDescription.text = Events[indexPath.row]["Descrption"].stringValue
             
-            cell.lblLocation.text = Events[indexPath.row].Location
+            cell.lblLocation.text = event.Location
             
-            let imageURL = URL(string: Events[indexPath.row].EventImageUrl)
+            let imageURL = URL(string: event.EventImageUrl)
             cell.imgEvent.kf.setImage(with: imageURL)
             
        
-        
         
         return cell
     }

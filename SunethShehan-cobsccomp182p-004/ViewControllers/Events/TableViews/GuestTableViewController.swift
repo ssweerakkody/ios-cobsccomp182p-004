@@ -50,20 +50,25 @@ final class GuestTableViewController: UITableViewController {
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "EventCell",for: indexPath) as! EventsTableViewCell
         
-        cell.lblEventDate.text = Events[indexPath.row].EventDate
+        let event = Events[indexPath.row]
         
-        cell.lblCreatedBy.text =  Events[indexPath.row].UserDisplayName
+        cell.lblDocID.text = EventIDs[indexPath.row]
         
-        let avatarImageURL = URL(string: Events[indexPath.row].UserProfileURL)
+        
+        cell.lblEventDate.text = event.EventDate
+        
+        cell.lblCreatedBy.text =  event.UserDisplayName
+        
+        let avatarImageURL = URL(string: event.UserProfileURL)
         cell.imgUserAvatar.kf.setImage(with: avatarImageURL)
         
-        cell.lblEventTitle.text = Events[indexPath.row].Title
+        cell.lblEventTitle.text = event.Title
         
         //cell.lblDescription.text = Events[indexPath.row]["Descrption"].stringValue
         
-        cell.lblLocation.text = Events[indexPath.row].Location
+        cell.lblLocation.text = event.Location
         
-        let imageURL = URL(string: Events[indexPath.row].EventImageUrl)
+        let imageURL = URL(string: event.EventImageUrl)
         cell.imgEvent.kf.setImage(with: imageURL)
         
         
