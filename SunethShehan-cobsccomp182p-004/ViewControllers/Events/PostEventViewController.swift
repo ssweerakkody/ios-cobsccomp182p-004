@@ -79,85 +79,69 @@ class PostEventViewController: UIViewController ,CLLocationManagerDelegate{
     
     @IBAction func PostEvent(_ sender: Any) {
         
-        databaseOperation()
+        proceedData()
     }
     
-    func databaseOperation(){
+    func proceedData(){
         
         
-        guard let EventTitle = txtEventTitle.text, !EventTitle.isEmpty else {
+        if(self.validateInputs()){
             
-            Alerts.showAlert(title: "Check input",message: "Event Title cannot be empty",presentingVC: self)
-            return
-        }
-        
-        guard let EventDescription = txtEventDescription.text, !EventDescription.isEmpty else {
-            
-            Alerts.showAlert(title: "Check input",message: "Event Description cannot be empty",presentingVC: self)
-            return
-        }
-        
-        guard let EventLocation = txtEventLocation.text, !EventLocation.isEmpty else {
-            
-            Alerts.showAlert(title: "Check input",message: "Event Location cannot be empty",presentingVC: self)
-            return
-        }
-        
-        //Make this optional or alternation
-        guard let image = imgEventImage.image,
-            let imgData = image.jpegData(compressionQuality: 1.0) else {
-                
-                Alerts.showAlert(title: "Check input",message: "Event Image must be selected",presentingVC: self)
-                return
-        }
-        
-        let alert : UIAlertController
-        
-        if(self.selectedEvent != nil &&  !self.selectedEventID!.isEmpty){
-            alert = Alerts.showLoadingAlert(message: "Updating ", presentingVC: self)
-        }
-        else{
-            alert = Alerts.showLoadingAlert(message: "Posting ", presentingVC: self)
-        }
-        
-        FirebaseStorageClient.getImageUrl(imgData: imgData, presentingVC: self,completion: { imgUrl in
-            
-            let EventDate = DateHandler.castDateToString(date: self.dtEventDate.date)
-            
-            
-            let event = Event(Title: EventTitle, Descrption: EventDescription, Location: EventLocation, EventImageUrl: imgUrl, EventDate: EventDate,AttendeesCount: 0, Attendees:  [])
-            
-            //Databsae Operations
-            //Edit Operation
-            if(self.selectedEvent != nil && !self.selectedEventID!.isEmpty){
-                
-                //delete existing image
-                FirebaseStorageClient.removeExistingImageUrl(url: self.selectedEvent!.EventImageUrl)
-                
-                
-                FirestoreClient.updateExistingEvent(selectedEventID: self.selectedEventID!, updatedEvent: event, viewController: self)
-                
-                
+            guard let image = imgEventImage.image,
+                let imgData = image.jpegData(compressionQuality: 1.0) else {
+                    
+                    Alerts.showAlert(title: "Check input",message: "Event Image must be selected",presentingVC: self)
+                    return
             }
-                
-                // Add Operation
+            
+            let alert : UIAlertController
+            
+            if(self.selectedEvent != nil &&  !self.selectedEventID!.isEmpty){
+                alert = Alerts.showLoadingAlert(message: "Updating ", presentingVC: self)
+            }
             else{
-                
-                FirestoreClient.addEvent(newEvent: event, viewController: self)
-                
-                
+                alert = Alerts.showLoadingAlert(message: "Posting ", presentingVC: self)
             }
             
-            alert.dismiss(animated: false, completion: nil)
+            FirebaseStorageClient.getImageUrl(imgData: imgData, presentingVC: self,completion: { imgUrl in
+                
+                let EventDate = DateHandler.castDateToString(date: self.dtEventDate.date)
+                
+                
+                let event = Event(Title: self.txtEventTitle.text!, Descrption: self.txtEventDescription.text!, Location: self.txtEventLocation.text!, EventImageUrl: imgUrl, EventDate: EventDate,AttendeesCount: 0, Attendees:  [])
+                
+                //Databsae Operations
+                //Edit Operation
+                if(self.selectedEvent != nil && !self.selectedEventID!.isEmpty){
+                    
+                    //delete existing image
+                    FirebaseStorageClient.removeExistingImageUrl(url: self.selectedEvent!.EventImageUrl)
+                    
+                    
+                    FirestoreClient.updateExistingEvent(selectedEventID: self.selectedEventID!, updatedEvent: event, viewController: self)
+                    
+                    
+                }
+                    
+                    // Add Operation
+                else{
+                    
+                    FirestoreClient.addEvent(newEvent: event, viewController: self)
+                    
+                    
+                }
+                
+                alert.dismiss(animated: false, completion: nil)
+                
+                self.clearFields()
+                
+                Routes.redirectToFeed(presentingVC: self)
+                
+                
+            })
             
-            self.clearFields()
             
-            Routes.redirectToFeed(presentingVC: self)
-            
-            
-        })
-        
-        
+        }
         
         
     }
@@ -173,6 +157,24 @@ class PostEventViewController: UIViewController ,CLLocationManagerDelegate{
         
     }
     
+    func validateInputs()->Bool{
+        
+        if(!FormValidation.isValidField(textField: txtEventTitle, textFiledName: "Event Title", presentingVC: self))
+        {
+            return false
+        }
+        if(!FormValidation.isValidField(textField: txtEventDescription, textFiledName: "Event Description", presentingVC: self))
+        {
+            return false
+        }
+        if(!FormValidation.isValidField(textField: txtEventLocation, textFiledName: "Event Description", presentingVC: self))
+        {
+            return false
+        }
+        
+        return true
+        
+    }
     
     
     
