@@ -15,13 +15,14 @@ struct Event : Codable{
     var Descrption: String
     var Location: String
     var EventImageUrl: String
-    var CreatedBy: String
-    var UserDisplayName: String
-    var UserProfileURL: String
     var EventDate: String
+    
     var AttendeesCount : Int
     var Attendees:[String]
     
+    var CreatedBy: String
+    var UserDisplayName: String
+    var UserProfileURL: String
     
     init(Title:String,Descrption:String,Location:String,EventImageUrl:String,EventDate:String,AttendeesCount : Int,Attendees:[String]) {
         self.Title = Title
