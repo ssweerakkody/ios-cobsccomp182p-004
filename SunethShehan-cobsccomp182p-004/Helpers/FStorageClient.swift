@@ -59,6 +59,48 @@ class FirebaseStorageClient{
         
     }
     
+    static func getUserImageUrl(imgData : Data,presentingVC :UIViewController,completion:@escaping (String)->()){
+        
+        
+        let imageName = UUID().uuidString
+        var imageUrl :String = ""
+        
+        let metaData = StorageMetadata()
+        metaData.contentType = "image/jpg"
+        
+        let imgRef = Storage.storage().reference().child("UserProfileImages").child(imageName)
+        
+        imgRef.putData(imgData, metadata: metaData) { (meta, err) in
+            if let err = err {
+                Alerts.showAlert(title: "Eror",message: "Error uploading image: \(err.localizedDescription)",presentingVC: presentingVC)
+                
+            }
+            
+            imgRef.downloadURL { (url, err) in
+                if let err = err {
+                    
+                    Alerts.showAlert(title: "Eror",message: "Error fetching url: \(err.localizedDescription)",presentingVC: presentingVC)
+                    return
+                }
+                
+                guard let url = url else {
+                    
+                    Alerts.showAlert(title: "Eror",message: "Error getting url",presentingVC: presentingVC)
+                    return
+                }
+                
+                imageUrl = url.absoluteString
+                
+                completion(imageUrl)
+            }
+            
+            
+        }
+        
+    }
+    
+    
+    
    static  func removeExistingImageUrl(url:String){
         
         //delete existing image

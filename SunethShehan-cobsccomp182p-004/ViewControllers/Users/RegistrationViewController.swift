@@ -64,164 +64,110 @@ class RegistrationViewController: UIViewController{
     
     func databaseOperation(){
         
-        ref = Database.database().reference()
         
-        //create the user in authentication
-        
-        Auth.auth().createUser(withEmail: txtEmail.text!, password: txtPassword.text!) { authResult, error in
-            
-            if((error==nil)){
+        if(validateInputs())
+        {
+            FAuthClient.createNewUser(email: txtEmail.text!, password: txtPassword.text!, presentingVC: self) { uid in
                 
-                //self.showAlert(title: "Success", message: "User Registration Success !")
-                self.userID = (authResult?.user.uid)!
-                
-                
-            }
-            else{
-                
-                self.showAlert(title: "Error", message: (error?.localizedDescription)!)
-                return
-                
-            }
-            
-        }
-        
-        guard let FirstName = txtFName.text, !FirstName.isEmpty else {
-            
-            showAlert(title: "Check input",message: "First Name cannot be empty")
-            return
-        }
-        
-        guard let LastName = txtLName.text, !LastName.isEmpty else {
-            
-            showAlert(title: "Check input",message: "Last Name cannot be empty")
-            return
-        }
-        
-        guard let Email = txtEmail.text, !Email.isEmpty else {
-            
-            showAlert(title: "Check input",message: "Email cannot be empty")
-            return
-        }
-        
-        guard let DisplayName = txtDisplayName.text, !Email.isEmpty else {
-            
-            showAlert(title: "Check input",message: "Display Name cannot be empty")
-            return
-        }
-        
-        guard let Password = txtPassword.text, !Password.isEmpty else {
-            
-            showAlert(title: "Check input",message: "Password cannot be empty")
-            return
-        }
-        
-        guard let ConfirmPassword = txtConfirmPassword.text, !ConfirmPassword.isEmpty else {
-            
-            showAlert(title: "Check input",message: "Confirm Password cannot be empty")
-            return
-        }
-        
-        guard let MobileNo = txtMobileNo.text, !MobileNo.isEmpty else {
-            
-            showAlert(title: "Check input",message: "MobileNo cannot be empty")
-            return
-        }
-        
-        //Make this optional or alternation
-        guard let image = imgProPicture.image,
-            let imgData = image.jpegData(compressionQuality: 1.0) else {
-                
-                showAlert(title: "Check input",message: "Profile Picture must be selected")
-                return
-        }
-        
-        let FBProfileUrl = txtFBProfileUrl.text!
-        
-        let alert = UIAlertController(title: nil, message: "Saving ", preferredStyle: .alert)
-        
-        let loadingIndicator = UIActivityIndicatorView(frame: CGRect(x: 10, y: 5, width: 50, height: 50))
-        loadingIndicator.hidesWhenStopped = true
-        loadingIndicator.style = UIActivityIndicatorView.Style.gray
-        loadingIndicator.startAnimating();
-        
-        alert.view.addSubview(loadingIndicator)
-        present(alert, animated: true, completion: nil)
-        
-        
-        let imageName = UUID().uuidString
-        
-        let reference = Storage.storage().reference().child("UserProfileImages").child(imageName)
-        
-        
-        let metaData = StorageMetadata()
-        metaData.contentType = "image/jpg"
-        
-        
-        reference.putData(imgData, metadata: metaData) { (meta, err) in
-            if let err = err {
-                alert.dismiss(animated: false, completion: nil)
-                self.showAlert(title: "Eror",message: "Error uploading image: \(err.localizedDescription)")
-                return
-            }
-            
-            reference.downloadURL { (url, err) in
-                if let err = err {
-                    alert.dismiss(animated: false, completion: nil)
-                    self.showAlert(title: "Eror",message: "Error fetching url: \(err.localizedDescription)")
-                    return
-                }
-                
-                guard let url = url else {
-                    alert.dismiss(animated: false, completion: nil)
-                    self.showAlert(title: "Eror",message: "Error getting url")
-                    return
-                }
-                
-                let imgUrl = url.absoluteString
-                
-                let db = Firestore.firestore()
-                
-                let data = [
-                    "FirstName" : FirstName,
-                    "LastName" : LastName,
-                    "Email":Email,
-                    "MobileNo": MobileNo,
-                    "ProfileImageUrl" : imgUrl,
-                    "FBProfileUrl":FBProfileUrl,
-                    "DisplayName": DisplayName
-                ]
-                
-                db.collection("users").document(self.userID).setData(data) { err in
-                    if let err = err {
-                        self.showAlert(title: "Eror",message: "Error uploading data: \(err.localizedDescription)")
-                        return
-                    } else {
-                        alert.dismiss(animated: false, completion: nil)
-                        
-                        //Redirect to the feed view
-                        let tabVC = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "EventNavigation") as! UITabBarController
-                        tabVC.selectedIndex = 1
-                        
-                        UserDefaults.standard.set(DisplayName, forKey: "DisplayName")
-                        UserDefaults.standard.set(Email, forKey: "Email")
-                        UserDefaults.standard.set(FBProfileUrl, forKey: "FBProfileUrl")
-                        UserDefaults.standard.set(FirstName, forKey: "FirstName")
-                        UserDefaults.standard.set(LastName, forKey: "LastName")
-                        UserDefaults.standard.set(MobileNo, forKey: "MobileNo")
-                        UserDefaults.standard.set(imgUrl, forKey: "ProfileImageUrl")
-                        UserDefaults.standard.set(self.userID, forKey: "UserID")
-                        
-                        UserDefaults.standard.synchronize()
-                        
-                        self.present(tabVC, animated: true, completion: nil)
-                        self.loadView()
-                        self.view.setNeedsLayout()
+                if(!uid.isEmpty)
+                {
+                    //Make this optional or alternation
+                    guard let image = self.imgProPicture.image,
+                        let imgData = image.jpegData(compressionQuality: 1.0) else {
+                            
+                            //                        showAlert(title: "Check input",message: "Profile Picture must be selected")
+                            return
                     }
+                    
+                    let alert = UIAlertController(title: nil, message: "Saving ", preferredStyle: .alert)
+                    
+                    let loadingIndicator = UIActivityIndicatorView(frame: CGRect(x: 10, y: 5, width: 50, height: 50))
+                    loadingIndicator.hidesWhenStopped = true
+                    loadingIndicator.style = UIActivityIndicatorView.Style.gray
+                    loadingIndicator.startAnimating();
+                    
+                    alert.view.addSubview(loadingIndicator)
+                    self.present(alert, animated: true, completion: nil)
+                    
+                    
+                    FirebaseStorageClient.getUserImageUrl(imgData: imgData, presentingVC: self, completion: { imgUrl in
+                        
+                        
+                        let user = User(FirstName: self.txtFName.text!, LastName: self.txtLName.text!, Email: self.txtEmail.text!, MobileNo: self.txtMobileNo.text!, ProfileImageUrl: imgUrl, FBProfileUrl: self.txtFBProfileUrl.text!, DisplayName: self.txtDisplayName.text!)
+                        
+                        
+                        FirestoreClient.addUser(newUser: user, viewController: self,uID: uid, completion: {  (userDoc,err) in
+                            
+                            alert.dismiss(animated: false, completion: nil)
+                            
+                            //Redirect to the feed view
+                            let tabVC = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "EventNavigation") as! UITabBarController
+                            tabVC.selectedIndex = 1
+                            
+                            UserDefaults.standard.set(self.txtDisplayName.text!, forKey: "DisplayName")
+                            UserDefaults.standard.set(self.txtEmail.text!, forKey: "Email")
+                            UserDefaults.standard.set(self.txtFBProfileUrl.text!, forKey: "FBProfileUrl")
+                            UserDefaults.standard.set(self.txtFName.text!, forKey: "FirstName")
+                            UserDefaults.standard.set(self.txtLName.text!, forKey: "LastName")
+                            UserDefaults.standard.set(self.txtMobileNo.text!, forKey: "MobileNo")
+                            UserDefaults.standard.set(imgUrl, forKey: "ProfileImageUrl")
+                            UserDefaults.standard.set(uid, forKey: "UserID")
+                            
+                            UserDefaults.standard.synchronize()
+                            
+                            self.present(tabVC, animated: true, completion: nil)
+                            self.loadView()
+                            self.view.setNeedsLayout()
+                            
+                        })
+                        
+                    })
+                    
                 }
-            
+                
             }
         }
+        
+        
+    }
+    
+    func validateInputs()->Bool{
+        
+        if(!FormValidation.isValidField(textField: txtFName, textFiledName: "First Name", presentingVC: self))
+        {
+            return false
+        }
+        if(!FormValidation.isValidField(textField: txtLName, textFiledName: "Last Name", presentingVC: self))
+        {
+            return false
+        }
+        if(!FormValidation.isValidField(textField: txtEmail, textFiledName: "Email", presentingVC: self))
+        {
+            return false
+        }
+        if(!FormValidation.isValidField(textField: txtMobileNo, textFiledName: "Mobile No", presentingVC: self))
+        {
+            return false
+        }
+        if(!FormValidation.isValidField(textField: txtMobileNo, textFiledName: "Mobile No", presentingVC: self))
+        {
+            return false
+        }
+        if(!FormValidation.isValidField(textField: txtDisplayName, textFiledName: "Display Name", presentingVC: self))
+        {
+            return false
+        }
+        if(!FormValidation.isValidField(textField: txtPassword, textFiledName: "Password", presentingVC: self))
+        {
+            return false
+        }
+        if(!FormValidation.isValidField(textField: txtConfirmPassword, textFiledName: "Confirm Password", presentingVC: self))
+        {
+            return false
+        }
+        
+        
+        return true
         
     }
     
@@ -269,6 +215,5 @@ class RegistrationViewController: UIViewController{
     
     
 }
-
 
 

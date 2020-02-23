@@ -7,12 +7,25 @@
 //
 
 import UIKit
+import Firebase
 
 class FAuthClient {
     
-    static func createNewUser(email:String,password:String,viewController:UIViewController){
+    static var AuthRef = Auth.auth()
+    
+    static func createNewUser(email:String,password:String,presentingVC:UIViewController,completion:@escaping (String)->()){
         
-        
+        AuthRef.createUser(withEmail: email, password: password) { (AuthDataResult, error) in
+            
+            if((error==nil)){
+                completion((AuthDataResult?.user.uid)!)
+            }
+            else{
+                Alerts.showAlert(title: "Eror",message: (error?.localizedDescription)!,presentingVC: presentingVC)
+                
+            }
+            
+        }
         
     }
     
