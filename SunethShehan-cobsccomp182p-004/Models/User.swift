@@ -16,4 +16,16 @@ struct User : Codable {
     var FBProfileUrl: String
     var DisplayName: String
     
+    init(FirstName: String, LastName: String,Email: String,MobileNo: String,ProfileImageUrl: String,FBProfileUrl: String,DisplayName: String) {
+        
+        self.FirstName = FirstName
+         self.LastName = LastName
+         self.Email = Email
+         self.MobileNo = MobileNo
+         self.ProfileImageUrl = ProfileImageUrl
+         self.FBProfileUrl = FBProfileUrl
+         self.DisplayName = DisplayName
+        
+    }
+    
 }
