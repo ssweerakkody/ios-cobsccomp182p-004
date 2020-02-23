@@ -47,7 +47,7 @@ final class EventsTableViewController: UITableViewController {
     }
     
     override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return 470
+        return 490
     }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -77,7 +77,7 @@ final class EventsTableViewController: UITableViewController {
         
         cell.lblAttendeesCount.text = String(event.AttendeesCount)
         
-        if (event.Attendees.contains(UserDefaults.standard.string(forKey: "UserID")!)) {
+        if (event.Attendees.contains("s85iIkzlkcMoGwaQFliowZ7nWvv2")) {
             cell.btnAttend.setTitle("Going",for: .normal)
             cell.btnAttend.isUserInteractionEnabled = false
         }
