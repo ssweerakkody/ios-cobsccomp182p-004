@@ -26,6 +26,7 @@
 		993D093C23ED264C002F14FA /* ImagePicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 993D093B23ED264C002F14FA /* ImagePicker.swift */; };
 		994A10C6240259E500B1B1D5 /* CurrentUser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 994A10C5240259E500B1B1D5 /* CurrentUser.swift */; };
 		994A10C824025CC400B1B1D5 /* FAuthClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 994A10C724025CC400B1B1D5 /* FAuthClient.swift */; };
+		994A10CA2402972900B1B1D5 /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 994A10C92402972900B1B1D5 /* ProfileViewController.swift */; };
 		9959E30A23FFEE6F0069D7F4 /* Guest.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9959E30923FFEE6F0069D7F4 /* Guest.storyboard */; };
 		9959E30C23FFEF670069D7F4 /* GuestTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9959E30B23FFEF670069D7F4 /* GuestTableViewController.swift */; };
 		9959E30E23FFFFF00069D7F4 /* LocalAuthentication.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9959E30D23FFFFF00069D7F4 /* LocalAuthentication.framework */; };
@@ -90,6 +91,7 @@
 		993D093B23ED264C002F14FA /* ImagePicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImagePicker.swift; sourceTree = "<group>"; };
 		994A10C5240259E500B1B1D5 /* CurrentUser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrentUser.swift; sourceTree = "<group>"; };
 		994A10C724025CC400B1B1D5 /* FAuthClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FAuthClient.swift; sourceTree = "<group>"; };
+		994A10C92402972900B1B1D5 /* ProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
 		9959E30923FFEE6F0069D7F4 /* Guest.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Guest.storyboard; sourceTree = "<group>"; };
 		9959E30B23FFEF670069D7F4 /* GuestTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GuestTableViewController.swift; sourceTree = "<group>"; };
 		9959E30D23FFFFF00069D7F4 /* LocalAuthentication.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = LocalAuthentication.framework; path = System/Library/Frameworks/LocalAuthentication.framework; sourceTree = SDKROOT; };
@@ -333,6 +335,7 @@
 				997C811D23EC7AC6003844D9 /* RegistrationViewController.swift */,
 				997C811723EC7051003844D9 /* LoginViewController.swift */,
 				9939FB8D23F965D200E75238 /* UpdateProfileViewController.swift */,
+				994A10C92402972900B1B1D5 /* ProfileViewController.swift */,
 			);
 			path = Users;
 			sourceTree = "<group>";
@@ -619,6 +622,7 @@
 				993D093C23ED264C002F14FA /* ImagePicker.swift in Sources */,
 				993AED5523FE711B0030BA47 /* FormValidation.swift in Sources */,
 				997C811C23EC7459003844D9 /* UIExtensions.swift in Sources */,
+				994A10CA2402972900B1B1D5 /* ProfileViewController.swift in Sources */,
 				995B9D8123EFB81A00F1A970 /* EventsTableViewController.swift in Sources */,
 				997C811E23EC7AC6003844D9 /* RegistrationViewController.swift in Sources */,
 				9980DD8523FF870B000BEEBC /* Alerts.swift in Sources */,

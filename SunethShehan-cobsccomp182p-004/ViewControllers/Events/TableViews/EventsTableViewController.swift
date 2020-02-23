@@ -12,7 +12,7 @@ import Kingfisher
 import Firebase
 import CodableFirebase
 
-final class EventsTableViewController: UITableViewController {
+class EventsTableViewController: UITableViewController {
     
     
     var EventIDs = [String]()
@@ -82,6 +82,11 @@ final class EventsTableViewController: UITableViewController {
             cell.btnAttend.isUserInteractionEnabled = false
         }
         
+        let overlay = UIButton(frame: cell.imgUserAvatar.bounds)
+        cell.imgUserAvatar.isUserInteractionEnabled = true
+        overlay.addTarget(self, action: #selector(imgUserAvatarTapped), for: .touchUpInside)
+        cell.imgUserAvatar.addSubview(overlay)
+        
         return cell
     }
     
@@ -120,7 +125,16 @@ final class EventsTableViewController: UITableViewController {
     }
     
     
+    @IBAction func imgUserAvatarTapped(sender: Any) {
+        
+        let vc = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "ProfileView") as! ProfileViewController
+        
+        //vc.userID = userDocId
+        
+        //navigationController?.pushViewController(vc, animated: true)
+        
+    }
+    
     
 }
-
 
