@@ -8,25 +8,12 @@
 
 struct User : Codable {
     
-    let FirstName: String
-    let LastName: String
-    let Email: String
-    let MobileNo: String
-    let ProfileImageUrl: String
-    let FBProfileUrl: String
-    let UserID: String
-    let DisplayName: String
+    var FirstName: String
+    var LastName: String
+    var Email: String
+    var MobileNo: String
+    var ProfileImageUrl: String
+    var FBProfileUrl: String
+    var DisplayName: String
     
 }
-
-//
-//let data = [
-//    "FirstName" : FirstName,
-//    "LastName" : LastName,
-//    "Email":Email,
-//    "MobileNo": MobileNo,
-//    "ProfileImageUrl" : imgUrl,
-//    "FBProfileUrl":FBProfileUrl,
-//    "UserID":self.userID,
-//    "DisplayName": DisplayName
-//]
