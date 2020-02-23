@@ -103,7 +103,7 @@ class PostEventViewController: UIViewController ,CLLocationManagerDelegate{
                 alert = Alerts.showLoadingAlert(message: "Posting ", presentingVC: self)
             }
             
-            FirebaseStorageClient.getImageUrl(imgData: imgData, presentingVC: self,completion: { imgUrl in
+            FirebaseStorageClient.getEventImageUrl(imgData: imgData, presentingVC: self,completion: { imgUrl in
                 
                 let EventDate = DateHandler.castDateToString(date: self.dtEventDate.date)
                 
