@@ -6,18 +6,20 @@
 //  Copyright © 2020 Suneth. All rights reserved.
 //
 
+import Foundation
 import UIKit
 import Firebase
 
 class FirebaseStorageClient{
     
-    var StorageRef = Storage.storage()
-//     var UserImageRef = self.StorageRef.reference().child("UserProfileImages")
-//     var EventImageRef = self.StorageRef.reference().child("EventImages")
-     var metaData = StorageMetadata()
+    
+    static var StorageRef = Storage.storage()
+    static var UserImageRef = StorageRef.reference().child("UserProfileImages")
+    static var EventImageRef = StorageRef.reference().child("EventImages")
+    static var metaData = StorageMetadata()
     
     
-    func getImageUrl(imgData : Data,presentingVC :UIViewController)->String{
+    static func getImageUrl(imgData : Data,presentingVC :UIViewController,completion:@escaping (String)->()){
 
         
         let imageName = UUID().uuidString
@@ -49,18 +51,18 @@ class FirebaseStorageClient{
                 
                 imageUrl = url.absoluteString
                 
+                completion(imageUrl)
             }
             
             
         }
-        return imageUrl
         
     }
     
-     func removeExistingImageUrl(url:String){
+   static  func removeExistingImageUrl(url:String){
         
         //delete existing image
-        let desertRef = self.StorageRef.reference(forURL: url)
+        let desertRef = FirebaseStorageClient.StorageRef.reference(forURL: url)
         
         // Delete the file
         desertRef.delete { error in
