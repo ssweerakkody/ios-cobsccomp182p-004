@@ -24,6 +24,8 @@
 		993AED5523FE711B0030BA47 /* FormValidation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 993AED5423FE711B0030BA47 /* FormValidation.swift */; };
 		993AED5723FE72320030BA47 /* FStorageClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 993AED5623FE72320030BA47 /* FStorageClient.swift */; };
 		993D093C23ED264C002F14FA /* ImagePicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 993D093B23ED264C002F14FA /* ImagePicker.swift */; };
+		994A10C6240259E500B1B1D5 /* CurrentUser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 994A10C5240259E500B1B1D5 /* CurrentUser.swift */; };
+		994A10C824025CC400B1B1D5 /* FAuthClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 994A10C724025CC400B1B1D5 /* FAuthClient.swift */; };
 		9959E30A23FFEE6F0069D7F4 /* Guest.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9959E30923FFEE6F0069D7F4 /* Guest.storyboard */; };
 		9959E30C23FFEF670069D7F4 /* GuestTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9959E30B23FFEF670069D7F4 /* GuestTableViewController.swift */; };
 		9959E30E23FFFFF00069D7F4 /* LocalAuthentication.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9959E30D23FFFFF00069D7F4 /* LocalAuthentication.framework */; };
@@ -86,6 +88,8 @@
 		993AED5423FE711B0030BA47 /* FormValidation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FormValidation.swift; sourceTree = "<group>"; };
 		993AED5623FE72320030BA47 /* FStorageClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FStorageClient.swift; sourceTree = "<group>"; };
 		993D093B23ED264C002F14FA /* ImagePicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImagePicker.swift; sourceTree = "<group>"; };
+		994A10C5240259E500B1B1D5 /* CurrentUser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrentUser.swift; sourceTree = "<group>"; };
+		994A10C724025CC400B1B1D5 /* FAuthClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FAuthClient.swift; sourceTree = "<group>"; };
 		9959E30923FFEE6F0069D7F4 /* Guest.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Guest.storyboard; sourceTree = "<group>"; };
 		9959E30B23FFEF670069D7F4 /* GuestTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GuestTableViewController.swift; sourceTree = "<group>"; };
 		9959E30D23FFFFF00069D7F4 /* LocalAuthentication.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = LocalAuthentication.framework; path = System/Library/Frameworks/LocalAuthentication.framework; sourceTree = SDKROOT; };
@@ -165,6 +169,7 @@
 				993AED5323FE6F7C0030BA47 /* Util */,
 				993AED4E23FE6B6E0030BA47 /* Helpers */,
 				99591B0123FBCD3400F191FB /* Common */,
+				994A10C4240259B400B1B1D5 /* Constants */,
 				995EFE5623FA7C17000FA9E4 /* Models */,
 				995F3A3E23E9260F00E39A78 /* ViewControllers */,
 				995B9D8223EFB90800F1A970 /* CustomTableCells */,
@@ -205,6 +210,7 @@
 				993AED4F23FE6BB60030BA47 /* DateHandler.swift */,
 				993AED5123FE6F2E0030BA47 /* FirestoreClient.swift */,
 				993AED5623FE72320030BA47 /* FStorageClient.swift */,
+				994A10C724025CC400B1B1D5 /* FAuthClient.swift */,
 			);
 			path = Helpers;
 			sourceTree = "<group>";
@@ -215,6 +221,14 @@
 				993AED5423FE711B0030BA47 /* FormValidation.swift */,
 			);
 			path = Util;
+			sourceTree = "<group>";
+		};
+		994A10C4240259B400B1B1D5 /* Constants */ = {
+			isa = PBXGroup;
+			children = (
+				994A10C5240259E500B1B1D5 /* CurrentUser.swift */,
+			);
+			path = Constants;
 			sourceTree = "<group>";
 		};
 		99591B0123FBCD3400F191FB /* Common */ = {
@@ -609,6 +623,8 @@
 				997C811E23EC7AC6003844D9 /* RegistrationViewController.swift in Sources */,
 				9980DD8523FF870B000BEEBC /* Alerts.swift in Sources */,
 				9980DD8723FF93E9000BEEBC /* Routes.swift in Sources */,
+				994A10C824025CC400B1B1D5 /* FAuthClient.swift in Sources */,
+				994A10C6240259E500B1B1D5 /* CurrentUser.swift in Sources */,
 				995B9D8423EFB95600F1A970 /* EventsTableViewCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
