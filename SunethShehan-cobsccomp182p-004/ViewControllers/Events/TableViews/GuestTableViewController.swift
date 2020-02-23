@@ -20,7 +20,7 @@ final class GuestTableViewController: UITableViewController {
     
     var Users = [String]()
     
-    private var Events = [JSON]() {
+    private var Events = [Event]() {
         didSet {
             tableView.reloadData()
         }
@@ -49,21 +49,23 @@ final class GuestTableViewController: UITableViewController {
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "EventCell",for: indexPath) as! EventsTableViewCell
         
-        cell.lblEventDate.text = Events[indexPath.row]["EventDate"].stringValue
+        cell.lblEventDate.text = Events[indexPath.row].EventDate
         
-        cell.lblCreatedBy.text =  Events[indexPath.row]["UserDisplayName"].stringValue
+        cell.lblCreatedBy.text =  Events[indexPath.row].UserDisplayName
         
-        let avatarImageURL = URL(string: Events[indexPath.row]["UserProfileURL"].stringValue)
+        let avatarImageURL = URL(string: Events[indexPath.row].UserProfileURL)
         cell.imgUserAvatar.kf.setImage(with: avatarImageURL)
         
-        cell.lblEventTitle.text = Events[indexPath.row]["Title"].stringValue
+        cell.lblEventTitle.text = Events[indexPath.row].Title
         
         //cell.lblDescription.text = Events[indexPath.row]["Descrption"].stringValue
         
-        cell.lblLocation.text = Events[indexPath.row]["Location"].stringValue
+        cell.lblLocation.text = Events[indexPath.row].Location
         
-        let imageURL = URL(string: Events[indexPath.row]["EventImageUrl"].stringValue)
+        let imageURL = URL(string: Events[indexPath.row].EventImageUrl)
         cell.imgEvent.kf.setImage(with: imageURL)
+        
+        
         
         
         return cell
@@ -97,12 +99,9 @@ final class GuestTableViewController: UITableViewController {
                     
                     self.EventIDs.append(document.documentID)
                     
-                    let data = document.data()
-                    let json = JSON(data as Any)
+                    let event = try! FirestoreDecoder().decode(Event.self, from: document.data())
                     
-                    self.Events.append(json)
-                    
-                    
+                    self.Events.append(event)
                     
                 }
             }

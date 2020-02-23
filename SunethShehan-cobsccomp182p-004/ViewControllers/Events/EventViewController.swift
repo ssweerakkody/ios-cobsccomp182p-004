@@ -24,7 +24,7 @@ class EventViewController: UIViewController {
     
     @IBOutlet weak var lblCreatedBy: UILabel!
     
-     var event: JSON?
+     var event: Event?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -32,16 +32,16 @@ class EventViewController: UIViewController {
         self.imgUserAvatar.layer.cornerRadius = self.imgUserAvatar.bounds.height / 2
         self.imgUserAvatar.clipsToBounds = true
         
-        lblEventTitle.text = event!["Title"].stringValue
-        lblEventDescription.text = event!["Descrption"].stringValue
-        lblEventLocation.text = event!["Location"].stringValue
+        lblEventTitle.text = event?.Title
+        lblEventDescription.text = event?.Descrption
+        lblEventLocation.text = event?.Location
         
-        let imageURL = URL(string: event!["EventImageUrl"].stringValue)
+        let imageURL = URL(string: event!.EventImageUrl)
         imgEventImage.kf.setImage(with: imageURL)
         
-        let avatarURL = URL(string: event!["UserProfileURL"].stringValue)
+        let avatarURL = URL(string: event!.UserProfileURL)
         imgUserAvatar.kf.setImage(with: avatarURL)
-        lblCreatedBy.text = event!["UserDisplayName"].stringValue
+        lblCreatedBy.text = event?.UserDisplayName
         
 
         // Do any additional setup after loading the view.

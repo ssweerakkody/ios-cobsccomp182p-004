@@ -30,7 +30,7 @@ class PostEventViewController: UIViewController ,CLLocationManagerDelegate{
     
     var imagePicker: ImagePicker!
     
-    var selectedEvent: JSON?
+    var selectedEvent: Event?
     
     var selectedEventID :String?
     
@@ -44,13 +44,13 @@ class PostEventViewController: UIViewController ,CLLocationManagerDelegate{
         let tap = UITapGestureRecognizer(target: self.view, action: #selector(UIView.endEditing(_:)))
         view.addGestureRecognizer(tap)
         
-        if(selectedEvent != nil && !selectedEvent!.isEmpty){
+        if(selectedEvent != nil){
             
-            txtEventTitle.text = selectedEvent!["Title"].stringValue
-            txtEventDescription.text = selectedEvent!["Descrption"].stringValue
-            txtEventLocation.text = selectedEvent!["Location"].stringValue
+            txtEventTitle.text = selectedEvent?.Title
+            txtEventDescription.text = selectedEvent?.Descrption
+            txtEventLocation.text = selectedEvent?.Location
             
-            let imageURL = URL(string: selectedEvent!["EventImageUrl"].stringValue)
+            let imageURL = URL(string: selectedEvent!.EventImageUrl)
             imgEventImage.kf.setImage(with: imageURL)
             
             let dateFormatter = DateFormatter()
@@ -58,7 +58,7 @@ class PostEventViewController: UIViewController ,CLLocationManagerDelegate{
             dateFormatter.dateStyle = DateFormatter.Style.short
             dateFormatter.timeStyle = DateFormatter.Style.short
             
-            dtEventDate.date = DateHandler.castStringToDate(date:selectedEvent!["EventDate"].stringValue)
+            dtEventDate.date = DateHandler.castStringToDate(date:selectedEvent!.EventDate)
             
             
             btnPostEvent.setTitle("Update Event", for: .normal)
@@ -113,7 +113,7 @@ class PostEventViewController: UIViewController ,CLLocationManagerDelegate{
         
         let alert : UIAlertController
         
-        if(self.selectedEvent != nil && !self.selectedEvent!.isEmpty && !self.selectedEventID!.isEmpty){
+        if(self.selectedEvent != nil &&  !self.selectedEventID!.isEmpty){
             alert = Alerts.showLoadingAlert(message: "Updating ", presentingVC: self)
         }
         else{
@@ -129,10 +129,10 @@ class PostEventViewController: UIViewController ,CLLocationManagerDelegate{
             
             //Databsae Operations
             //Edit Operation
-            if(self.selectedEvent != nil && !self.selectedEvent!.isEmpty && !self.selectedEventID!.isEmpty){
+            if(self.selectedEvent != nil && !self.selectedEventID!.isEmpty){
                 
                 //delete existing image
-                FirebaseStorageClient.removeExistingImageUrl(url: self.selectedEvent!["EventImageUrl"].stringValue)
+                FirebaseStorageClient.removeExistingImageUrl(url: self.selectedEvent!.EventImageUrl)
                 
                 
                 FirestoreClient.updateExistingEvent(selectedEventID: self.selectedEventID!, updatedEvent: event, viewController: self)

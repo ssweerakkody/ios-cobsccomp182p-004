@@ -19,7 +19,9 @@ final class EventsTableViewController: UITableViewController {
     
     var Users = [String]()
     
-    private var Events = [JSON]() {
+    let decoder = JSONDecoder()
+    
+    private var Events = [Event]() {
         didSet {
             tableView.reloadData()
         }
@@ -49,23 +51,26 @@ final class EventsTableViewController: UITableViewController {
         let cell = tableView.dequeueReusableCell(withIdentifier: "EventCell",for: indexPath) as! EventsTableViewCell
         
         
-        cell.lblDocID.text = EventIDs[indexPath.row]
+            cell.lblDocID.text = EventIDs[indexPath.row]
         
-        cell.lblEventDate.text = Events[indexPath.row]["EventDate"].stringValue
         
-        cell.lblCreatedBy.text =  Events[indexPath.row]["UserDisplayName"].stringValue
-        
-        let avatarImageURL = URL(string: Events[indexPath.row]["UserProfileURL"].stringValue)
-        cell.imgUserAvatar.kf.setImage(with: avatarImageURL)
-        
-        cell.lblEventTitle.text = Events[indexPath.row]["Title"].stringValue
-        
-        //cell.lblDescription.text = Events[indexPath.row]["Descrption"].stringValue
-        
-        cell.lblLocation.text = Events[indexPath.row]["Location"].stringValue
-        
-        let imageURL = URL(string: Events[indexPath.row]["EventImageUrl"].stringValue)
-        cell.imgEvent.kf.setImage(with: imageURL)
+            cell.lblEventDate.text = Events[indexPath.row].EventDate
+            
+            cell.lblCreatedBy.text =  Events[indexPath.row].UserDisplayName
+            
+            let avatarImageURL = URL(string: Events[indexPath.row].UserProfileURL)
+            cell.imgUserAvatar.kf.setImage(with: avatarImageURL)
+            
+            cell.lblEventTitle.text = Events[indexPath.row].Title
+            
+            //cell.lblDescription.text = Events[indexPath.row]["Descrption"].stringValue
+            
+            cell.lblLocation.text = Events[indexPath.row].Location
+            
+            let imageURL = URL(string: Events[indexPath.row].EventImageUrl)
+            cell.imgEvent.kf.setImage(with: imageURL)
+            
+       
         
         
         return cell
@@ -75,7 +80,7 @@ final class EventsTableViewController: UITableViewController {
     {
         
         
-        if(UserDefaults.standard.string(forKey: "UserID") != Events[indexPath.row]["CreatedBy"].stringValue){
+        if(UserDefaults.standard.string(forKey: "UserID") != Events[indexPath.row].CreatedBy){
             
             let vc = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "EventsViewController") as! EventViewController
             
@@ -119,12 +124,9 @@ final class EventsTableViewController: UITableViewController {
                     
                     self.EventIDs.append(document.documentID)
                     
-                    let data = document.data()
-                    let json = JSON(data as Any)
+                    let event = try! FirestoreDecoder().decode(Event.self, from: document.data())
                     
-                    self.Events.append(json)
-                    
-                    
+                    self.Events.append(event)
                     
                 }
             }
