@@ -90,10 +90,10 @@ class FirestoreClient{
     
     static func getAllEvents(completion:@escaping ([Event],[String])->()){
         
-       var events = [Event]()
-       var eventIDs = [String]()
+        var events = [Event]()
+        var eventIDs = [String]()
         
-       eventsCollection.getDocuments() { (querySnapshot, err) in
+        eventsCollection.getDocuments() { (querySnapshot, err) in
             if let err = err {
                 print("Error getting documents: \(err)")
             } else {
@@ -111,7 +111,7 @@ class FirestoreClient{
                 completion(events,eventIDs)
                 
             }
-        
+            
         }
         
     }
@@ -158,6 +158,22 @@ class FirestoreClient{
         
     }
     
+    static func getUserProfile(uID:String,completion:@escaping (User) ->()){
+        
+        usersCollection.document(uID).getDocument { (doc, err) in
+            
+            if(err != nil){
+                
+                let user = try! FirestoreDecoder().decode(User.self, from: (doc?.data())!)
+                
+                completion(user)
+            }
+            
+        }
+        
+        
+        
+    }
     
     
     
