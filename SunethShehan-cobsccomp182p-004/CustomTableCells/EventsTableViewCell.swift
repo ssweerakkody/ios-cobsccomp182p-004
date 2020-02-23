@@ -28,6 +28,8 @@ class EventsTableViewCell: UITableViewCell {
     @IBOutlet weak var lblEventDate: UILabel!
     
     
+    @IBOutlet weak var lblAttendeesCount: UILabel!
+    
     @IBOutlet weak var lblDocID: UILabel!
     
     override func awakeFromNib() {
@@ -52,6 +54,7 @@ class EventsTableViewCell: UITableViewCell {
     @IBAction func AttendEvent(_ sender: Any) {
         
         FirestoreClient.updateAttendees(selectedEventID: lblDocID.text!)
+        lblAttendeesCount.text  = String(Int(lblAttendeesCount.text!)!+1)
         btnAttend.setTitle("Going", for: .normal)
         btnAttend.isUserInteractionEnabled = false
     }

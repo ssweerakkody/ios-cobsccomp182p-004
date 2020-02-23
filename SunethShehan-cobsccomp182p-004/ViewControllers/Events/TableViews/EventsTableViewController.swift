@@ -75,6 +75,8 @@ final class EventsTableViewController: UITableViewController {
         let imageURL = URL(string: event.EventImageUrl)
         cell.imgEvent.kf.setImage(with: imageURL)
         
+        cell.lblAttendeesCount.text = String(event.AttendeesCount)
+        
         if (event.Attendees.contains(UserDefaults.standard.string(forKey: "UserID")!)) {
             cell.btnAttend.setTitle("Going",for: .normal)
             cell.btnAttend.isUserInteractionEnabled = false

@@ -209,6 +209,7 @@
                                     <outlet property="btnAttend" destination="KOq-9d-ldi" id="Lug-5C-p8E"/>
                                     <outlet property="imgEvent" destination="ztF-Du-G5o" id="H54-LO-kdm"/>
                                     <outlet property="imgUserAvatar" destination="Poi-Xi-h0c" id="j3t-g9-JfC"/>
+                                    <outlet property="lblAttendeesCount" destination="0KN-iF-QhO" id="SQB-Yv-0PK"/>
                                     <outlet property="lblCreatedBy" destination="MF0-aJ-xJW" id="HFm-BB-C4D"/>
                                     <outlet property="lblDocID" destination="ATQ-xI-IcY" id="hbI-hB-fbz"/>
                                     <outlet property="lblEventDate" destination="fD4-23-9Kp" id="SgD-bd-x32"/>
