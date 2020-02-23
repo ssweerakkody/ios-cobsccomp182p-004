@@ -51,4 +51,35 @@ class FirestoreClient{
         
     }
     
+    static func UpdateAttendees(selectedEventID:String)
+    {
+        let eventDoc = eventsCollection.document(selectedEventID)
+        
+        eventDoc.getDocument { (document, error) in
+            if(error == nil){
+                
+                
+                var udpatedEvent = try! FirestoreDecoder().decode(Event.self, from: document!.data()!)
+                var attendeesList = document!.get("Attendees") as! [String]
+                attendeesList.append(UserDefaults.standard.string(forKey: "UserID") as Any as! String)
+               
+                udpatedEvent.Attendees = attendeesList
+                udpatedEvent.AttendeesCount = udpatedEvent.AttendeesCount + 1
+               
+                eventDoc.updateData(["Attendees":attendeesList,"AttendeesCount":udpatedEvent.AttendeesCount]){ err in
+                    if let err = err {
+                        //Alerts.showAlert(title: "Eror", message: "Error uploading data: \(err.localizedDescription)", presentingVC: viewController)
+                        print(err.localizedDescription)
+                        return
+                    }
+                    
+                    
+                }
+                
+            }
+        }
+        
+        
+    }
+    
 }

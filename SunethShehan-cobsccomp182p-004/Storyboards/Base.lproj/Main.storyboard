@@ -192,7 +192,17 @@
                                             <rect key="frame" x="292" y="437" width="92" height="30"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                             <state key="normal" title="Attend"/>
+                                            <connections>
+                                                <action selector="AttendEvent:" destination="cYp-cc-lUG" eventType="touchUpInside" id="quO-YO-eZL"/>
+                                            </connections>
                                         </button>
+                                        <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="DocID" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ATQ-xI-IcY">
+                                            <rect key="frame" x="342" y="32" width="47" height="21"/>
+                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                            <nil key="textColor"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
                                     </subviews>
                                 </tableViewCellContentView>
                                 <connections>
@@ -200,6 +210,7 @@
                                     <outlet property="imgEvent" destination="ztF-Du-G5o" id="H54-LO-kdm"/>
                                     <outlet property="imgUserAvatar" destination="Poi-Xi-h0c" id="j3t-g9-JfC"/>
                                     <outlet property="lblCreatedBy" destination="MF0-aJ-xJW" id="HFm-BB-C4D"/>
+                                    <outlet property="lblDocID" destination="ATQ-xI-IcY" id="hbI-hB-fbz"/>
                                     <outlet property="lblEventDate" destination="fD4-23-9Kp" id="SgD-bd-x32"/>
                                     <outlet property="lblEventTitle" destination="vk9-85-2Lf" id="vmZ-5H-Y4m"/>
                                     <outlet property="lblLocation" destination="8Ru-5b-eCe" id="iY7-MX-9oC"/>

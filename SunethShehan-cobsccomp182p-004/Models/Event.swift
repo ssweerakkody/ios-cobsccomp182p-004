@@ -11,17 +11,19 @@ import CodableFirebase
 
 struct Event : Codable{
     
-    let Title: String
-    let Descrption: String
-    let Location: String
-    let EventImageUrl: String
-    let CreatedBy: String
-    let UserDisplayName: String
-    let UserProfileURL: String
-    let EventDate: String
+    var Title: String
+    var Descrption: String
+    var Location: String
+    var EventImageUrl: String
+    var CreatedBy: String
+    var UserDisplayName: String
+    var UserProfileURL: String
+    var EventDate: String
+    var AttendeesCount : Int
+    var Attendees:[String]
     
     
-    init(Title:String,Descrption:String,Location:String,EventImageUrl:String,EventDate:String) {
+    init(Title:String,Descrption:String,Location:String,EventImageUrl:String,EventDate:String,AttendeesCount : Int,Attendees:[String]) {
         self.Title = Title
         self.Descrption = Descrption
         self.Location = Location
@@ -30,7 +32,8 @@ struct Event : Codable{
         self.UserDisplayName = UserDefaults.standard.string(forKey: "DisplayName") as Any as! String
         self.UserProfileURL = UserDefaults.standard.string(forKey: "ProfileImageUrl")as Any as! String
         self.EventDate = EventDate
-        
+        self.AttendeesCount = AttendeesCount
+        self.Attendees = Attendees
     }
     
 }

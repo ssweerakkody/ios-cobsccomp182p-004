@@ -27,6 +27,9 @@ class EventsTableViewCell: UITableViewCell {
     
     @IBOutlet weak var lblEventDate: UILabel!
     
+    
+    @IBOutlet weak var lblDocID: UILabel!
+    
     override func awakeFromNib() {
         super.awakeFromNib()
         
@@ -42,6 +45,14 @@ class EventsTableViewCell: UITableViewCell {
     
     override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
+    }
+    
+    
+    
+    @IBAction func AttendEvent(_ sender: Any) {
+        
+        FirestoreClient.UpdateAttendees(selectedEventID: lblDocID.text!)
+        
     }
 }
 

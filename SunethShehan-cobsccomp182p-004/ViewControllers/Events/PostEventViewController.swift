@@ -125,7 +125,7 @@ class PostEventViewController: UIViewController ,CLLocationManagerDelegate{
             let EventDate = DateHandler.castDateToString(date: self.dtEventDate.date)
             
             
-            let event = Event(Title: EventTitle, Descrption: EventDescription, Location: EventLocation, EventImageUrl: imgUrl, EventDate: EventDate)
+            let event = Event(Title: EventTitle, Descrption: EventDescription, Location: EventLocation, EventImageUrl: imgUrl, EventDate: EventDate,AttendeesCount: 0, Attendees:  [])
             
             //Databsae Operations
             //Edit Operation

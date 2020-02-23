@@ -48,6 +48,9 @@ final class EventsTableViewController: UITableViewController {
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "EventCell",for: indexPath) as! EventsTableViewCell
         
+        
+        cell.lblDocID.text = EventIDs[indexPath.row]
+        
         cell.lblEventDate.text = Events[indexPath.row]["EventDate"].stringValue
         
         cell.lblCreatedBy.text =  Events[indexPath.row]["UserDisplayName"].stringValue

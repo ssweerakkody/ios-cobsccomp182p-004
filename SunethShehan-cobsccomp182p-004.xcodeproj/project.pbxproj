@@ -238,6 +238,15 @@
 			path = CustomTableCells;
 			sourceTree = "<group>";
 		};
+		995CFC63240222140012A4C4 /* TableViews */ = {
+			isa = PBXGroup;
+			children = (
+				995B9D8023EFB81A00F1A970 /* EventsTableViewController.swift */,
+				9959E30B23FFEF670069D7F4 /* GuestTableViewController.swift */,
+			);
+			path = TableViews;
+			sourceTree = "<group>";
+		};
 		995EFE5623FA7C17000FA9E4 /* Models */ = {
 			isa = PBXGroup;
 			children = (
@@ -300,11 +309,10 @@
 		9980DD8823FF94CA000BEEBC /* Events */ = {
 			isa = PBXGroup;
 			children = (
-				995B9D8023EFB81A00F1A970 /* EventsTableViewController.swift */,
+				995CFC63240222140012A4C4 /* TableViews */,
 				995B9D7C23EFAE3800F1A970 /* PostEventViewController.swift */,
 				993A2FC223F1D4DA00E38439 /* EventViewController.swift */,
 				9939FB8D23F965D200E75238 /* UpdateProfileViewController.swift */,
-				9959E30B23FFEF670069D7F4 /* GuestTableViewController.swift */,
 			);
 			path = Events;
 			sourceTree = "<group>";
