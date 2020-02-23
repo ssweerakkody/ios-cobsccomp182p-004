@@ -138,5 +138,27 @@ class FirestoreClient{
     }
     
     
+    static func updateUser(updatedUser:User,viewController:UIViewController,uID:String,completion:@escaping (DocumentReference,Error?)->()){
+        
+        
+        let userDoc = usersCollection.document(uID)
+        
+        let docData = try! FirestoreEncoder().encode(updatedUser)
+        
+        userDoc.setData(docData) { err in
+            if let err = err {
+                Alerts.showAlert(title: "Eror", message: "Error uploading data: \(err.localizedDescription)", presentingVC: viewController)
+                return
+            }
+            
+            completion(userDoc,err)
+            
+        }
+        
+        
+    }
+    
+    
+    
     
 }
