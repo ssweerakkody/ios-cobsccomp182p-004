@@ -19,7 +19,7 @@ class FirebaseStorageClient{
     static var metaData = StorageMetadata()
     
     
-    static func getImageUrl(imgData : Data,presentingVC :UIViewController,completion:@escaping (String)->()){
+    static func getEventImageUrl(imgData : Data,presentingVC :UIViewController,completion:@escaping (String)->()){
 
         
         let imageName = UUID().uuidString
