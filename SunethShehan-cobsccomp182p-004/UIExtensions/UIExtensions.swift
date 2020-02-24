@@ -11,10 +11,12 @@ import UIKit
 extension UITextField {
     
     func toStyledTextField() { // Give Round Border and Left Placholder Padding
+        self.layer.borderWidth = 0.6
         self.layer.masksToBounds = true
-        self.layer.cornerRadius = 10
+        self.layer.cornerRadius = 9
         self.leftView = UIView(frame: CGRect(x: 0, y: 0, width: 15, height: 0))
         self.leftViewMode = UITextField.ViewMode.always
+        self.layer.borderColor =  UIColor.gray.cgColor
     }
     func roundCorners(_ corners: UIRectCorner, radius: CGFloat) {
         let path = UIBezierPath(roundedRect: self.bounds, byRoundingCorners: corners, cornerRadii: CGSize(width: radius, height: radius))
@@ -49,6 +51,14 @@ extension UIButton{
     }
 }
 
+extension UIImageView{
+    func toRoundEdges(){
+        self.backgroundColor = UIColor.white
+        self.layer.cornerRadius = 8.0
+        self.clipsToBounds = true
+    }
+}
+
 //extensions for View Controllers
 extension RegistrationViewController: ImagePickerDelegate {
     
@@ -71,3 +81,8 @@ extension UpdateProfileViewController: ImagePickerDelegate {
     }
 }
 
+extension UIViewController{
+    
+   
+    
+}
