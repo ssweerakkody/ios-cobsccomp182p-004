@@ -95,7 +95,7 @@
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <viewLayoutGuide key="safeArea" id="Tff-6A-slF"/>
                     </view>
-                    <tabBarItem key="tabBarItem" title="New Event" id="Ctr-0q-eIt"/>
+                    <tabBarItem key="tabBarItem" title="New Event" image="new_icon" selectedImage="new_icon" id="Ctr-0q-eIt"/>
                     <connections>
                         <outlet property="btnPostEvent" destination="srp-ZR-tre" id="eWl-ms-yan"/>
                         <outlet property="dtEventDate" destination="bkU-pA-3Q3" id="wiB-ya-kx6"/>
@@ -328,7 +328,7 @@
         <scene sceneID="J05-S6-gGu">
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="cFz-gg-ta4" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Feed" id="DWe-wb-3cj"/>
+                    <tabBarItem key="tabBarItem" title="Feed" image="icon_news" selectedImage="icon_news" id="DWe-wb-3cj"/>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="Yep-Q3-hIL">
                         <rect key="frame" x="0.0" y="44" width="414" height="44"/>
@@ -439,7 +439,7 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <viewLayoutGuide key="safeArea" id="bkw-3r-ubZ"/>
                     </view>
-                    <tabBarItem key="tabBarItem" title="Profile" id="VRV-pY-DIj"/>
+                    <tabBarItem key="tabBarItem" title="Profile" image="icon_profile" selectedImage="icon_profile" id="VRV-pY-DIj"/>
                     <connections>
                         <outlet property="imgProPicture" destination="lLV-06-cpr" id="4Uw-rh-SIF"/>
                         <outlet property="txtConfirmPassword" destination="O2n-gJ-ThH" id="IcX-lr-1zl"/>
@@ -531,8 +531,11 @@
         </scene>
     </scenes>
     <resources>
+        <image name="icon_news" width="30" height="30"/>
+        <image name="icon_profile" width="30" height="30"/>
         <image name="ios_location_services" width="800" height="800"/>
         <image name="location_icon" width="512" height="512"/>
+        <image name="new_icon" width="30" height="30"/>
         <image name="rsz_events-image" width="500" height="499"/>
         <image name="user" width="225" height="225"/>
     </resources>
