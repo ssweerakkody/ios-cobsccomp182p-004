@@ -31,7 +31,7 @@ class ProfileViewController :  UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-      
+       self.view.backgroundColor = UIColor(patternImage: UIImage(named: "backimage.jpg")!)
         
         FirestoreClient.getUserProfile(uID: userID!) { (user) in
             

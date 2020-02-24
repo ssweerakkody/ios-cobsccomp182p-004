@@ -29,6 +29,8 @@ class EventViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+         self.view.backgroundColor = UIColor(patternImage: UIImage(named: "backimage.jpg")!)
+        
         self.imgUserAvatar.layer.cornerRadius = self.imgUserAvatar.bounds.height / 2
         self.imgUserAvatar.clipsToBounds = true
         

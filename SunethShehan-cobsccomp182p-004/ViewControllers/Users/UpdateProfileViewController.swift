@@ -53,6 +53,8 @@ class UpdateProfileViewController: UIViewController{
     override func viewDidLoad() {
         super.viewDidLoad()
         
+         self.view.backgroundColor = UIColor(patternImage: UIImage(named: "backimage.jpg")!)
+        
         if(authenticationWithTouchID())
         {
             imgProPicture.layer.masksToBounds = true

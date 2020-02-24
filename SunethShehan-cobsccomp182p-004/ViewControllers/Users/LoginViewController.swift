@@ -13,6 +13,7 @@ import CodableFirebase
 
 class LoginViewController: UIViewController ,UITextFieldDelegate {
     
+    @IBOutlet weak var imgLogo: UIImageView!
     
     @IBOutlet weak var txtEmail: UITextField!
     
@@ -28,6 +29,9 @@ class LoginViewController: UIViewController ,UITextFieldDelegate {
         txtPassword.toStyledTextField()
         
         btnSignIn.toRoundButtonEdges()
+        imgLogo.toRoundEdges()
+        
+         self.view.backgroundColor = UIColor(patternImage: UIImage(named: "backimage.jpg")!)
         
     }
     

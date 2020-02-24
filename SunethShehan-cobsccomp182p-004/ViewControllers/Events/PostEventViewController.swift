@@ -44,6 +44,8 @@ class PostEventViewController: UIViewController ,CLLocationManagerDelegate{
         let tap = UITapGestureRecognizer(target: self.view, action: #selector(UIView.endEditing(_:)))
         view.addGestureRecognizer(tap)
         
+         self.view.backgroundColor = UIColor(patternImage: UIImage(named: "backimage.jpg")!)
+        
         if(selectedEvent != nil){
             
             txtEventTitle.text = selectedEvent?.Title

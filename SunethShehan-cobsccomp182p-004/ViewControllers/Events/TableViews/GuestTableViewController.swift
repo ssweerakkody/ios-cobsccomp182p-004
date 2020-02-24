@@ -29,6 +29,7 @@ final class GuestTableViewController: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        
         FirestoreClient.getAllEvents(completion: {events , eventIDs in
             self.Events = events
             self.EventIDs = eventIDs
