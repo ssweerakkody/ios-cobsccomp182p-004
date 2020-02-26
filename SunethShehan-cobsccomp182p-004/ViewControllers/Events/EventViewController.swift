@@ -87,7 +87,7 @@ class EventViewController: UIViewController {
                 
                 self.userID = event.CreatedBy
                 
-                imgUserAvatar.addWhiteBorder()
+                self.imgUserAvatar.addWhiteBorder()
                 
 //                if(Auth.auth().currentUser != nil && event.Attendees.contains(Auth.auth().currentUser!.uid))
 //                {
