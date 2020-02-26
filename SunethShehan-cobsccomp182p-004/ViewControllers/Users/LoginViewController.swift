@@ -51,24 +51,29 @@ class LoginViewController: UIViewController ,UITextFieldDelegate {
     }
     @IBAction func ForgetPassword(_ sender: Any) {
         
-        Auth.auth().sendPasswordReset(withEmail: txtEmail.text!) { error in
-            if error == nil{
-                //self.performSegue(withIdentifier: "loginToHome", sender: self)
-                
-                let alertController = UIAlertController(title: "Information", message: "We have reset your password. Please check your email !", preferredStyle: .alert)
-                let defaultAction = UIAlertAction(title: "OK", style: .cancel, handler: nil)
-                
-                alertController.addAction(defaultAction)
-                self.present(alertController, animated: true, completion: nil)
-            }
-            else{
-                let alertController = UIAlertController(title: "Error", message: error?.localizedDescription, preferredStyle: .alert)
-                let defaultAction = UIAlertAction(title: "OK", style: .cancel, handler: nil)
-                
-                alertController.addAction(defaultAction)
-                self.present(alertController, animated: true, completion: nil)
+        if(FormValidation.isValidField(textField: txtEmail, textFiledName: "Email", presentingVC: self) &&
+            FormValidation.isValidEmail(txtEmail.text!, presentingVC: self))
+        {
+            Auth.auth().sendPasswordReset(withEmail: txtEmail.text!) { error in
+                if error == nil{
+                    //self.performSegue(withIdentifier: "loginToHome", sender: self)
+                    
+                    let alertController = UIAlertController(title: "Information", message: "We have reset your password. Please check your email !", preferredStyle: .alert)
+                    let defaultAction = UIAlertAction(title: "OK", style: .cancel, handler: nil)
+                    
+                    alertController.addAction(defaultAction)
+                    self.present(alertController, animated: true, completion: nil)
+                }
+                else{
+                    let alertController = UIAlertController(title: "Error", message: error?.localizedDescription, preferredStyle: .alert)
+                    let defaultAction = UIAlertAction(title: "OK", style: .cancel, handler: nil)
+                    
+                    alertController.addAction(defaultAction)
+                    self.present(alertController, animated: true, completion: nil)
+                }
             }
         }
+        
         
         
     }
