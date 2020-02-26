@@ -83,8 +83,8 @@ final class GuestTableViewController: UITableViewController {
         
         let vc = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "EventsViewController") as! EventViewController
         
-        vc.event = Events[indexPath.row]
-        
+        vc.selectedEvent = Events[indexPath.row]
+        vc.selectedEventID = EventIDs[indexPath.row]
         
         navigationController?.pushViewController(vc, animated: true)
         

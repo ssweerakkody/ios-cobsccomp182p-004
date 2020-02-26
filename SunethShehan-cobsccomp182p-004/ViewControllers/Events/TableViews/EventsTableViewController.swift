@@ -30,7 +30,7 @@ class EventsTableViewController: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-         self.view.backgroundColor = UIColor(patternImage: UIImage(named: "backimage.jpg")!)
+        self.view.backgroundColor = UIColor(patternImage: UIImage(named: "backimage.jpg")!)
         
         FirestoreClient.getAllEvents(completion: {events , eventIDs in
             self.Events = events
@@ -102,8 +102,8 @@ class EventsTableViewController: UITableViewController {
             
             let vc = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "EventsViewController") as! EventViewController
             
-            vc.event = Events[indexPath.row]
-            
+            vc.selectedEvent = Events[indexPath.row]
+            vc.selectedEventID = EventIDs[indexPath.row]
             
             print("view post")
             
@@ -129,15 +129,15 @@ class EventsTableViewController: UITableViewController {
     
     @IBAction func imgUserAvatarTapped(sender: UIButton) {
         
-//        let cell: EventsTableViewCell? = (sender.superview?.superview as? EventsTableViewCell)
-//        //var indexPath: IndexPath? = tableView?.indexPath(for: cell!)
-//
-//        let vc = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "ProfileView") as! ProfileViewController
-//
-//        vc.userID =  cell?.lblDocID.text
-//
-//        navigationController?.pushViewController(vc, animated: true)
-//        
+        //        let cell: EventsTableViewCell? = (sender.superview?.superview as? EventsTableViewCell)
+        //        //var indexPath: IndexPath? = tableView?.indexPath(for: cell!)
+        //
+        //        let vc = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "ProfileView") as! ProfileViewController
+        //
+        //        vc.userID =  cell?.lblDocID.text
+        //
+        //        navigationController?.pushViewController(vc, animated: true)
+        //
     }
     
     

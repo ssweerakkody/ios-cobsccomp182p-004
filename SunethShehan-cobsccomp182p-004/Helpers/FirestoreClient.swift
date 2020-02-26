@@ -88,6 +88,26 @@ class FirestoreClient{
         
     }
     
+    
+    static func getEvent(selectedEventID:String,completion:@escaping (Event)->()){
+        
+        let eventDoc = eventsCollection.document(selectedEventID)
+        
+        eventDoc.getDocument { (document, error) in
+            if(error == nil){
+                
+                
+                let event = try! FirestoreDecoder().decode(Event.self, from: document!.data()!)
+                completion(event)
+                
+                
+                
+            }
+        }
+        
+        
+    }
+    
     static func getAllEvents(completion:@escaping ([Event],[String])->()){
         
         var events = [Event]()
@@ -115,6 +135,26 @@ class FirestoreClient{
         }
         
     }
+    
+    
+    static func listenEventChanges(completion:@escaping (Bool)->())
+    {
+        
+        eventsCollection
+            .addSnapshotListener { querySnapshot, error in
+                guard (querySnapshot?.documents) != nil else {
+                    print("Error fetching documents: \(error!)")
+                    completion(false)
+                    return
+                }
+                
+                completion(true)
+                
+        }
+        
+    }
+    
+    
     
     
     static func addUser(newUser:User,viewController:UIViewController,uID:String,completion:@escaping (DocumentReference,Error?)->()){

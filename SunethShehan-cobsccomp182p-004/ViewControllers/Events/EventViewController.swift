@@ -37,7 +37,8 @@ class EventViewController: UIViewController {
     @IBOutlet weak var lblDocID: UILabel!
     
     
-    var event: Event?
+    var selectedEvent: Event?
+    var selectedEventID :String?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -61,27 +62,67 @@ class EventViewController: UIViewController {
     
     func setupView(){
         
-        lblEventTitle.text = event?.Title
-        lblEventDescription.text = event?.Descrption
-        lblEventLocation.text = event?.Location
-        lblDate.text = event?.EventDate
-        lblAttendeesC.text = String(event!.AttendeesCount)
-        
-        let imageURL = URL(string: event!.EventImageUrl)
-        imgEventImage.kf.setImage(with: imageURL)
-        
-        let avatarURL = URL(string: event!.UserProfileURL)
-        imgUserAvatar.kf.setImage(with: avatarURL)
-        lblCreatedBy.text = event?.UserDisplayName
-        
-        if(Auth.auth().currentUser != nil && event!.Attendees.contains(Auth.auth().currentUser!.uid))
-        {
-            btnAttend.setTitle("Going",for: .normal)
-            btnAttend.isUserInteractionEnabled = false
+        if(!selectedEventID!.isEmpty){
+            FirestoreClient.getEvent(selectedEventID: selectedEventID!) { (event) in
+
+                self.lblEventTitle.text = event.Title
+                self.lblEventDescription.text = event.Descrption
+                self.lblEventLocation.text = event.Location
+                self.lblDate.text = event.EventDate
+                self.lblAttendeesC.text = String(event.AttendeesCount)
+
+                let imageURL = URL(string: event.EventImageUrl)
+                self.imgEventImage.kf.setImage(with: imageURL)
+
+                let avatarURL = URL(string: event.UserProfileURL)
+                self.imgUserAvatar.kf.setImage(with: avatarURL)
+                self.lblCreatedBy.text = event.UserDisplayName
+
+                if(Auth.auth().currentUser != nil && event.Attendees.contains(Auth.auth().currentUser!.uid))
+                {
+                    self.btnAttend.setTitle("Going",for: .normal)
+                    self.btnAttend.isUserInteractionEnabled = false
+                }
+                else{
+                    self.btnAttend.isUserInteractionEnabled = false
+                }
+
+
+            }
         }
-        else{
-            btnAttend.isUserInteractionEnabled = false
-        }
+        
+        FirestoreClient.listenEventChanges(completion: { (isAnyChanges) in
+            if(isAnyChanges){
+                
+                print(isAnyChanges)
+                
+            }
+        })
+        
+        
+//        self.lblEventTitle.text = selectedEvent?.Title
+//        self.lblEventDescription.text = selectedEvent?.Descrption
+//        self.lblEventLocation.text = selectedEvent?.Location
+//        self.lblDate.text = selectedEvent?.EventDate
+//        self.lblAttendeesC.text = String(selectedEvent!.AttendeesCount)
+//
+//        let imageURL = URL(string: selectedEvent!.EventImageUrl)
+//                        self.imgEventImage.kf.setImage(with: imageURL)
+//
+//        let avatarURL = URL(string: selectedEvent!.UserProfileURL)
+//                        self.imgUserAvatar.kf.setImage(with: avatarURL)
+//        self.lblCreatedBy.text = selectedEvent?.UserDisplayName
+//
+//        if(Auth.auth().currentUser != nil && selectedEvent!.Attendees.contains(Auth.auth().currentUser!.uid))
+//                        {
+//                            self.btnAttend.setTitle("Going",for: .normal)
+//                            self.btnAttend.isUserInteractionEnabled = false
+//                        }
+//                        else{
+//                            self.btnAttend.isUserInteractionEnabled = false
+//                        }
+//
+        
         
     }
     
@@ -100,3 +141,4 @@ class EventViewController: UIViewController {
     }
     
 }
+
