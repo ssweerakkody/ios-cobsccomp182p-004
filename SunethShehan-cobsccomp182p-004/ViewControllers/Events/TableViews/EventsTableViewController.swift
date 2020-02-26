@@ -33,6 +33,10 @@ class EventsTableViewController: UITableViewController {
         self.view.backgroundColor = UIColor(patternImage: UIImage(named: "backimage.jpg")!)
         
         FirestoreClient.getAllEvents(completion: {events , eventIDs in
+            
+            self.Events.removeAll()
+            self.EventIDs.removeAll()
+            
             self.Events = events
             self.EventIDs = eventIDs
         })
@@ -138,6 +142,10 @@ class EventsTableViewController: UITableViewController {
         //
         //        navigationController?.pushViewController(vc, animated: true)
         //
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+    
     }
     
     
