@@ -23,16 +23,14 @@ class LoginViewController: UIViewController ,UITextFieldDelegate {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        //      Do any additional setup after loading the view.
+        // Do any additional setup after loading the view.
+        
+        if Auth.auth().currentUser != nil {
+           redirectToEventFeed()
+        }
+
         txtEmail.delegate = self
-        txtEmail.toStyledTextField()
-        txtPassword.toStyledTextField()
-        
-        btnSignIn.toRoundButtonEdges()
-        imgLogo.toRoundEdges()
-        
-         self.view.backgroundColor = UIColor(patternImage: UIImage(named: "backimage.jpg")!)
-        
+     
     }
     
     @IBAction func SignIn(_ sender: Any) {
@@ -41,55 +39,8 @@ class LoginViewController: UIViewController ,UITextFieldDelegate {
         txtEmail.text = "sachith@mail.com"
         txtPassword.text = "123456"
         
-        Auth.auth().signIn(withEmail: txtEmail.text!, password: txtPassword.text!) { (user, error) in
-            if error == nil{
-                
-                let domain = Bundle.main.bundleIdentifier!
-                
-                UserDefaults.standard.removePersistentDomain(forName: domain)
-                UserDefaults.standard.synchronize()
-                
-                
-                let db = Firestore.firestore()
-                let docRef = db.collection("users").document((user?.user.uid)!)
-                
-                docRef.getDocument { (document, error) in
-                    if(error == nil){
-                        
-                        UserDefaults.standard.set(document!.get("DisplayName") as! String, forKey: "DisplayName")
-                        UserDefaults.standard.set(document!.get("Email") as! String, forKey: "Email")
-                        UserDefaults.standard.set(document!.get("FBProfileUrl") as! String, forKey: "FBProfileUrl")
-                        UserDefaults.standard.set(document!.get("FirstName") as! String, forKey: "FirstName")
-                        UserDefaults.standard.set(document!.get("LastName") as! String, forKey: "LastName")
-                        UserDefaults.standard.set(document!.get("MobileNo") as! String, forKey: "MobileNo")
-                        UserDefaults.standard.set(document!.get("ProfileImageUrl") as! String, forKey: "ProfileImageUrl")
-                        UserDefaults.standard.set(user?.user.uid, forKey: "UserID")
-                        
-                        
-                        
-                        UserDefaults.standard.synchronize()
-                        
-                    }
-                }
-                
-                
-                let tabVC = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "EventNavigation") as! UITabBarController
-                tabVC.selectedIndex = 1
-                
-                self.present(tabVC, animated: true, completion: nil)
-                self.loadView()
-                self.view.setNeedsLayout()
-                
-                
-            }
-            else{
-                let alertController = UIAlertController(title: "Error", message: error?.localizedDescription, preferredStyle: .alert)
-                let defaultAction = UIAlertAction(title: "OK", style: .cancel, handler: nil)
-                
-                alertController.addAction(defaultAction)
-                self.present(alertController, animated: true, completion: nil)
-            }
-        }
+        signInUser(email: txtEmail.text!, password: txtPassword.text!)
+        
         
     }
     @IBAction func ForgetPassword(_ sender: Any) {
@@ -123,4 +74,78 @@ class LoginViewController: UIViewController ,UITextFieldDelegate {
         self.present(vc, animated: true, completion: nil)
         
     }
+    
+    func signInUser(email:String , password :String){
+        
+        Auth.auth().signIn(withEmail: email, password: password) { (user, error) in
+            if error == nil{
+                
+                let domain = Bundle.main.bundleIdentifier!
+                
+                UserDefaults.standard.removePersistentDomain(forName: domain)
+                UserDefaults.standard.synchronize()
+                
+                
+                let db = Firestore.firestore()
+                let docRef = db.collection("users").document((user?.user.uid)!)
+                
+                docRef.getDocument { (document, error) in
+                    if(error == nil){
+                        
+                        UserDefaults.standard.set(document!.get("DisplayName") as! String, forKey: "DisplayName")
+                        UserDefaults.standard.set(document!.get("Email") as! String, forKey: "Email")
+                        UserDefaults.standard.set(document!.get("FBProfileUrl") as! String, forKey: "FBProfileUrl")
+                        UserDefaults.standard.set(document!.get("FirstName") as! String, forKey: "FirstName")
+                        UserDefaults.standard.set(document!.get("LastName") as! String, forKey: "LastName")
+                        UserDefaults.standard.set(document!.get("MobileNo") as! String, forKey: "MobileNo")
+                        UserDefaults.standard.set(document!.get("ProfileImageUrl") as! String, forKey: "ProfileImageUrl")
+                        UserDefaults.standard.set(user?.user.uid, forKey: "UserID")
+                        
+                        
+                        
+                        UserDefaults.standard.synchronize()
+                        
+                    }
+                }
+                
+                
+                self.redirectToEventFeed()
+                
+            }
+            else{
+                let alertController = UIAlertController(title: "Error", message: error?.localizedDescription, preferredStyle: .alert)
+                let defaultAction = UIAlertAction(title: "OK", style: .cancel, handler: nil)
+                
+                alertController.addAction(defaultAction)
+                self.present(alertController, animated: true, completion: nil)
+            }
+        }
+        
+    }
+    
+    
+    func addFormStyles()
+    {
+        txtEmail.toStyledTextField()
+        txtPassword.toStyledTextField()
+        
+        btnSignIn.toRoundButtonEdges()
+        imgLogo.toRoundEdges()
+        
+        self.view.backgroundColor = UIColor(patternImage: UIImage(named: "backimage.jpg")!)
+        
+    }
+    
+    func redirectToEventFeed(){
+        
+        
+        let tabVC = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "EventNavigation") as! UITabBarController
+        tabVC.selectedIndex = 1
+        
+        self.present(tabVC, animated: true, completion: nil)
+        self.loadView()
+        self.view.setNeedsLayout()
+        
+    }
+    
 }
