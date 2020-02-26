@@ -91,14 +91,6 @@ class EventViewController: UIViewController {
             }
         }
         
-        FirestoreClient.listenEventChanges(completion: { (isAnyChanges) in
-            if(isAnyChanges){
-                
-                print(isAnyChanges)
-                
-            }
-        })
-        
         
 //        self.lblEventTitle.text = selectedEvent?.Title
 //        self.lblEventDescription.text = selectedEvent?.Descrption
