@@ -31,7 +31,8 @@ class ProfileViewController :  UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-       self.view.backgroundColor = UIColor(patternImage: UIImage(named: "backimage.jpg")!)
+       
+        addStylesToView()
         
         FirestoreClient.getUserProfile(uID: userID!) { (user) in
             
@@ -45,10 +46,18 @@ class ProfileViewController :  UIViewController {
             
             let imageURL = URL(string: user.ProfileImageUrl)
             self.imgUserProfile.kf.setImage(with: imageURL)
-            
-            self.imgUserProfile.toRoundEdges()
+        
             
         }
+        
+        
+    }
+    
+    func addStylesToView(){
+        self.view.backgroundColor = UIColor(patternImage: UIImage(named: "backimage.jpg")!)
+        
+        imgUserProfile.toRoundedImage()
+        imgUserProfile.addWhiteBorder()
         
         
     }

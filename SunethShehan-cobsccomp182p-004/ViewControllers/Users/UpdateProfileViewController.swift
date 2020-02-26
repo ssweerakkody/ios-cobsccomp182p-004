@@ -233,10 +233,9 @@ class UpdateProfileViewController: UIViewController{
     
     func addStylesToView(){
         
-           self.view.backgroundColor = UIColor(patternImage: UIImage(named: "backimage.jpg")!)
-        imgProPicture.layer.masksToBounds = true
-        imgProPicture.layer.cornerRadius = imgProPicture.bounds.width / 2
-        
+        self.view.backgroundColor = UIColor(patternImage: UIImage(named: "backimage.jpg")!)
+       
+        imgProPicture.toRoundedImage()
         imgProPicture.addWhiteBorder()
         
     }

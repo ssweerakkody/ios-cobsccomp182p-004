@@ -77,6 +77,11 @@ extension UIImageView{
         self.contentMode = .scaleToFill
         self.layer.borderWidth = 3
     }
+    func toRoundedImage(){
+        self.layer.masksToBounds = true
+        self.layer.cornerRadius = self.bounds.width / 2
+    }
+    
     
 }
 
