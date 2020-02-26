@@ -21,6 +21,10 @@ class LoginViewController: UIViewController ,UITextFieldDelegate {
     
     @IBOutlet weak var btnSignIn: UIButton!
     
+    @IBOutlet weak var btnLoginAsGuest: UIButton!
+    
+    
+    @IBOutlet weak var btnSignUp: UIButton!
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
@@ -29,6 +33,8 @@ class LoginViewController: UIViewController ,UITextFieldDelegate {
            redirectToEventFeed()
         }
 
+        addFormStyles()
+        
         txtEmail.delegate = self
      
     }
@@ -130,6 +136,14 @@ class LoginViewController: UIViewController ,UITextFieldDelegate {
         txtPassword.toStyledTextField()
         
         btnSignIn.toRoundButtonEdges()
+        btnSignIn.colorButtonBackground()
+        
+        btnSignUp.toRoundButtonEdges()
+        btnSignUp.colorButtonBackground()
+        
+        btnLoginAsGuest.toRoundButtonEdges()
+        btnLoginAsGuest.colorButtonBackground()
+        
         imgLogo.toRoundEdges()
         
         self.view.backgroundColor = UIColor(patternImage: UIImage(named: "backimage.jpg")!)

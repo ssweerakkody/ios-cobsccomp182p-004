@@ -48,27 +48,31 @@
                                 <textInputTraits key="textInputTraits" secureTextEntry="YES"/>
                             </textField>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="4YR-4K-J94">
-                                <rect key="frame" x="20" y="555" width="374" height="45"/>
+                                <rect key="frame" x="20" y="549" width="374" height="50"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <state key="normal" title="Sign In"/>
+                                <state key="normal" title="Sign In">
+                                    <color key="titleColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                </state>
                                 <connections>
                                     <action selector="SignIn:" destination="3a1-Gh-g6p" eventType="touchUpInside" id="jML-P5-Wge"/>
                                 </connections>
                             </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="5KH-1m-SM7">
+                                <rect key="frame" x="20" y="608" width="374" height="50"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="Sign Up">
+                                    <color key="titleColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                </state>
+                                <connections>
+                                    <segue destination="48x-eS-oNU" kind="show" id="wkO-gC-Ule"/>
+                                </connections>
+                            </button>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Br3-7u-TKL">
-                                <rect key="frame" x="271" y="651" width="123" height="30"/>
+                                <rect key="frame" x="271" y="657" width="123" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" title="Forget Password?"/>
                                 <connections>
                                     <action selector="ForgetPassword:" destination="3a1-Gh-g6p" eventType="touchUpInside" id="RYm-N6-b67"/>
-                                </connections>
-                            </button>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="5KH-1m-SM7">
-                                <rect key="frame" x="20" y="598" width="374" height="45"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <state key="normal" title="Sign Up"/>
-                                <connections>
-                                    <segue destination="48x-eS-oNU" kind="show" id="wkO-gC-Ule"/>
                                 </connections>
                             </button>
                         </subviews>
@@ -77,7 +81,9 @@
                     </view>
                     <navigationItem key="navigationItem" id="5F9-GT-oMS"/>
                     <connections>
+                        <outlet property="btnLoginAsGuest" destination="utK-7U-DfJ" id="M9O-C4-Zom"/>
                         <outlet property="btnSignIn" destination="4YR-4K-J94" id="1GK-Yo-NvL"/>
+                        <outlet property="btnSignUp" destination="5KH-1m-SM7" id="ry9-eK-goD"/>
                         <outlet property="imgLogo" destination="1qr-he-nnU" id="Vks-3b-Ugh"/>
                         <outlet property="txtEmail" destination="HtK-FZ-DKB" id="vOJ-om-nbC"/>
                         <outlet property="txtPassword" destination="tcn-nF-LoJ" id="a1B-Xa-McU"/>

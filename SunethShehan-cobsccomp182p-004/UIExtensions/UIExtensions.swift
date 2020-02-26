@@ -49,6 +49,11 @@ extension UIButton{
         self.layer.cornerRadius = 10
         self.clipsToBounds = true
     }
+    
+    func colorButtonBackground(){
+        self.backgroundColor = UIColor.green
+    }
+    
 }
 
 extension UIImageView{
