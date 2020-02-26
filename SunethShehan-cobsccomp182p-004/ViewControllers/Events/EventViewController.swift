@@ -12,7 +12,7 @@ import SwiftyJSON
 import Firebase
 
 class EventViewController: UIViewController {
-
+    
     @IBOutlet weak var imgEventImage: UIImageView!
     
     @IBOutlet weak var lblEventTitle: UILabel!
@@ -42,15 +42,24 @@ class EventViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-         self.view.backgroundColor = UIColor(patternImage: UIImage(named: "backimage.jpg")!)
+        addFormStyles()
+        setupView()
+       
+    }
+    
+    
+    
+    @IBAction func AttendEvent(_ sender: Any) {
         
-        self.imgUserAvatar.layer.cornerRadius = self.imgUserAvatar.bounds.height / 2
-        self.imgUserAvatar.clipsToBounds = true
         
-        btnAttend.backgroundColor = .clear
-        btnAttend.layer.cornerRadius = 5
-        btnAttend.layer.borderWidth = 1
-        btnAttend.layer.borderColor = UIColor.black.cgColor
+        FirestoreClient.updateAttendees(selectedEventID: lblDocID.text!)
+        lblAttendeesC.text  = String(Int(lblAttendeesC.text!)!+1)
+        btnAttend.setTitle("Going", for: .normal)
+        btnAttend.isUserInteractionEnabled = false
+        
+    }
+    
+    func setupView(){
         
         lblEventTitle.text = event?.Title
         lblEventDescription.text = event?.Descrption
@@ -70,20 +79,20 @@ class EventViewController: UIViewController {
             btnAttend.isUserInteractionEnabled = false
         }
         
-        
-        // Do any additional setup after loading the view.
-        
     }
     
-    
-    
-    @IBAction func AttendEvent(_ sender: Any) {
+    func addFormStyles() {
+        
+        self.view.backgroundColor = UIColor(patternImage: UIImage(named: "backimage.jpg")!)
+        
+        self.imgUserAvatar.layer.cornerRadius = self.imgUserAvatar.bounds.height / 2
+        self.imgUserAvatar.clipsToBounds = true
         
         
-        FirestoreClient.updateAttendees(selectedEventID: lblDocID.text!)
-        lblAttendeesC.text  = String(Int(lblAttendeesC.text!)!+1)
-        btnAttend.setTitle("Going", for: .normal)
-        btnAttend.isUserInteractionEnabled = false
-        
+        btnAttend.backgroundColor = .clear
+        btnAttend.layer.cornerRadius = 5
+        btnAttend.layer.borderWidth = 1
+        btnAttend.layer.borderColor = UIColor.black.cgColor
     }
+    
 }
