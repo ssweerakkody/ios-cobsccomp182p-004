@@ -309,14 +309,6 @@
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="pFN-4o-Gvk">
-                                <rect key="frame" x="305" y="557" width="89" height="30"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <state key="normal" title="Attend"/>
-                                <connections>
-                                    <action selector="AttendEvent:" destination="CNa-Ei-uxA" eventType="touchUpInside" id="XBc-Ut-qB7"/>
-                                </connections>
-                            </button>
                             <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="DocID" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ILf-Zz-a6c">
                                 <rect key="frame" x="330" y="133" width="47" height="21"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -336,7 +328,6 @@
                         <viewLayoutGuide key="safeArea" id="Br2-J7-zuu"/>
                     </view>
                     <connections>
-                        <outlet property="btnAttend" destination="pFN-4o-Gvk" id="wcv-0P-6PV"/>
                         <outlet property="imgEventImage" destination="PHr-nd-4wg" id="s1t-9J-2rN"/>
                         <outlet property="imgUserAvatar" destination="XGn-dV-qpu" id="9Xf-Ui-Pnj"/>
                         <outlet property="lblAttendeesC" destination="9KA-P6-BJD" id="ow0-5A-U3j"/>

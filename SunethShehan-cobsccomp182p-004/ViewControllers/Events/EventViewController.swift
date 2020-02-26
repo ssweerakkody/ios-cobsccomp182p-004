@@ -78,14 +78,14 @@ class EventViewController: UIViewController {
                 self.imgUserAvatar.kf.setImage(with: avatarURL)
                 self.lblCreatedBy.text = event.UserDisplayName
 
-                if(Auth.auth().currentUser != nil && event.Attendees.contains(Auth.auth().currentUser!.uid))
-                {
-                    self.btnAttend.setTitle("Going",for: .normal)
-                    self.btnAttend.isUserInteractionEnabled = false
-                }
-                else{
-                    self.btnAttend.isUserInteractionEnabled = false
-                }
+//                if(Auth.auth().currentUser != nil && event.Attendees.contains(Auth.auth().currentUser!.uid))
+//                {
+//                    self.btnAttend.setTitle("Going",for: .normal)
+//                    self.btnAttend.isUserInteractionEnabled = false
+//                }
+//                else{
+//                    self.btnAttend.isUserInteractionEnabled = false
+//                }
 
 
             }
@@ -134,10 +134,10 @@ class EventViewController: UIViewController {
         self.imgUserAvatar.clipsToBounds = true
         
         
-        btnAttend.backgroundColor = .clear
-        btnAttend.layer.cornerRadius = 5
-        btnAttend.layer.borderWidth = 1
-        btnAttend.layer.borderColor = UIColor.black.cgColor
+//        btnAttend.backgroundColor = .clear
+//        btnAttend.layer.cornerRadius = 5
+//        btnAttend.layer.borderWidth = 1
+//        btnAttend.layer.borderColor = UIColor.black.cgColor
     }
     
 }
