@@ -16,7 +16,7 @@ class FormValidation{
             
             Alerts.showAlert(title: "Check input",message:"\(textFiledName) cannot be empty",presentingVC: presentingVC)
             return false
-        
+            
         }
         return true
     }
@@ -32,11 +32,16 @@ class FormValidation{
         return true
     }
     
-   static func isValidEmail(_ email: String) -> Bool {
+    static func isValidEmail(_ email: String,presentingVC :UIViewController) -> Bool {
         let emailRegEx = "[A-Z0-9a-z._%+-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,64}"
         
         let emailPred = NSPredicate(format:"SELF MATCHES %@", emailRegEx)
-        return emailPred.evaluate(with: email)
+        if(!emailPred.evaluate(with: email))
+        {
+            Alerts.showAlert(title: "Check input",message:"Email is not formatted correctly !",presentingVC: presentingVC)
+            return false
+        }
+        return true
     }
     
 }
