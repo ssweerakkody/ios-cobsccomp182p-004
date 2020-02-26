@@ -21,4 +21,16 @@ class FormValidation{
         return true
     }
     
+    static func isEqualPasswords(password:UITextField , confirmPassword : UITextField,presentingVC:UIViewController) -> Bool{
+        
+        if (password.text != confirmPassword.text){
+            
+            Alerts.showAlert(title: "Check input",message:"Passwwords are not equal",presentingVC: presentingVC)
+            return false
+            
+        }
+        return true
+    }
+    
+    
 }
