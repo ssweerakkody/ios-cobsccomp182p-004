@@ -30,13 +30,13 @@ class LoginViewController: UIViewController ,UITextFieldDelegate {
         // Do any additional setup after loading the view.
         
         if Auth.auth().currentUser != nil {
-           redirectToEventFeed()
+            redirectToEventFeed()
         }
-
+        
         addFormStyles()
         
         txtEmail.delegate = self
-     
+        
     }
     
     @IBAction func SignIn(_ sender: Any) {
@@ -74,7 +74,7 @@ class LoginViewController: UIViewController ,UITextFieldDelegate {
     }
     
     @IBAction func LoginAsGuest(_ sender: Any) {
-
+        
         
         let vc = UIStoryboard(name: "Guest", bundle: nil).instantiateViewController(withIdentifier: "GuestNavigation")
         self.present(vc, animated: true, completion: nil)
@@ -83,49 +83,56 @@ class LoginViewController: UIViewController ,UITextFieldDelegate {
     
     func signInUser(email:String , password :String){
         
-        Auth.auth().signIn(withEmail: email, password: password) { (user, error) in
-            if error == nil{
-                
-                let domain = Bundle.main.bundleIdentifier!
-                
-                UserDefaults.standard.removePersistentDomain(forName: domain)
-                UserDefaults.standard.synchronize()
-                
-                
-                let db = Firestore.firestore()
-                let docRef = db.collection("users").document((user?.user.uid)!)
-                
-                docRef.getDocument { (document, error) in
-                    if(error == nil){
-                        
-                        UserDefaults.standard.set(document!.get("DisplayName") as! String, forKey: "DisplayName")
-                        UserDefaults.standard.set(document!.get("Email") as! String, forKey: "Email")
-                        UserDefaults.standard.set(document!.get("FBProfileUrl") as! String, forKey: "FBProfileUrl")
-                        UserDefaults.standard.set(document!.get("FirstName") as! String, forKey: "FirstName")
-                        UserDefaults.standard.set(document!.get("LastName") as! String, forKey: "LastName")
-                        UserDefaults.standard.set(document!.get("MobileNo") as! String, forKey: "MobileNo")
-                        UserDefaults.standard.set(document!.get("ProfileImageUrl") as! String, forKey: "ProfileImageUrl")
-                        UserDefaults.standard.set(user?.user.uid, forKey: "UserID")
-                        
-                        
-                        
-                        UserDefaults.standard.synchronize()
-                        
+        if(self.validateInputs()){
+            
+            Auth.auth().signIn(withEmail: email, password: password) { (user, error) in
+                if error == nil{
+                    
+                    let domain = Bundle.main.bundleIdentifier!
+                    
+                    UserDefaults.standard.removePersistentDomain(forName: domain)
+                    UserDefaults.standard.synchronize()
+                    
+                    
+                    let db = Firestore.firestore()
+                    let docRef = db.collection("users").document((user?.user.uid)!)
+                    
+                    docRef.getDocument { (document, error) in
+                        if(error == nil){
+                            
+                            UserDefaults.standard.set(document!.get("DisplayName") as! String, forKey: "DisplayName")
+                            UserDefaults.standard.set(document!.get("Email") as! String, forKey: "Email")
+                            UserDefaults.standard.set(document!.get("FBProfileUrl") as! String, forKey: "FBProfileUrl")
+                            UserDefaults.standard.set(document!.get("FirstName") as! String, forKey: "FirstName")
+                            UserDefaults.standard.set(document!.get("LastName") as! String, forKey: "LastName")
+                            UserDefaults.standard.set(document!.get("MobileNo") as! String, forKey: "MobileNo")
+                            UserDefaults.standard.set(document!.get("ProfileImageUrl") as! String, forKey: "ProfileImageUrl")
+                            UserDefaults.standard.set(user?.user.uid, forKey: "UserID")
+                            
+                            
+                            
+                            UserDefaults.standard.synchronize()
+                            
+                        }
                     }
+                    
+                    
+                    self.redirectToEventFeed()
+                    
                 }
-                
-                
-                self.redirectToEventFeed()
-                
+                else{
+                    let alertController = UIAlertController(title: "Error", message: error?.localizedDescription, preferredStyle: .alert)
+                    let defaultAction = UIAlertAction(title: "OK", style: .cancel, handler: nil)
+                    
+                    alertController.addAction(defaultAction)
+                    self.present(alertController, animated: true, completion: nil)
+                }
             }
-            else{
-                let alertController = UIAlertController(title: "Error", message: error?.localizedDescription, preferredStyle: .alert)
-                let defaultAction = UIAlertAction(title: "OK", style: .cancel, handler: nil)
-                
-                alertController.addAction(defaultAction)
-                self.present(alertController, animated: true, completion: nil)
-            }
+            
+            
         }
+        
+        
         
     }
     
@@ -160,6 +167,25 @@ class LoginViewController: UIViewController ,UITextFieldDelegate {
         self.loadView()
         self.view.setNeedsLayout()
         
+    }
+    
+    func validateInputs()->Bool{
+        
+        if(!FormValidation.isValidField(textField: txtEmail, textFiledName: "Email", presentingVC: self))
+        {
+            return false
+        }
+        if(!FormValidation.isValidEmail(txtEmail.text!, presentingVC: self))
+        {
+            return false
+        }
+        if(!FormValidation.isValidField(textField: txtPassword, textFiledName: "Password", presentingVC: self))
+        {
+            return false
+        }
+        
+        
+        return true
     }
     
 }
