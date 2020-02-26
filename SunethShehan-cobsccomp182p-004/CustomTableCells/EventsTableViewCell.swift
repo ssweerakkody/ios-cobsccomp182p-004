@@ -35,16 +35,7 @@ class EventsTableViewCell: UITableViewCell {
     override func awakeFromNib() {
         super.awakeFromNib()
         
-        imgUserAvatar.layer.masksToBounds = true
-        imgUserAvatar.layer.cornerRadius = imgUserAvatar.bounds.width / 2
-        
-        btnAttend.backgroundColor = .clear
-        btnAttend.layer.cornerRadius = 5
-        btnAttend.layer.borderWidth = 1
-        btnAttend.layer.borderColor = UIColor.black.cgColor
-        
-  
-        
+        addStylesToCell()
     }
     
     override func setSelected(_ selected: Bool, animated: Bool) {
@@ -61,8 +52,17 @@ class EventsTableViewCell: UITableViewCell {
         btnAttend.isUserInteractionEnabled = false
     }
     
-
-    
-    
+    func addStylesToCell(){
+        imgUserAvatar.layer.masksToBounds = true
+        imgUserAvatar.layer.cornerRadius = imgUserAvatar.bounds.width / 2
+        
+        btnAttend.backgroundColor = .clear
+        btnAttend.layer.cornerRadius = 5
+        btnAttend.layer.borderWidth = 1
+        btnAttend.layer.borderColor = UIColor.black.cgColor
+        
+        imgEvent.toRoundEdges()
+        
+    }
 }
 

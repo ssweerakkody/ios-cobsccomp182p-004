@@ -87,6 +87,8 @@ class EventViewController: UIViewController {
                 
                 self.userID = event.CreatedBy
                 
+                imgUserAvatar.addWhiteBorder()
+                
 //                if(Auth.auth().currentUser != nil && event.Attendees.contains(Auth.auth().currentUser!.uid))
 //                {
 //                    self.btnAttend.setTitle("Going",for: .normal)

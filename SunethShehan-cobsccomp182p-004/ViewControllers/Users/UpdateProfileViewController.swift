@@ -53,12 +53,11 @@ class UpdateProfileViewController: UIViewController{
     override func viewDidLoad() {
         super.viewDidLoad()
         
-         self.view.backgroundColor = UIColor(patternImage: UIImage(named: "backimage.jpg")!)
+      addStylesToView()
         
         if(authenticationWithTouchID())
         {
-            imgProPicture.layer.masksToBounds = true
-            imgProPicture.layer.cornerRadius = imgProPicture.bounds.width / 2
+            
             
             self.imagePicker = ImagePicker(presentationController: self, delegate: self)
             
@@ -231,6 +230,17 @@ class UpdateProfileViewController: UIViewController{
         }
         return true
     }
+    
+    func addStylesToView(){
+        
+           self.view.backgroundColor = UIColor(patternImage: UIImage(named: "backimage.jpg")!)
+        imgProPicture.layer.masksToBounds = true
+        imgProPicture.layer.cornerRadius = imgProPicture.bounds.width / 2
+        
+        imgProPicture.addWhiteBorder()
+        
+    }
+    
     
 }
 

@@ -46,6 +46,8 @@ class ProfileViewController :  UIViewController {
             let imageURL = URL(string: user.ProfileImageUrl)
             self.imgUserProfile.kf.setImage(with: imageURL)
             
+            self.imgUserProfile.toRoundEdges()
+            
         }
         
         

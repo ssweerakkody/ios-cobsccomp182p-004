@@ -94,7 +94,7 @@
                                 </date>
                             </datePicker>
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="rsz_events-image" translatesAutoresizingMaskIntoConstraints="NO" id="o2h-rQ-ugo">
-                                <rect key="frame" x="87" y="152" width="240" height="124.00000000000011"/>
+                                <rect key="frame" x="87" y="152" width="240" height="124"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="240" id="1vW-qt-gKa"/>
                                     <constraint firstAttribute="height" constant="124" id="92A-4Z-zIq"/>

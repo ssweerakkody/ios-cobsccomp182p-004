@@ -62,6 +62,15 @@ extension UIImageView{
         self.layer.cornerRadius = 8.0
         self.clipsToBounds = true
     }
+    
+    func addWhiteBorder(){
+       
+       self.layer.borderColor = UIColor(red: 1.0, green: 1.0, blue: 1.0, alpha: 1.0).cgColor
+       self.layer.masksToBounds = true
+       self.contentMode = .scaleToFill
+       self.layer.borderWidth = 5
+    }
+    
 }
 
 //extensions for View Controllers
