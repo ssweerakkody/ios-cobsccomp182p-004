@@ -44,7 +44,7 @@ class EventViewController: UIViewController {
         
         addFormStyles()
         setupView()
-       
+        
     }
     
     
@@ -74,8 +74,12 @@ class EventViewController: UIViewController {
         imgUserAvatar.kf.setImage(with: avatarURL)
         lblCreatedBy.text = event?.UserDisplayName
         
-        if (event!.Attendees.contains(Auth.auth().currentUser!.uid)) {
+        if(Auth.auth().currentUser != nil && event!.Attendees.contains(Auth.auth().currentUser!.uid))
+        {
             btnAttend.setTitle("Going",for: .normal)
+            btnAttend.isUserInteractionEnabled = false
+        }
+        else{
             btnAttend.isUserInteractionEnabled = false
         }
         
