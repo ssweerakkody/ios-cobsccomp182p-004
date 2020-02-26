@@ -71,6 +71,13 @@ extension UIImageView{
        self.layer.borderWidth = 5
     }
     
+    func addThinWhiteBorder(){
+        self.layer.borderColor = UIColor(red: 1.0, green: 1.0, blue: 1.0, alpha: 1.0).cgColor
+        self.layer.masksToBounds = true
+        self.contentMode = .scaleToFill
+        self.layer.borderWidth = 3
+    }
+    
 }
 
 //extensions for View Controllers
