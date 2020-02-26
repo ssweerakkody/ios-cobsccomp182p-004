@@ -9,6 +9,7 @@
 import UIKit
 import Kingfisher
 import SwiftyJSON
+import Firebase
 
 class EventViewController: UIViewController {
 
@@ -24,7 +25,19 @@ class EventViewController: UIViewController {
     
     @IBOutlet weak var lblCreatedBy: UILabel!
     
-     var event: Event?
+    @IBOutlet weak var lblDate: UILabel!
+    
+    
+    @IBOutlet weak var btnAttend: UIButton!
+    
+    @IBOutlet weak var lblAttendeesC: UILabel!
+    @IBOutlet weak var lblLocation: UILabel!
+    
+    
+    @IBOutlet weak var lblDocID: UILabel!
+    
+    
+    var event: Event?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -34,9 +47,16 @@ class EventViewController: UIViewController {
         self.imgUserAvatar.layer.cornerRadius = self.imgUserAvatar.bounds.height / 2
         self.imgUserAvatar.clipsToBounds = true
         
+        btnAttend.backgroundColor = .clear
+        btnAttend.layer.cornerRadius = 5
+        btnAttend.layer.borderWidth = 1
+        btnAttend.layer.borderColor = UIColor.black.cgColor
+        
         lblEventTitle.text = event?.Title
         lblEventDescription.text = event?.Descrption
         lblEventLocation.text = event?.Location
+        lblDate.text = event?.EventDate
+        lblAttendeesC.text = String(event!.AttendeesCount)
         
         let imageURL = URL(string: event!.EventImageUrl)
         imgEventImage.kf.setImage(with: imageURL)
@@ -45,8 +65,25 @@ class EventViewController: UIViewController {
         imgUserAvatar.kf.setImage(with: avatarURL)
         lblCreatedBy.text = event?.UserDisplayName
         
-
+        if (event!.Attendees.contains(Auth.auth().currentUser!.uid)) {
+            btnAttend.setTitle("Going",for: .normal)
+            btnAttend.isUserInteractionEnabled = false
+        }
+        
+        
         // Do any additional setup after loading the view.
+        
+    }
+    
+    
+    
+    @IBAction func AttendEvent(_ sender: Any) {
+        
+        
+        FirestoreClient.updateAttendees(selectedEventID: lblDocID.text!)
+        lblAttendeesC.text  = String(Int(lblAttendeesC.text!)!+1)
+        btnAttend.setTitle("Going", for: .normal)
+        btnAttend.isUserInteractionEnabled = false
         
     }
 }

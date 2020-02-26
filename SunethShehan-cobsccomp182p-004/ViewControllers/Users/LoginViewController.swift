@@ -38,7 +38,7 @@ class LoginViewController: UIViewController ,UITextFieldDelegate {
     @IBAction func SignIn(_ sender: Any) {
         
         
-        txtEmail.text = "rumesh@mail.com"
+        txtEmail.text = "sachith@mail.com"
         txtPassword.text = "123456"
         
         Auth.auth().signIn(withEmail: txtEmail.text!, password: txtPassword.text!) { (user, error) in
