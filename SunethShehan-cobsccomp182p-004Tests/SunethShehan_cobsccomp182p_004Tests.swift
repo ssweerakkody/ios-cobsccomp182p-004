@@ -30,5 +30,12 @@ class SunethShehan_cobsccomp182p_004Tests: XCTestCase {
             // Put the code you want to measure the time of here.
         }
     }
+    
+    func testPasswords(){
+    
+        
+        FormValidation.isEqualPasswords(password: <#T##UITextField#>, confirmPassword: <#T##UITextField#>, presentingVC: <#T##UIViewController#>)
+        
+    }
 
 }
