@@ -94,7 +94,7 @@
                                 </date>
                             </datePicker>
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="rsz_events-image" translatesAutoresizingMaskIntoConstraints="NO" id="o2h-rQ-ugo">
-                                <rect key="frame" x="87" y="152" width="240" height="124.00000000000011"/>
+                                <rect key="frame" x="87" y="152" width="240" height="124"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="240" id="1vW-qt-gKa"/>
                                     <constraint firstAttribute="height" constant="124" id="92A-4Z-zIq"/>
@@ -336,9 +336,6 @@
                     <navigationItem key="navigationItem" title="Feed" id="gjp-QR-Krj">
                         <barButtonItem key="backBarButtonItem" title="Feed" id="odh-j9-otX"/>
                     </navigationItem>
-                    <connections>
-                        <segue destination="b2B-v3-T4H" kind="show" identifier="viewProfile" id="2fN-iJ-2n7"/>
-                    </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="oqz-u0-MN3" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -431,6 +428,7 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <viewLayoutGuide key="safeArea" id="Br2-J7-zuu"/>
                     </view>
+                    <navigationItem key="navigationItem" id="KTm-RB-rd9"/>
                     <connections>
                         <outlet property="imgEventImage" destination="PHr-nd-4wg" id="s1t-9J-2rN"/>
                         <outlet property="imgUserAvatar" destination="XGn-dV-qpu" id="9Xf-Ui-Pnj"/>
@@ -446,7 +444,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ahZ-pP-l6N" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2528.985507246377" y="383.70535714285711"/>
+            <point key="canvasLocation" x="3439.130434782609" y="383.70535714285711"/>
         </scene>
         <!--Tab Bar Controller-->
         <scene sceneID="ZQd-bv-qBd">
@@ -672,7 +670,25 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="b1N-zZ-toa" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2241" y="-288"/>
+            <point key="canvasLocation" x="4392.753623188406" y="383.70535714285711"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="Kjo-zM-f4g">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="bi1-0I-jYV" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="ZpF-wf-Haw">
+                        <rect key="frame" x="0.0" y="44" width="414" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="CNa-Ei-uxA" kind="relationship" relationship="rootViewController" id="YE6-2s-8id"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="KWm-ki-OGn" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2528.985507246377" y="383.70535714285711"/>
         </scene>
     </scenes>
     <resources>

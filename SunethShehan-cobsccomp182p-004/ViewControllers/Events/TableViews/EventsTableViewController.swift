@@ -88,10 +88,7 @@ class EventsTableViewController: UITableViewController {
             cell.btnAttend.isUserInteractionEnabled = false
         }
         
-        let overlay = UIButton(frame: cell.imgUserAvatar.bounds)
-        cell.imgUserAvatar.isUserInteractionEnabled = true
-        overlay.addTarget(self, action: #selector(imgUserAvatarTapped), for: .touchUpInside)
-        cell.imgUserAvatar.addSubview(overlay)
+        
         
         return cell
     }
@@ -131,19 +128,7 @@ class EventsTableViewController: UITableViewController {
     }
     
     
-    @IBAction func imgUserAvatarTapped(sender: UIButton) {
-        
-        //        let cell: EventsTableViewCell? = (sender.superview?.superview as? EventsTableViewCell)
-        //        //var indexPath: IndexPath? = tableView?.indexPath(for: cell!)
-        //
-        //        let vc = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "ProfileView") as! ProfileViewController
-        //
-        //        vc.userID =  cell?.lblDocID.text
-        //
-        //        navigationController?.pushViewController(vc, animated: true)
-        //
-    }
-    
+   
     override func viewWillAppear(_ animated: Bool) {
     
     }

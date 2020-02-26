@@ -43,10 +43,7 @@ class EventsTableViewCell: UITableViewCell {
         btnAttend.layer.borderWidth = 1
         btnAttend.layer.borderColor = UIColor.black.cgColor
         
-        let overlay = UIButton(frame: imgUserAvatar.bounds)
-        imgUserAvatar.isUserInteractionEnabled = true
-        overlay.addTarget(self, action: #selector(imgUserAvatarTapped), for: .touchUpInside)
-        imgUserAvatar.addSubview(overlay)
+  
         
     }
     
@@ -64,15 +61,7 @@ class EventsTableViewCell: UITableViewCell {
         btnAttend.isUserInteractionEnabled = false
     }
     
-    @IBAction func imgUserAvatarTapped(sender: UIButton) {
-        
-        
-//        print("Clicked on image")
-//
-//        performSegue(withIdentifier: "InputVCToDisplayVC", sender: self)
-//        viewProfile
-        
-    }
+
     
     
 }

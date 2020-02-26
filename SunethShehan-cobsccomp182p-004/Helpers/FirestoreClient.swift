@@ -202,7 +202,7 @@ class FirestoreClient{
         
         usersCollection.document(uID).getDocument { (doc, err) in
             
-            if(err != nil){
+            if(err == nil){
                 
                 let user = try! FirestoreDecoder().decode(User.self, from: (doc?.data())!)
                 

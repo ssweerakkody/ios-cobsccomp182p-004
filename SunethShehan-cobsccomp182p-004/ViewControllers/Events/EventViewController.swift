@@ -40,6 +40,8 @@ class EventViewController: UIViewController {
     var selectedEvent: Event?
     var selectedEventID :String?
     
+    var userID:String?
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -78,6 +80,13 @@ class EventViewController: UIViewController {
                 self.imgUserAvatar.kf.setImage(with: avatarURL)
                 self.lblCreatedBy.text = event.UserDisplayName
 
+                let overlay = UIButton(frame: self.imgUserAvatar.bounds)
+                self.imgUserAvatar.isUserInteractionEnabled = true
+                overlay.addTarget(self, action: #selector(self.imgUserAvatarTapped), for: .touchUpInside)
+                self.imgUserAvatar.addSubview(overlay)
+                
+                self.userID = event.CreatedBy
+                
 //                if(Auth.auth().currentUser != nil && event.Attendees.contains(Auth.auth().currentUser!.uid))
 //                {
 //                    self.btnAttend.setTitle("Going",for: .normal)
@@ -131,6 +140,18 @@ class EventViewController: UIViewController {
 //        btnAttend.layer.borderWidth = 1
 //        btnAttend.layer.borderColor = UIColor.black.cgColor
     }
+    
+    @IBAction func imgUserAvatarTapped(sender: UIButton) {
+        
+        
+                let vc = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "ProfileView") as! ProfileViewController
+        
+                vc.userID = self.userID
+        
+                navigationController?.pushViewController(vc, animated: true)
+        
+    }
+    
     
 }
 
