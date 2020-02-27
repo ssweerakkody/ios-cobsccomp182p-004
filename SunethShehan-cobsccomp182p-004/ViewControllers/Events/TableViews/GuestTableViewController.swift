@@ -45,7 +45,7 @@ final class GuestTableViewController: UITableViewController {
     }
     
     override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return 470
+        return 465
     }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -66,6 +66,7 @@ final class GuestTableViewController: UITableViewController {
         cell.lblEventTitle.text = event.Title
         
         //cell.lblDescription.text = Events[indexPath.row]["Descrption"].stringValue
+        cell.lblAttendeesCount.text = String(event.AttendeesCount)
         
         cell.lblLocation.text = event.Location
         
