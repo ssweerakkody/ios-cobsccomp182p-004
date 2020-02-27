@@ -34,6 +34,7 @@ class ProfileViewController :  UIViewController {
        
         addStylesToView()
         
+        
         FirestoreClient.getUserProfile(uID: userID!) { (user) in
             
             self.lblFName.text =  user.FirstName
