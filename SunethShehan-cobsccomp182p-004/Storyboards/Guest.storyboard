@@ -18,7 +18,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <prototypes>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="EventCell" rowHeight="511" id="aes-uj-yTa" customClass="EventsTableViewCell" customModule="SunethShehan_cobsccomp182p_004" customModuleProvider="target">
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="GuestEventCell" rowHeight="511" id="aes-uj-yTa" customClass="EventsTableViewCell" customModule="SunethShehan_cobsccomp182p_004" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="28" width="414" height="511"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="aes-uj-yTa" id="mwA-FM-Qvu">
@@ -89,21 +89,16 @@
                                             <color key="textColor" red="0.1035534505" green="0.74073024610000004" blue="0.39040490459999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                             <nil key="highlightedColor"/>
                                         </label>
-                                        <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="o3L-I2-ymS">
-                                            <rect key="frame" x="302" y="456" width="92" height="30"/>
-                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                            <state key="normal" title="Attend"/>
-                                        </button>
                                     </subviews>
                                 </tableViewCellContentView>
                                 <connections>
-                                    <outlet property="btnAttend" destination="o3L-I2-ymS" id="7HQ-I8-rEy"/>
-                                    <outlet property="imgEvent" destination="iuy-lI-6ad" id="kvE-QJ-gVp"/>
-                                    <outlet property="imgUserAvatar" destination="ZGu-4P-USM" id="2C7-w5-pYD"/>
-                                    <outlet property="lblCreatedBy" destination="3zt-Ir-RUH" id="ekd-g8-ZwO"/>
-                                    <outlet property="lblEventDate" destination="Ubl-Vy-LT5" id="tnY-7r-svp"/>
-                                    <outlet property="lblEventTitle" destination="aTG-mL-rfQ" id="wOh-Lk-RVl"/>
-                                    <outlet property="lblLocation" destination="fjE-Q3-y96" id="YuS-M4-Tno"/>
+                                    <outlet property="imgEvent" destination="iuy-lI-6ad" id="Zjt-hj-bin"/>
+                                    <outlet property="imgUserAvatar" destination="ZGu-4P-USM" id="Fog-8O-N18"/>
+                                    <outlet property="lblAttendeesCount" destination="eZ1-JH-o1O" id="u9G-Nh-gm6"/>
+                                    <outlet property="lblCreatedBy" destination="3zt-Ir-RUH" id="AEY-Uu-wpn"/>
+                                    <outlet property="lblEventDate" destination="Ubl-Vy-LT5" id="KdM-t6-7Sk"/>
+                                    <outlet property="lblEventTitle" destination="aTG-mL-rfQ" id="Wh9-1s-nAw"/>
+                                    <outlet property="lblLocation" destination="fjE-Q3-y96" id="2hl-zD-nBw"/>
                                 </connections>
                             </tableViewCell>
                         </prototypes>

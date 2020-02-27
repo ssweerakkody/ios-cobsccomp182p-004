@@ -49,11 +49,11 @@ final class GuestTableViewController: UITableViewController {
     }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "EventCell",for: indexPath) as! EventsTableViewCell
+        let cell = tableView.dequeueReusableCell(withIdentifier: "GuestEventCell",for: indexPath) as! EventsTableViewCell
         
         let event = Events[indexPath.row]
         
-        cell.lblDocID.text = EventIDs[indexPath.row]
+//        cell.lblDocID.text = EventIDs[indexPath.row]
         
         
         cell.lblEventDate.text = event.EventDate

@@ -56,10 +56,15 @@ class EventsTableViewCell: UITableViewCell {
         imgUserAvatar.layer.masksToBounds = true
         imgUserAvatar.layer.cornerRadius = imgUserAvatar.bounds.width / 2
         
-        btnAttend.backgroundColor = .clear
-        btnAttend.layer.cornerRadius = 5
-        btnAttend.layer.borderWidth = 1
-        btnAttend.layer.borderColor = UIColor.black.cgColor
+        
+        if(btnAttend != nil){
+            
+            btnAttend.backgroundColor = .clear
+            btnAttend.layer.cornerRadius = 5
+            btnAttend.layer.borderWidth = 1
+            btnAttend.layer.borderColor = UIColor.black.cgColor
+            
+        }
         
         imgEvent.toRoundEdges()
         
