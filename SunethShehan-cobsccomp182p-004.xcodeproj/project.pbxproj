@@ -178,8 +178,6 @@
 				995F3A3D23E924DF00E39A78 /* Storyboards */,
 				997C811923EC72EA003844D9 /* CustomUIControls */,
 				997C811A23EC7401003844D9 /* UIExtensions */,
-				997C811F23EC826E003844D9 /* PartialViews */,
-				997C812023EC8282003844D9 /* PartialViewControllers */,
 				9933C45E23E82EFD000818B6 /* GoogleService-Info.plist */,
 				9933C43023E82805000818B6 /* AppDelegate.swift */,
 				9933C43723E82807000818B6 /* Assets.xcassets */,
@@ -303,20 +301,6 @@
 				997C811B23EC7459003844D9 /* UIExtensions.swift */,
 			);
 			path = UIExtensions;
-			sourceTree = "<group>";
-		};
-		997C811F23EC826E003844D9 /* PartialViews */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = PartialViews;
-			sourceTree = "<group>";
-		};
-		997C812023EC8282003844D9 /* PartialViewControllers */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = PartialViewControllers;
 			sourceTree = "<group>";
 		};
 		9980DD8823FF94CA000BEEBC /* Events */ = {

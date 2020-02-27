@@ -53,7 +53,7 @@ class UpdateProfileViewController: UIViewController{
     override func viewDidLoad() {
         super.viewDidLoad()
         
-      addStylesToView()
+        addStylesToView()
         
         if(authenticationWithTouchID())
         {
@@ -180,6 +180,10 @@ class UpdateProfileViewController: UIViewController{
         {
             return false
         }
+        //        if(!txtPassword.text!.isEmpty && !FormValidation.isEqualPasswords(password: txtPassword, confirmPassword: txtConfirmPassword, presentingVC: self)){
+        //
+        //        }
+        
         
         return true
         
@@ -234,7 +238,7 @@ class UpdateProfileViewController: UIViewController{
     func addStylesToView(){
         
         self.view.backgroundColor = UIColor(patternImage: UIImage(named: "backimage.jpg")!)
-       
+        
         imgProPicture.toRoundedImage()
         imgProPicture.addWhiteBorder()
         
