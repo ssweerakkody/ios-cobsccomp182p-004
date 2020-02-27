@@ -82,7 +82,7 @@ class LoginViewController: UIViewController ,UITextFieldDelegate {
         
         
         let vc = UIStoryboard(name: "Guest", bundle: nil).instantiateViewController(withIdentifier: "GuestNavigation")
-        self.present(vc, animated: true, completion: nil)
+        navigationController?.pushViewController(vc, animated: true)
         
     }
     

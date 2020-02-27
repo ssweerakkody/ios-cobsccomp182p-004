@@ -26,7 +26,7 @@
                                 </constraints>
                                 <state key="normal" title="Login as Guest"/>
                                 <connections>
-                                    <action selector="LoginAsGuest:" destination="3a1-Gh-g6p" eventType="touchUpInside" id="tDV-GA-kwz"/>
+                                    <segue destination="5xb-3s-6Tc" kind="show" id="N7T-ez-jhS"/>
                                 </connections>
                             </button>
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="nibm-logo" translatesAutoresizingMaskIntoConstraints="NO" id="1qr-he-nnU">
@@ -143,6 +143,14 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="hgP-Zb-8dD" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="768.11594202898561" y="-5.3571428571428568"/>
+        </scene>
+        <!--GuestNavigation-->
+        <scene sceneID="2f1-W4-P5A">
+            <objects>
+                <viewControllerPlaceholder storyboardName="Guest" referencedIdentifier="GuestNavigation" id="5xb-3s-6Tc" sceneMemberID="viewController"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="B9y-NX-FwK" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="769" y="442"/>
         </scene>
         <!--Registration-->
         <scene sceneID="gQg-P7-8ZI">
