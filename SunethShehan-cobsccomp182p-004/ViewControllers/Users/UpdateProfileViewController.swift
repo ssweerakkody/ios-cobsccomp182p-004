@@ -38,15 +38,33 @@ class UpdateProfileViewController: UIViewController{
     
     @IBAction func Logout(_ sender: Any) {
         
-        try! Auth.auth().signOut()
+        let confirmDialog = UIAlertController(title: "Confirm", message: "Are you sure you want to Logout?", preferredStyle: .alert)
         
-        let domain = Bundle.main.bundleIdentifier!
+       
+        let ok = UIAlertAction(title: "Logout", style: .default, handler: { (action) -> Void in
+            
+            try! Auth.auth().signOut()
+            
+            let domain = Bundle.main.bundleIdentifier!
+            
+            UserDefaults.standard.removePersistentDomain(forName: domain)
+            UserDefaults.standard.synchronize()
+            
+            let vc = UIStoryboard(name: "UserAuthentication", bundle: nil).instantiateViewController(withIdentifier: "RootUserNavigation")
+            self.present(vc, animated: true, completion: nil)
+            
+        })
         
-        UserDefaults.standard.removePersistentDomain(forName: domain)
-        UserDefaults.standard.synchronize()
+       
+        let cancel = UIAlertAction(title: "Cancel", style: .cancel) { (action) -> Void in
+            return
+        }
         
-        let vc = UIStoryboard(name: "UserAuthentication", bundle: nil).instantiateViewController(withIdentifier: "RootUserNavigation")
-        self.present(vc, animated: true, completion: nil)
+        confirmDialog.addAction(ok)
+        confirmDialog.addAction(cancel)
+        
+        self.present(confirmDialog, animated: true, completion: nil)
+        
         
         
     }
