@@ -227,6 +227,11 @@ class FirestoreClient{
                 
                 var event = try! FirestoreDecoder().decode(Event.self, from: document!.data()!)
                 
+                if(event.Comments == nil)
+                {
+                    event.Comments = [Comment]()
+                }
+                
                 event.Comments?.append(newComment)
                 
                 let updatedEvent = try! FirestoreEncoder().encode(event)
@@ -264,7 +269,14 @@ class FirestoreClient{
                 
                 let event = try! FirestoreDecoder().decode(Event.self, from: document!.data()!)
                 
-                completion(event.Comments!)
+                if(event.Comments != nil)
+                {
+                     completion(event.Comments!)
+                }
+                else{
+                     completion([Comment]())
+                }
+               
                 
                 
             }

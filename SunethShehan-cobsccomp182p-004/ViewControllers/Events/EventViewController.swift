@@ -36,6 +36,7 @@ class EventViewController: UIViewController {
     
     @IBOutlet weak var lblDocID: UILabel!
     
+   
     
     var selectedEvent: Event?
     var selectedEventID :String?
@@ -86,6 +87,7 @@ class EventViewController: UIViewController {
                 self.imgUserAvatar.addSubview(overlay)
                 
                 self.userID = event.CreatedBy
+                
                 
                 self.imgUserAvatar.addThinWhiteBorder()                
 //                if(Auth.auth().currentUser != nil && event.Attendees.contains(Auth.auth().currentUser!.uid))
@@ -153,6 +155,16 @@ class EventViewController: UIViewController {
         
     }
     
+    @IBAction func ShowComments(_ sender: Any) {
+        
+        let vc = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "CommentsStoryboard") as! CommentsTableViewController
+        
+        vc.selectedEventID = selectedEventID
+        
+        navigationController?.pushViewController(vc, animated: true)
+        
+        
+    }
     
 }
 

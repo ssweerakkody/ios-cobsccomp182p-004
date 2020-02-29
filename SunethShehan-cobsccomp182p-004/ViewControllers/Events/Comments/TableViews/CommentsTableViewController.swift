@@ -28,7 +28,7 @@ class CommentsTableViewController: UITableViewController {
         
         
         
-        FirestoreClient.getComments(selectedEventID: "jEvuIE6R7lS6ijMofasV",completion: { comments in
+        FirestoreClient.getComments(selectedEventID: selectedEventID!,completion: { comments in
           
             self.Comments.removeAll()
             if(comments.count != 0)
@@ -50,7 +50,7 @@ class CommentsTableViewController: UITableViewController {
     }
     
     override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return 80
+        return 90
     }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -84,7 +84,7 @@ class CommentsTableViewController: UITableViewController {
             let comment = Comment(CommentID: UUID().uuidString,CommentedBy: UserDefaults.standard.string(forKey: "DisplayName") as Any as! String, CommentText: answer.text!, CommnetedUserImage: UserDefaults.standard.string(forKey: "ProfileImageUrl")as Any as! String)
         
             
-            FirestoreClient.addComment(eventID:"jEvuIE6R7lS6ijMofasV", newComment: comment,presentingVC: self,completion: { isAdded in
+            FirestoreClient.addComment(eventID:self.selectedEventID!, newComment: comment,presentingVC: self,completion: { isAdded in
                 
                 if(isAdded)
                 {
