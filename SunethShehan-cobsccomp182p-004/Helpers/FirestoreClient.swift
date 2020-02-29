@@ -217,7 +217,7 @@ class FirestoreClient{
     }
     
     
-    static func addComment(eventID:String,newComment:Comment,presentingVC:UIViewController){
+    static func addComment(eventID:String,newComment:Comment,presentingVC:UIViewController,completion:@escaping (Bool) ->()){
         
         let eventDoc = eventsCollection.document(eventID)
         
@@ -226,15 +226,49 @@ class FirestoreClient{
                 
                 
                 var event = try! FirestoreDecoder().decode(Event.self, from: document!.data()!)
-
+                
                 event.Comments?.append(newComment)
                 
                 let updatedEvent = try! FirestoreEncoder().encode(event)
                 
-                eventDoc.setData(updatedEvent)
-                
+                eventDoc.setData(updatedEvent){ err in
+                    
+                    if(err == nil)
+                    {
+                        completion(true)
+                    }
+                    
+                    if let err = err {
+                        Alerts.showAlert(title: "Eror", message: "Error uploading data: \(err.localizedDescription)", presentingVC: presentingVC)
+                        completion(false)
+                        return
+                    }
+                    
+                    
+                }
+            }else{
+                completion(false)
             }
+            
         }
         
     }
+    
+    static func getComments(selectedEventID:String,completion:@escaping ([Comment]) ->())
+    {
+        let eventDoc = eventsCollection.document(selectedEventID)
+        
+        eventDoc.getDocument { (document, error) in
+            if(error == nil){
+                
+                
+                let event = try! FirestoreDecoder().decode(Event.self, from: document!.data()!)
+                
+                completion(event.Comments!)
+                
+                
+            }
+        }
+    }
+    
 }

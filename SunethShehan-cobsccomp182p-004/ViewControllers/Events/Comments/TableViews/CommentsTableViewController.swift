@@ -12,8 +12,10 @@ import UIKit
 class CommentsTableViewController: UITableViewController {
     
     
+    var selectedEventID :String?
+    
     var CommentIDs = [String]()
-    var Comments = [String](){
+    var Comments = [Comment](){
         didSet{
             tableView.reloadData()
         }
@@ -24,9 +26,17 @@ class CommentsTableViewController: UITableViewController {
         
         self.view.backgroundColor = UIColor(patternImage: UIImage(named: "backimage.jpg")!)
         
-        Comments.append("Comment one")
-        Comments.append("Comment two")
         
+        
+        FirestoreClient.getComments(selectedEventID: "jEvuIE6R7lS6ijMofasV",completion: { comments in
+          
+            self.Comments.removeAll()
+            if(comments.count != 0)
+            {
+                self.Comments = comments
+            }
+            
+        })
         
         
     }
@@ -46,9 +56,14 @@ class CommentsTableViewController: UITableViewController {
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "CommentCell",for: indexPath) as! CommentsTableViewCell
         
-        cell.lblCommentText.text = Comments[indexPath.row]
+        let comment = Comments[indexPath.row]
         
+        cell.lblCommentText.text = comment.CommentText
         
+        cell.lblCommetedBy.text = comment.CommentedBy
+        
+        let imageURL = URL(string: comment.CommnetedUserImage)
+        cell.imgUser.kf.setImage(with: imageURL)
         
         return cell
     }
@@ -65,14 +80,18 @@ class CommentsTableViewController: UITableViewController {
         
         ac.addAction(UIAlertAction(title: "Post", style: .default) { [unowned ac] _ in
             let answer = ac.textFields![0]
-            self.Comments.append(answer.text!)
             
-            let comment = Comment(CommentID: UUID().uuidString,CommentedBy: UserDefaults.standard.string(forKey: "UserID") as Any as! String, CommentText: answer.text!, CommnetedUserImage: UserDefaults.standard.string(forKey: "ProfileImageUrl")as Any as! String)
+            let comment = Comment(CommentID: UUID().uuidString,CommentedBy: UserDefaults.standard.string(forKey: "DisplayName") as Any as! String, CommentText: answer.text!, CommnetedUserImage: UserDefaults.standard.string(forKey: "ProfileImageUrl")as Any as! String)
         
             
-            FirestoreClient.addComment(eventID:"jEvuIE6R7lS6ijMofasV", newComment: comment,presentingVC: self)
-            
-            //self.tableView.reloadData()
+            FirestoreClient.addComment(eventID:"jEvuIE6R7lS6ijMofasV", newComment: comment,presentingVC: self,completion: { isAdded in
+                
+                if(isAdded)
+                {
+                     self.tableView.reloadData()
+                }
+                
+            })
             
         })
         
