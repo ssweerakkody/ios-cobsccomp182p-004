@@ -166,8 +166,10 @@ class LoginViewController: UIViewController ,UITextFieldDelegate {
         
         
         let tabVC = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "EventNavigation") as! UITabBarController
-        tabVC.selectedIndex = 1
+//        tabVC.selectedViewController = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "FeedStoryboard") as! CommentsTableViewController
         
+        tabVC.selectedIndex = 1
+
         self.present(tabVC, animated: true, completion: nil)
         self.loadView()
         self.view.setNeedsLayout()

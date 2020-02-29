@@ -17,7 +17,7 @@ class CommentsTableViewController: UITableViewController {
     var CommentIDs = [String]()
     var Comments = [Comment](){
         didSet{
-            tableView.reloadData()
+            self.tableView.reloadData()
         }
     }
     
@@ -26,17 +26,7 @@ class CommentsTableViewController: UITableViewController {
         
         self.view.backgroundColor = UIColor(patternImage: UIImage(named: "backimage.jpg")!)
         
-        
-        
-        FirestoreClient.getComments(selectedEventID: selectedEventID!,completion: { comments in
-          
-            self.Comments.removeAll()
-            if(comments.count != 0)
-            {
-                self.Comments = comments
-            }
-            
-        })
+        refreshTableView()
         
         
     }
@@ -82,13 +72,13 @@ class CommentsTableViewController: UITableViewController {
             let answer = ac.textFields![0]
             
             let comment = Comment(CommentID: UUID().uuidString,CommentedBy: UserDefaults.standard.string(forKey: "DisplayName") as Any as! String, CommentText: answer.text!, CommnetedUserImage: UserDefaults.standard.string(forKey: "ProfileImageUrl")as Any as! String)
-        
+            
             
             FirestoreClient.addComment(eventID:self.selectedEventID!, newComment: comment,presentingVC: self,completion: { isAdded in
                 
                 if(isAdded)
                 {
-                     self.tableView.reloadData()
+                    self.refreshTableView()
                 }
                 
             })
@@ -113,6 +103,22 @@ class CommentsTableViewController: UITableViewController {
         share.backgroundColor = UIColor.blue
         
         return [delete, share]
+    }
+
+    
+    func refreshTableView(){
+        
+        FirestoreClient.getComments(selectedEventID: selectedEventID!,completion: { comments in
+            
+            self.Comments.removeAll()
+            if(comments.count != 0)
+            {
+                self.Comments = comments
+            }
+            
+            
+            
+        })
     }
     
 }
