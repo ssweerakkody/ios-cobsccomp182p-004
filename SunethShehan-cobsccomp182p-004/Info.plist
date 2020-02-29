@@ -27,7 +27,7 @@
 	<key>NSLocationWhenInUseUsageDescription</key>
 	<string>Request permission to use location service when the apps is in background.</string>
 	<key>UIMainStoryboardFile</key>
-	<string>Main</string>
+	<string>UserAuthentication</string>
 	<key>UIRequiredDeviceCapabilities</key>
 	<array>
 		<string>armv7</string>
