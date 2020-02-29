@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14490.70" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="slW-EE-kDf">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14490.70" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="uzf-5P-dKT">
     <device id="retina5_9" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
@@ -821,7 +821,7 @@
         <!--Comments-->
         <scene sceneID="bR6-v6-AAa">
             <objects>
-                <tableViewController title="Comments" id="O18-MS-j1E" sceneMemberID="viewController">
+                <tableViewController title="Comments" id="O18-MS-j1E" customClass="CommentsTableViewController" customModule="SunethShehan_cobsccomp182p_004" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="jZb-OX-9UP">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -866,7 +866,11 @@
                         </connections>
                     </tableView>
                     <navigationItem key="navigationItem" title="Comments" id="XAH-nt-Yuh">
-                        <barButtonItem key="rightBarButtonItem" style="plain" systemItem="add" id="Qed-8K-Chr"/>
+                        <barButtonItem key="rightBarButtonItem" style="plain" systemItem="add" id="Qed-8K-Chr">
+                            <connections>
+                                <action selector="AddComment:" destination="O18-MS-j1E" id="kiF-je-bPZ"/>
+                            </connections>
+                        </barButtonItem>
                     </navigationItem>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dHe-ax-DJQ" userLabel="First Responder" sceneMemberID="firstResponder"/>
