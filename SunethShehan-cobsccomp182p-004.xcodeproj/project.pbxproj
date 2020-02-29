@@ -46,6 +46,8 @@
 		99E15E66240A09A700AFB51E /* CommentsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 99E15E65240A09A700AFB51E /* CommentsTableViewCell.swift */; };
 		99E15E6A240A0CC100AFB51E /* CommentsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 99E15E69240A0CC100AFB51E /* CommentsTableViewController.swift */; };
 		99E15E6C240A202C00AFB51E /* Comment.swift in Sources */ = {isa = PBXBuildFile; fileRef = 99E15E6B240A202C00AFB51E /* Comment.swift */; };
+		99E40D08240AC79E00F6B5DD /* UserAuthenticationTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 99E40D07240AC79E00F6B5DD /* UserAuthenticationTest.swift */; };
+		99E40D0A240AE6B200F6B5DD /* UIUserAuthentication.swift in Sources */ = {isa = PBXBuildFile; fileRef = 99E40D09240AE6B200F6B5DD /* UIUserAuthentication.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -114,6 +116,8 @@
 		99E15E65240A09A700AFB51E /* CommentsTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommentsTableViewCell.swift; sourceTree = "<group>"; };
 		99E15E69240A0CC100AFB51E /* CommentsTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommentsTableViewController.swift; sourceTree = "<group>"; };
 		99E15E6B240A202C00AFB51E /* Comment.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Comment.swift; sourceTree = "<group>"; };
+		99E40D07240AC79E00F6B5DD /* UserAuthenticationTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserAuthenticationTest.swift; sourceTree = "<group>"; };
+		99E40D09240AE6B200F6B5DD /* UIUserAuthentication.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIUserAuthentication.swift; sourceTree = "<group>"; };
 		B5789176E32A2B3AEACA7538 /* Pods-SunethShehan-cobsccomp182p-004Tests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SunethShehan-cobsccomp182p-004Tests.release.xcconfig"; path = "Target Support Files/Pods-SunethShehan-cobsccomp182p-004Tests/Pods-SunethShehan-cobsccomp182p-004Tests.release.xcconfig"; sourceTree = "<group>"; };
 		D24F3BD12FDD8C447809CA13 /* Pods_SunethShehan_cobsccomp182p_004.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_SunethShehan_cobsccomp182p_004.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		F9620E3644B4A65D9881240F /* Pods-SunethShehan-cobsccomp182p-004.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SunethShehan-cobsccomp182p-004.debug.xcconfig"; path = "Target Support Files/Pods-SunethShehan-cobsccomp182p-004/Pods-SunethShehan-cobsccomp182p-004.debug.xcconfig"; sourceTree = "<group>"; };
@@ -195,6 +199,7 @@
 		9933C44423E82807000818B6 /* SunethShehan-cobsccomp182p-004Tests */ = {
 			isa = PBXGroup;
 			children = (
+				99E40D07240AC79E00F6B5DD /* UserAuthenticationTest.swift */,
 				9933C44523E82807000818B6 /* SunethShehan_cobsccomp182p_004Tests.swift */,
 				9933C44723E82807000818B6 /* Info.plist */,
 			);
@@ -204,6 +209,7 @@
 		9933C44F23E82807000818B6 /* SunethShehan-cobsccomp182p-004UITests */ = {
 			isa = PBXGroup;
 			children = (
+				99E40D09240AE6B200F6B5DD /* UIUserAuthentication.swift */,
 				9933C45023E82807000818B6 /* SunethShehan_cobsccomp182p_004UITests.swift */,
 				9933C45223E82807000818B6 /* Info.plist */,
 			);
@@ -649,6 +655,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				99E40D08240AC79E00F6B5DD /* UserAuthenticationTest.swift in Sources */,
 				9933C44623E82807000818B6 /* SunethShehan_cobsccomp182p_004Tests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -657,6 +664,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				99E40D0A240AE6B200F6B5DD /* UIUserAuthentication.swift in Sources */,
 				9933C45123E82807000818B6 /* SunethShehan_cobsccomp182p_004UITests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

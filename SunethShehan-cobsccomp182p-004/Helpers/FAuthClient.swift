@@ -29,4 +29,21 @@ class FAuthClient {
         
     }
     
+    static func signInUser(email:String,password:String,presentingVC:UIViewController,completion:@escaping (AuthDataResult?)->()){
+        
+        AuthRef.signIn(withEmail: email, password: password) { (user, error) in
+            if(error != nil)
+            {
+                Alerts.showAlert(title: "Eror",message: (error?.localizedDescription)!,presentingVC: presentingVC)
+                completion(nil)
+                return
+            }
+            else if(error == nil && user != nil)
+            {
+                completion(user)
+            }
+        }
+    }
+    
+    
 }

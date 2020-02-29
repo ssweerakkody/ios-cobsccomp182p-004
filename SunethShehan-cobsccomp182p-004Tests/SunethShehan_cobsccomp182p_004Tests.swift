@@ -7,6 +7,7 @@
 //
 
 import XCTest
+import Firebase
 @testable import SunethShehan_cobsccomp182p_004
 
 class SunethShehan_cobsccomp182p_004Tests: XCTestCase {
@@ -33,7 +34,7 @@ class SunethShehan_cobsccomp182p_004Tests: XCTestCase {
     
     func testPasswords(){
     
-        FormValidation.isEqualPasswords(password: <#T##UITextField#>, confirmPassword: <#T##UITextField#>, presentingVC: <#T##UIViewController#>)
+//        FormValidation.isEqualPasswords(password: <#T##UITextField#>, confirmPassword: <#T##UITextField#>, presentingVC: <#T##UIViewController#>)
         
     }
 
