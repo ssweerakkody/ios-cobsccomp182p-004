@@ -43,6 +43,8 @@
 		997C811E23EC7AC6003844D9 /* RegistrationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 997C811D23EC7AC6003844D9 /* RegistrationViewController.swift */; };
 		9980DD8523FF870B000BEEBC /* Alerts.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9980DD8423FF870B000BEEBC /* Alerts.swift */; };
 		9980DD8723FF93E9000BEEBC /* Routes.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9980DD8623FF93E9000BEEBC /* Routes.swift */; };
+		99E15E66240A09A700AFB51E /* CommentsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 99E15E65240A09A700AFB51E /* CommentsTableViewCell.swift */; };
+		99E15E6A240A0CC100AFB51E /* CommentsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 99E15E69240A0CC100AFB51E /* CommentsTableViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -108,6 +110,8 @@
 		997C811D23EC7AC6003844D9 /* RegistrationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegistrationViewController.swift; sourceTree = "<group>"; };
 		9980DD8423FF870B000BEEBC /* Alerts.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Alerts.swift; sourceTree = "<group>"; };
 		9980DD8623FF93E9000BEEBC /* Routes.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Routes.swift; sourceTree = "<group>"; };
+		99E15E65240A09A700AFB51E /* CommentsTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommentsTableViewCell.swift; sourceTree = "<group>"; };
+		99E15E69240A0CC100AFB51E /* CommentsTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommentsTableViewController.swift; sourceTree = "<group>"; };
 		B5789176E32A2B3AEACA7538 /* Pods-SunethShehan-cobsccomp182p-004Tests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SunethShehan-cobsccomp182p-004Tests.release.xcconfig"; path = "Target Support Files/Pods-SunethShehan-cobsccomp182p-004Tests/Pods-SunethShehan-cobsccomp182p-004Tests.release.xcconfig"; sourceTree = "<group>"; };
 		D24F3BD12FDD8C447809CA13 /* Pods_SunethShehan_cobsccomp182p_004.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_SunethShehan_cobsccomp182p_004.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		F9620E3644B4A65D9881240F /* Pods-SunethShehan-cobsccomp182p-004.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SunethShehan-cobsccomp182p-004.debug.xcconfig"; path = "Target Support Files/Pods-SunethShehan-cobsccomp182p-004/Pods-SunethShehan-cobsccomp182p-004.debug.xcconfig"; sourceTree = "<group>"; };
@@ -245,6 +249,7 @@
 			isa = PBXGroup;
 			children = (
 				995B9D8323EFB95600F1A970 /* EventsTableViewCell.swift */,
+				99E15E65240A09A700AFB51E /* CommentsTableViewCell.swift */,
 			);
 			path = CustomTableCells;
 			sourceTree = "<group>";
@@ -309,6 +314,7 @@
 				995CFC63240222140012A4C4 /* TableViews */,
 				995B9D7C23EFAE3800F1A970 /* PostEventViewController.swift */,
 				993A2FC223F1D4DA00E38439 /* EventViewController.swift */,
+				99E15E67240A0C6200AFB51E /* Comments */,
 			);
 			path = Events;
 			sourceTree = "<group>";
@@ -322,6 +328,22 @@
 				994A10C92402972900B1B1D5 /* ProfileViewController.swift */,
 			);
 			path = Users;
+			sourceTree = "<group>";
+		};
+		99E15E67240A0C6200AFB51E /* Comments */ = {
+			isa = PBXGroup;
+			children = (
+				99E15E68240A0C8400AFB51E /* TableViews */,
+			);
+			path = Comments;
+			sourceTree = "<group>";
+		};
+		99E15E68240A0C8400AFB51E /* TableViews */ = {
+			isa = PBXGroup;
+			children = (
+				99E15E69240A0CC100AFB51E /* CommentsTableViewController.swift */,
+			);
+			path = TableViews;
 			sourceTree = "<group>";
 		};
 		BD6FB842AAED1613514B9B2C /* Frameworks */ = {
@@ -598,8 +620,10 @@
 				997C811823EC7051003844D9 /* LoginViewController.swift in Sources */,
 				995EFE5B23FA7D67000FA9E4 /* Event.swift in Sources */,
 				99631BE023FDAB2F00F0F7C0 /* Location.swift in Sources */,
+				99E15E66240A09A700AFB51E /* CommentsTableViewCell.swift in Sources */,
 				993AED5223FE6F2E0030BA47 /* FirestoreClient.swift in Sources */,
 				993AED5723FE72320030BA47 /* FStorageClient.swift in Sources */,
+				99E15E6A240A0CC100AFB51E /* CommentsTableViewController.swift in Sources */,
 				9933C43123E82805000818B6 /* AppDelegate.swift in Sources */,
 				995EFE5823FA7C73000FA9E4 /* User.swift in Sources */,
 				993A2FC323F1D4DA00E38439 /* EventViewController.swift in Sources */,
