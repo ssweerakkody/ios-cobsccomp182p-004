@@ -2,4 +2,54 @@
 <Bucket
    type = "0"
    version = "2.0">
+   <Breakpoints>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "SunethShehan-cobsccomp182p-004/ViewControllers/Users/ProfileViewController.swift"
+            timestampString = "604682743.972386"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "38"
+            endingLineNumber = "38"
+            landmarkName = "viewDidLoad()"
+            landmarkType = "7">
+            <Locations>
+               <Location
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "SunethShehan_cobsccomp182p_004.ProfileViewController.viewDidLoad() -&gt; ()"
+                  moduleName = "SunethShehan-cobsccomp182p-004"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/suneth/Documents/XcodeProjects/ios-cobsccomp182p-004/SunethShehan-cobsccomp182p-004/ViewControllers/Users/ProfileViewController.swift"
+                  timestampString = "604684134.453372"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "38"
+                  endingLineNumber = "38"
+                  offsetFromSymbolStart = "155">
+               </Location>
+               <Location
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "closure #1 (SunethShehan_cobsccomp182p_004.User) -&gt; () in SunethShehan_cobsccomp182p_004.ProfileViewController.viewDidLoad() -&gt; ()"
+                  moduleName = "SunethShehan-cobsccomp182p-004"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/suneth/Documents/XcodeProjects/ios-cobsccomp182p-004/SunethShehan-cobsccomp182p-004/ViewControllers/Users/ProfileViewController.swift"
+                  timestampString = "604684134.47689"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "40"
+                  endingLineNumber = "40"
+                  offsetFromSymbolStart = "167">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+   </Breakpoints>
 </Bucket>

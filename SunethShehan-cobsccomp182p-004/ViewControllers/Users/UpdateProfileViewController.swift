@@ -73,8 +73,8 @@ class UpdateProfileViewController: UIViewController{
                 txtDisplayName.text = UserDefaults.standard.string(forKey: "DisplayName")
                 txtMobileNo.text  = UserDefaults.standard.string(forKey: "MobileNo")
                 txtFBProfileUrl.text  = UserDefaults.standard.string(forKey: "FBProfileUrl")
-                let imageURL = URL(string: UserDefaults.standard.string(forKey: "ProfileImageUrl")!)
-                imgProPicture.kf.setImage(with: imageURL)
+//                let imageURL = URL(string: UserDefaults.standard.string(forKey: "ProfileImageUrl")!)
+//                imgProPicture.kf.setImage(with: imageURL)
                 
                 
             }

@@ -51,9 +51,9 @@ extension UIButton{
     }
     
     func colorButtonBackground(){
-        self.backgroundColor = UIColor.green
+        self.backgroundColor = UIColor(red:0.09, green:0.36, blue:0.49, alpha:1.0)
+        self.setTitleColor(UIColor.white, for: .normal)
     }
-    
 }
 
 extension UIImageView{
