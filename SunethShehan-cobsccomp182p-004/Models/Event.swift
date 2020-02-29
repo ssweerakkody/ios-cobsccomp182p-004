@@ -39,9 +39,4 @@ struct Event : Codable{
     
 }
 
-struct Comment : Codable {
-    
-    let CommentedBy:User
-    let CommentValue:String
-    
-}
+

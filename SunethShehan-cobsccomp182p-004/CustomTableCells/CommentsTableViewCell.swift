@@ -14,7 +14,7 @@ class CommentsTableViewCell: UITableViewCell {
     
     @IBOutlet weak var lblCommentText: UILabel!
     
-    @IBOutlet weak var lblCreatedBy: UILabel!
+    @IBOutlet weak var lblCommetedBy: UILabel!
     override func awakeFromNib() {
         super.awakeFromNib()
         

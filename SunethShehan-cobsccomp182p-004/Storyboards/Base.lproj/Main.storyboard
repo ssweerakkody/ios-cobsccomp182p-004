@@ -93,7 +93,7 @@
                                 </date>
                             </datePicker>
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="rsz_events-image" translatesAutoresizingMaskIntoConstraints="NO" id="o2h-rQ-ugo">
-                                <rect key="frame" x="87" y="124" width="201" height="124"/>
+                                <rect key="frame" x="87" y="124" width="201" height="124.00000000000011"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="123.99999999999989" id="e5v-Wo-Kix"/>
                                 </constraints>
@@ -845,7 +845,7 @@
                                             <nil key="textColor"/>
                                             <nil key="highlightedColor"/>
                                         </label>
-                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="CreatedBy" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="6qD-k6-UN8">
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="CommentedBy" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="6qD-k6-UN8">
                                             <rect key="frame" x="93" y="17" width="266" height="21"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
@@ -856,7 +856,7 @@
                                 </tableViewCellContentView>
                                 <connections>
                                     <outlet property="lblCommentText" destination="V3J-4r-0It" id="saP-Kg-1zR"/>
-                                    <outlet property="lblCreatedBy" destination="6qD-k6-UN8" id="FMV-eB-P2b"/>
+                                    <outlet property="lblCommetedBy" destination="6qD-k6-UN8" id="1Bl-WM-iqw"/>
                                 </connections>
                             </tableViewCell>
                         </prototypes>

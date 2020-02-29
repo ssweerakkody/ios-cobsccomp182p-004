@@ -45,6 +45,7 @@
 		9980DD8723FF93E9000BEEBC /* Routes.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9980DD8623FF93E9000BEEBC /* Routes.swift */; };
 		99E15E66240A09A700AFB51E /* CommentsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 99E15E65240A09A700AFB51E /* CommentsTableViewCell.swift */; };
 		99E15E6A240A0CC100AFB51E /* CommentsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 99E15E69240A0CC100AFB51E /* CommentsTableViewController.swift */; };
+		99E15E6C240A202C00AFB51E /* Comment.swift in Sources */ = {isa = PBXBuildFile; fileRef = 99E15E6B240A202C00AFB51E /* Comment.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -112,6 +113,7 @@
 		9980DD8623FF93E9000BEEBC /* Routes.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Routes.swift; sourceTree = "<group>"; };
 		99E15E65240A09A700AFB51E /* CommentsTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommentsTableViewCell.swift; sourceTree = "<group>"; };
 		99E15E69240A0CC100AFB51E /* CommentsTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommentsTableViewController.swift; sourceTree = "<group>"; };
+		99E15E6B240A202C00AFB51E /* Comment.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Comment.swift; sourceTree = "<group>"; };
 		B5789176E32A2B3AEACA7538 /* Pods-SunethShehan-cobsccomp182p-004Tests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SunethShehan-cobsccomp182p-004Tests.release.xcconfig"; path = "Target Support Files/Pods-SunethShehan-cobsccomp182p-004Tests/Pods-SunethShehan-cobsccomp182p-004Tests.release.xcconfig"; sourceTree = "<group>"; };
 		D24F3BD12FDD8C447809CA13 /* Pods_SunethShehan_cobsccomp182p_004.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_SunethShehan_cobsccomp182p_004.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		F9620E3644B4A65D9881240F /* Pods-SunethShehan-cobsccomp182p-004.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SunethShehan-cobsccomp182p-004.debug.xcconfig"; path = "Target Support Files/Pods-SunethShehan-cobsccomp182p-004/Pods-SunethShehan-cobsccomp182p-004.debug.xcconfig"; sourceTree = "<group>"; };
@@ -268,6 +270,7 @@
 			children = (
 				995EFE5723FA7C73000FA9E4 /* User.swift */,
 				995EFE5A23FA7D67000FA9E4 /* Event.swift */,
+				99E15E6B240A202C00AFB51E /* Comment.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -634,6 +637,7 @@
 				995B9D8123EFB81A00F1A970 /* EventsTableViewController.swift in Sources */,
 				997C811E23EC7AC6003844D9 /* RegistrationViewController.swift in Sources */,
 				9980DD8523FF870B000BEEBC /* Alerts.swift in Sources */,
+				99E15E6C240A202C00AFB51E /* Comment.swift in Sources */,
 				9980DD8723FF93E9000BEEBC /* Routes.swift in Sources */,
 				994A10C824025CC400B1B1D5 /* FAuthClient.swift in Sources */,
 				994A10C6240259E500B1B1D5 /* CurrentUser.swift in Sources */,

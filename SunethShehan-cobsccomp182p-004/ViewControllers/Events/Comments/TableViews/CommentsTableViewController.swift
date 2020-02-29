@@ -11,6 +11,8 @@ import UIKit
 
 class CommentsTableViewController: UITableViewController {
     
+    
+    var CommentIDs = [String]()
     var Comments = [String](){
         didSet{
             tableView.reloadData()
