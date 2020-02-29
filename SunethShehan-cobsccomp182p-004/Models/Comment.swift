@@ -11,7 +11,19 @@ import CodableFirebase
 
 struct Comment : Codable {
     
-    let CommentedBy:User
-    let CommentText:String
+    var CommentID:String
+    var CommentedBy:String
+    var CommentText:String
+    var CommnetedUserImage:String
+    
+    init(CommentID:String,CommentedBy:String,CommentText:String,CommnetedUserImage:String) {
+        
+        self.CommentID = CommentID
+        self.CommentedBy = CommentedBy
+        self.CommentText = CommentText
+        self.CommnetedUserImage = CommnetedUserImage
+       
+    }
     
 }
+

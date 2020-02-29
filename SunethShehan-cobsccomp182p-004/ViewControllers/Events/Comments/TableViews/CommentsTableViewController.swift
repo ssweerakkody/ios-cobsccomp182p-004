@@ -66,7 +66,13 @@ class CommentsTableViewController: UITableViewController {
         ac.addAction(UIAlertAction(title: "Post", style: .default) { [unowned ac] _ in
             let answer = ac.textFields![0]
             self.Comments.append(answer.text!)
-            self.tableView.reloadData()
+            
+            let comment = Comment(CommentID: UUID().uuidString,CommentedBy: UserDefaults.standard.string(forKey: "UserID") as Any as! String, CommentText: answer.text!, CommnetedUserImage: UserDefaults.standard.string(forKey: "ProfileImageUrl")as Any as! String)
+        
+            
+            FirestoreClient.addComment(eventID:"jEvuIE6R7lS6ijMofasV", newComment: comment,presentingVC: self)
+            
+            //self.tableView.reloadData()
             
         })
         

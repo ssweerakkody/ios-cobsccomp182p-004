@@ -15,6 +15,7 @@ class FirestoreClient{
     static var db = Firestore.firestore()
     static var eventsCollection = db.collection("events")
     static var usersCollection = db.collection("users")
+    static var commentsCollection = db.collection("comments")
     
     static func updateExistingEvent(selectedEventID : String,updatedEvent:Event,viewController:UIViewController){
         
@@ -216,5 +217,24 @@ class FirestoreClient{
     }
     
     
-    
+    static func addComment(eventID:String,newComment:Comment,presentingVC:UIViewController){
+        
+        let eventDoc = eventsCollection.document(eventID)
+        
+        eventDoc.getDocument { (document, error) in
+            if(error == nil){
+                
+                
+                var event = try! FirestoreDecoder().decode(Event.self, from: document!.data()!)
+
+                event.Comments?.append(newComment)
+                
+                let updatedEvent = try! FirestoreEncoder().encode(event)
+                
+                eventDoc.setData(updatedEvent)
+                
+            }
+        }
+        
+    }
 }

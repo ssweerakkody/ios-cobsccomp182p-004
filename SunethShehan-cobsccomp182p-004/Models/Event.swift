@@ -24,6 +24,8 @@ struct Event : Codable{
     var UserDisplayName: String
     var UserProfileURL: String
     
+    var Comments:[Comment]?
+    
     init(Title:String,Descrption:String,Location:String,EventImageUrl:String,EventDate:String,AttendeesCount : Int,Attendees:[String]) {
         self.Title = Title
         self.Descrption = Descrption
@@ -35,6 +37,7 @@ struct Event : Codable{
         self.EventDate = EventDate
         self.AttendeesCount = AttendeesCount
         self.Attendees = Attendees
+        self.Comments = nil
     }
     
 }
