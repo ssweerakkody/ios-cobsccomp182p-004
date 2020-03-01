@@ -54,20 +54,11 @@ class LoginViewController: UIViewController ,UITextFieldDelegate {
         {
             Auth.auth().sendPasswordReset(withEmail: txtEmail.text!) { error in
                 if error == nil{
-                    //self.performSegue(withIdentifier: "loginToHome", sender: self)
                     
-                    let alertController = UIAlertController(title: "Information", message: "We have reset your password. Please check your email !", preferredStyle: .alert)
-                    let defaultAction = UIAlertAction(title: "OK", style: .cancel, handler: nil)
-                    
-                    alertController.addAction(defaultAction)
-                    self.present(alertController, animated: true, completion: nil)
+                    Alerts.showAlert(title: "Information", message: "We have reset your password. Please check your email !", presentingVC: self)
                 }
                 else{
-                    let alertController = UIAlertController(title: "Error", message: error?.localizedDescription, preferredStyle: .alert)
-                    let defaultAction = UIAlertAction(title: "OK", style: .cancel, handler: nil)
-                    
-                    alertController.addAction(defaultAction)
-                    self.present(alertController, animated: true, completion: nil)
+                    Alerts.showAlert(title: "Eror",message: "\(error!.localizedDescription)",presentingVC: self)
                 }
             }
         }
@@ -79,8 +70,7 @@ class LoginViewController: UIViewController ,UITextFieldDelegate {
     @IBAction func LoginAsGuest(_ sender: Any) {
         
         
-        let vc = UIStoryboard(name: "Guest", bundle: nil).instantiateViewController(withIdentifier: "GuestNavigation")
-        navigationController?.pushViewController(vc, animated: true)
+        Routes.redirectToGuest(presentingVC: self)
         
     }
     
