@@ -199,7 +199,11 @@ class PostEventViewController: UIViewController ,CLLocationManagerDelegate{
     }
     
     func addStylesToView(){
+        
         self.setBackgroundImage()
+        self.txtEventTitle.toStyledTextField()
+        self.txtEventDescription.toStyledTextField()
+        self.txtEventLocation.toStyledTextField()
         
     }
     
