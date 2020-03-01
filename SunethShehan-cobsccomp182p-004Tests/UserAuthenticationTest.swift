@@ -13,6 +13,8 @@ import UIKit
 
 class UserAuthenticationTest: XCTestCase {
 
+    let vc : UIViewController = UIViewController()
+    
     override func setUp() {
        
     }
@@ -32,7 +34,7 @@ class UserAuthenticationTest: XCTestCase {
         
         let txtEmail = UITextField()
         txtEmail.text = "dummy@mail.com"
-        XCTAssertTrue(FormValidation.isValidEmail(txtEmail.text!, presentingVC: UIViewController()), "Valid Email")
+        XCTAssertTrue(FormValidation.isValidEmail(txtEmail.text!, presentingVC: vc), "Valid Email")
     }
     
     func testPasswordValidity(){
@@ -40,13 +42,16 @@ class UserAuthenticationTest: XCTestCase {
         let txtPassword = UITextField()
         txtPassword.text = "123456"
         
-        XCTAssertTrue(FormValidation.isValidEmail(txtPassword.text!, presentingVC: UIViewController()), "Valid Password")
+        XCTAssertTrue(FormValidation.isValidField(textField: txtPassword, textFiledName: "Password", presentingVC:  vc),"Valid Password")
+       
     }
     
     func testUserAuthentication() {
         
         
         FAuthClient.signInUser(email: "dummyuser@mail.com", password: "123456", presentingVC: UIViewController()) { (user) in
+            
+            print(user)
             if(user != nil)
             {
                 XCTAssertNotNil(user, "Login Success")
