@@ -68,6 +68,13 @@ final class GuestTableViewController: UITableViewController {
         
         cell.lblEventTitle.text = event.Title
         
+        if(event.AttendeesCount == 1){
+            cell.lblAttendees.text = "Attendee"
+        }
+        else{
+            cell.lblAttendees.text = "Attendees"
+        }
+        
         //cell.lblDescription.text = Events[indexPath.row]["Descrption"].stringValue
         cell.lblAttendeesCount.text = String(event.AttendeesCount)
         

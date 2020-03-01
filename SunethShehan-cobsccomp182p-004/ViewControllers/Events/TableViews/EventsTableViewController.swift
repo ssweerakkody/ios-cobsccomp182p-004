@@ -75,6 +75,13 @@ class EventsTableViewController: UITableViewController {
         
         cell.lblAttendeesCount.text = String(event.AttendeesCount)
         
+        if(event.AttendeesCount == 1){
+            cell.lblAttendees.text = "Attendee"
+        }
+        else{
+            cell.lblAttendees.text = "Attendees"
+        }
+        
         if (0 < event.AttendeesCount && 0 < event.Attendees.count && event.Attendees.contains(Auth.auth().currentUser!.uid)) {
             
             cell.btnAttend.setTitle("Going",for: .normal)
