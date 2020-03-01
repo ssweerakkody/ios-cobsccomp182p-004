@@ -32,20 +32,20 @@ class FirebaseStorageClient{
         
         imgRef.putData(imgData, metadata: metaData) { (meta, err) in
             if let err = err {
-                Alerts.showAlert(title: "Eror",message: "Error uploading image: \(err.localizedDescription)",presentingVC: presentingVC)
+                Alerts.showAlert(title: "Error",message: "Error uploading image: \(err.localizedDescription)",presentingVC: presentingVC)
                
             }
             
             imgRef.downloadURL { (url, err) in
                 if let err = err {
                   
-                    Alerts.showAlert(title: "Eror",message: "Error fetching url: \(err.localizedDescription)",presentingVC: presentingVC)
+                    Alerts.showAlert(title: "Error",message: "Error fetching url: \(err.localizedDescription)",presentingVC: presentingVC)
                     return
                 }
                 
                 guard let url = url else {
                   
-                    Alerts.showAlert(title: "Eror",message: "Error getting url",presentingVC: presentingVC)
+                    Alerts.showAlert(title: "Error",message: "Error getting url",presentingVC: presentingVC)
                     return
                 }
                 
@@ -72,20 +72,20 @@ class FirebaseStorageClient{
         
         imgRef.putData(imgData, metadata: metaData) { (meta, err) in
             if let err = err {
-                Alerts.showAlert(title: "Eror",message: "Error uploading image: \(err.localizedDescription)",presentingVC: presentingVC)
+                Alerts.showAlert(title: "Error",message: "Error uploading image: \(err.localizedDescription)",presentingVC: presentingVC)
                 
             }
             
             imgRef.downloadURL { (url, err) in
                 if let err = err {
                     
-                    Alerts.showAlert(title: "Eror",message: "Error fetching url: \(err.localizedDescription)",presentingVC: presentingVC)
+                    Alerts.showAlert(title: "Error",message: "Error fetching url: \(err.localizedDescription)",presentingVC: presentingVC)
                     return
                 }
                 
                 guard let url = url else {
                     
-                    Alerts.showAlert(title: "Eror",message: "Error getting url",presentingVC: presentingVC)
+                    Alerts.showAlert(title: "Error",message: "Error getting url",presentingVC: presentingVC)
                     return
                 }
                 

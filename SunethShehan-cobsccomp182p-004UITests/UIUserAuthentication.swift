@@ -46,7 +46,7 @@ class UIUserAuthentication: XCTestCase {
         okButton.tap()
         app.secureTextFields["Password"].tap()
         signInButton.tap()
-        app.alerts["Eror"].buttons["OK"].tap()
+        app.alerts["Error"].buttons["OK"].tap()
         usernameOrEmailTextField.tap()
         signInButton.tap()
         

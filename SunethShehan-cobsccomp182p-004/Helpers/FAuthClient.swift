@@ -21,7 +21,7 @@ class FAuthClient {
                 completion((AuthDataResult?.user.uid)!)
             }
             else{
-                Alerts.showAlert(title: "Eror",message: (error?.localizedDescription)!,presentingVC: presentingVC)
+                Alerts.showAlert(title: "Error",message: (error?.localizedDescription)!,presentingVC: presentingVC)
                 
             }
             
@@ -34,7 +34,7 @@ class FAuthClient {
         AuthRef.signIn(withEmail: email, password: password) { (user, error) in
             if(error != nil)
             {
-                Alerts.showAlert(title: "Eror",message: (error?.localizedDescription)!,presentingVC: presentingVC)
+                Alerts.showAlert(title: "Error",message: (error?.localizedDescription)!,presentingVC: presentingVC)
                 completion(nil)
                 return
             }

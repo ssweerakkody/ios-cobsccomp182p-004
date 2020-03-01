@@ -31,7 +31,7 @@ class FirestoreClient{
             ]
         ) { err in
             if let err = err {
-                Alerts.showAlert(title: "Eror", message: "Error uploading data: \(err.localizedDescription)", presentingVC: viewController)
+                Alerts.showAlert(title: "Error", message: "Error uploading data: \(err.localizedDescription)", presentingVC: viewController)
                 return
             }
             
@@ -49,7 +49,7 @@ class FirestoreClient{
         
         eventDoc.setData(docData) { err in
             if let err = err {
-                Alerts.showAlert(title: "Eror", message: "Error uploading data: \(err.localizedDescription)", presentingVC: viewController)
+                Alerts.showAlert(title: "Error", message: "Error uploading data: \(err.localizedDescription)", presentingVC: viewController)
                 return
             }
             
@@ -75,7 +75,7 @@ class FirestoreClient{
                 
                 eventDoc.updateData(["Attendees":attendeesList,"AttendeesCount":udpatedEvent.AttendeesCount]){ err in
                     if let err = err {
-                        //Alerts.showAlert(title: "Eror", message: "Error uploading data: \(err.localizedDescription)", presentingVC: viewController)
+                        //Alerts.showAlert(title: "Error", message: "Error uploading data: \(err.localizedDescription)", presentingVC: viewController)
                         print(err.localizedDescription)
                         return
                     }
@@ -167,7 +167,7 @@ class FirestoreClient{
         
         userDoc.setData(docData) { err in
             if let err = err {
-                Alerts.showAlert(title: "Eror", message: "Error uploading data: \(err.localizedDescription)", presentingVC: viewController)
+                Alerts.showAlert(title: "Error", message: "Error uploading data: \(err.localizedDescription)", presentingVC: viewController)
                 return
             }
             
@@ -188,7 +188,7 @@ class FirestoreClient{
         
         userDoc.setData(docData) { err in
             if let err = err {
-                Alerts.showAlert(title: "Eror", message: "Error uploading data: \(err.localizedDescription)", presentingVC: viewController)
+                Alerts.showAlert(title: "Error", message: "Error uploading data: \(err.localizedDescription)", presentingVC: viewController)
                 return
             }
             
@@ -244,7 +244,7 @@ class FirestoreClient{
                     }
                     
                     if let err = err {
-                        Alerts.showAlert(title: "Eror", message: "Error uploading data: \(err.localizedDescription)", presentingVC: presentingVC)
+                        Alerts.showAlert(title: "Error", message: "Error uploading data: \(err.localizedDescription)", presentingVC: presentingVC)
                         completion(false)
                         return
                     }

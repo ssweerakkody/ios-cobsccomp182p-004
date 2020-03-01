@@ -41,7 +41,7 @@ class LoginViewController: UIViewController ,UITextFieldDelegate {
         
         
         txtEmail.text = "sachith@mail.com"
-        txtPassword.text = "123456"
+        txtPassword.text = "456789"
         
         signInUser(email: txtEmail.text!, password: txtPassword.text!)
         
@@ -58,7 +58,7 @@ class LoginViewController: UIViewController ,UITextFieldDelegate {
                     Alerts.showAlert(title: "Information", message: "We have reset your password. Please check your email !", presentingVC: self)
                 }
                 else{
-                    Alerts.showAlert(title: "Eror",message: "\(error!.localizedDescription)",presentingVC: self)
+                    Alerts.showAlert(title: "Error",message: "\(error!.localizedDescription)",presentingVC: self)
                 }
             }
         }
