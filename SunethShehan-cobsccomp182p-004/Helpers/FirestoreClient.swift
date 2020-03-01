@@ -283,15 +283,14 @@ class FirestoreClient{
         }
     }
     
-    static func getApplicationUser(uID:String,completion:@escaping (User?) ->()){
+    static func getApplicationUser(uID:String,completion:@escaping (DocumentSnapshot?) ->()){
         
         usersCollection.document(uID).getDocument { (doc, err) in
             
             if(err == nil){
                 
-                let user = try! FirestoreDecoder().decode(User.self, from: (doc?.data())!)
+               completion(doc)
                 
-                completion(user)
             }
             
         }

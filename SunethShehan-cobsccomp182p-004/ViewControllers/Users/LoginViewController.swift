@@ -30,7 +30,16 @@ class LoginViewController: UIViewController ,UITextFieldDelegate {
         // Do any additional setup after loading the view.
         
         if (Auth.auth().currentUser) != nil {
-            Routes.redirectToFeed(presentingVC: self)
+            
+            CurrentUser.setUserDefaults(userID: (Auth.auth().currentUser?.uid)!, completion: { response in
+                
+                if(response){
+                    Routes.redirectToFeed(presentingVC: self)
+                }
+                
+                
+            })
+            
         }
         
         addFormStyles()
@@ -86,31 +95,16 @@ class LoginViewController: UIViewController ,UITextFieldDelegate {
                     UserDefaults.standard.removePersistentDomain(forName: domain)
                     UserDefaults.standard.synchronize()
                     
-                    
-                    let db = Firestore.firestore()
-                    let docRef = db.collection("users").document((user?.user.uid)!)
-                    
-                    docRef.getDocument { (document, error) in
-                        if(error == nil){
-                            
-                            UserDefaults.standard.set(document!.get("DisplayName") as! String, forKey: "DisplayName")
-                            UserDefaults.standard.set(document!.get("Email") as! String, forKey: "Email")
-                            UserDefaults.standard.set(document!.get("FBProfileUrl") as! String, forKey: "FBProfileUrl")
-                            UserDefaults.standard.set(document!.get("FirstName") as! String, forKey: "FirstName")
-                            UserDefaults.standard.set(document!.get("LastName") as! String, forKey: "LastName")
-                            UserDefaults.standard.set(document!.get("MobileNo") as! String, forKey: "MobileNo")
-                            UserDefaults.standard.set(document!.get("ProfileImageUrl") as! String, forKey: "ProfileImageUrl")
-                            UserDefaults.standard.set(user?.user.uid, forKey: "UserID")
-                            
-                            
-                            
-                            UserDefaults.standard.synchronize()
-                            
+                    CurrentUser.setUserDefaults(userID: (user?.user.uid)!, completion: { response in
+                        
+                        if(response){
+                               Routes.redirectToFeed(presentingVC: self)
                         }
-                    }
+                        
+                        
+                    })
                     
-                    
-                    Routes.redirectToFeed(presentingVC: self)
+                 
                 }
             }
             
