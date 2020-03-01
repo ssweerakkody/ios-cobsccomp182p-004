@@ -7,7 +7,7 @@
 //
 
 import UIKit
-
+import Firebase
 
 class CommentsTableViewController: UITableViewController {
     
@@ -61,32 +61,44 @@ class CommentsTableViewController: UITableViewController {
     
     @IBAction func AddComment(_ sender: Any) {
         
-        let ac = UIAlertController(title: "Enter Comment", message: nil, preferredStyle: .alert)
-        ac.addTextField()
-        
-        ac.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: { (action: UIAlertAction!) in
-            return
-        }))
-        
-        ac.addAction(UIAlertAction(title: "Post", style: .default) { [unowned ac] _ in
-            let answer = ac.textFields![0]
+        if (Auth.auth().currentUser) != nil {
             
-            let comment = Comment(CommentID: UUID().uuidString,CommentedBy: UserDefaults.standard.string(forKey: "DisplayName") as Any as! String, CommentText: answer.text!, CommnetedUserImage: UserDefaults.standard.string(forKey: "ProfileImageUrl")as Any as! String)
+            let ac = UIAlertController(title: "Enter Comment", message: nil, preferredStyle: .alert)
+            ac.addTextField()
             
+            ac.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: { (action: UIAlertAction!) in
+                return
+            }))
             
-            FirestoreClient.addComment(eventID:self.selectedEventID!, newComment: comment,presentingVC: self,completion: { isAdded in
+            ac.addAction(UIAlertAction(title: "Post", style: .default) { [unowned ac] _ in
+                let answer = ac.textFields![0]
                 
-                if(isAdded)
-                {
-                    self.refreshTableView()
-                }
+                let comment = Comment(CommentID: UUID().uuidString,CommentedBy: UserDefaults.standard.string(forKey: "DisplayName") as Any as! String, CommentText: answer.text!, CommnetedUserImage: UserDefaults.standard.string(forKey: "ProfileImageUrl")as Any as! String)
+                
+                
+                FirestoreClient.addComment(eventID:self.selectedEventID!, newComment: comment,presentingVC: self,completion: { isAdded in
+                    
+                    if(isAdded)
+                    {
+                        self.refreshTableView()
+                    }
+                    
+                })
                 
             })
             
-        })
+            
+            present(ac, animated: true)
+            
         
+        }
+        else{
+            
+            Alerts.showAlert(title: "Information", message: "Please Login to Add Comments", presentingVC: self)
+            
+        }
         
-        present(ac, animated: true)
+       
         
         
     }

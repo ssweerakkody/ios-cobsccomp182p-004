@@ -78,7 +78,6 @@ class LoginViewController: UIViewController ,UITextFieldDelegate {
     
     @IBAction func LoginAsGuest(_ sender: Any) {
         
-        
         Routes.redirectToGuest(presentingVC: self)
         
     }
