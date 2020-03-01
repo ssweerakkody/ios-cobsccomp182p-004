@@ -68,7 +68,7 @@ class UpdateProfileViewController: UIViewController{
         super.viewDidLoad()
         
         addStylesToView()
-        
+      
         if(authenticationWithTouchID())
         {
             setupView()
@@ -122,6 +122,7 @@ class UpdateProfileViewController: UIViewController{
                                 {
                                     self.alert!.dismiss(animated: false, completion: nil)
                                     Alerts.showAlert(title: "Error",message: "Error updating password: \(err!.localizedDescription)",presentingVC: self)
+                                    self.cleanPasswordFields()
                                     return
                                 }
                                 
@@ -311,6 +312,7 @@ class UpdateProfileViewController: UIViewController{
             
         }
     }
+    
     
     
 }
