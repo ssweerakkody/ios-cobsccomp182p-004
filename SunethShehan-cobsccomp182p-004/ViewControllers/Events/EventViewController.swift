@@ -88,81 +88,30 @@ class EventViewController: UIViewController {
                 
                 self.userID = event.CreatedBy
                 
-                
-                self.imgUserAvatar.addThinWhiteBorder()                
-//                if(Auth.auth().currentUser != nil && event.Attendees.contains(Auth.auth().currentUser!.uid))
-//                {
-//                    self.btnAttend.setTitle("Going",for: .normal)
-//                    self.btnAttend.isUserInteractionEnabled = false
-//                }
-//                else{
-//                    self.btnAttend.isUserInteractionEnabled = false
-//                }
-
-
             }
         }
-        
-        
-//        self.lblEventTitle.text = selectedEvent?.Title
-//        self.lblEventDescription.text = selectedEvent?.Descrption
-//        self.lblEventLocation.text = selectedEvent?.Location
-//        self.lblDate.text = selectedEvent?.EventDate
-//        self.lblAttendeesC.text = String(selectedEvent!.AttendeesCount)
-//
-//        let imageURL = URL(string: selectedEvent!.EventImageUrl)
-//                        self.imgEventImage.kf.setImage(with: imageURL)
-//
-//        let avatarURL = URL(string: selectedEvent!.UserProfileURL)
-//                        self.imgUserAvatar.kf.setImage(with: avatarURL)
-//        self.lblCreatedBy.text = selectedEvent?.UserDisplayName
-//
-//        if(Auth.auth().currentUser != nil && selectedEvent!.Attendees.contains(Auth.auth().currentUser!.uid))
-//                        {
-//                            self.btnAttend.setTitle("Going",for: .normal)
-//                            self.btnAttend.isUserInteractionEnabled = false
-//                        }
-//                        else{
-//                            self.btnAttend.isUserInteractionEnabled = false
-//                        }
-//
-        
-        
     }
     
     func addFormStyles() {
         
-        self.view.backgroundColor = UIColor(patternImage: UIImage(named: "backimage.jpg")!)
+        self.setBackgroundImage()
         
-        self.imgUserAvatar.layer.cornerRadius = self.imgUserAvatar.bounds.height / 2
-        self.imgUserAvatar.clipsToBounds = true
+        self.imgUserAvatar.toRoundedImage()
+
+        self.imgUserAvatar.addThinWhiteBorder()
         
-        
-//        btnAttend.backgroundColor = .clear
-//        btnAttend.layer.cornerRadius = 5
-//        btnAttend.layer.borderWidth = 1
-//        btnAttend.layer.borderColor = UIColor.black.cgColor
     }
     
     @IBAction func imgUserAvatarTapped(sender: UIButton) {
         
-        
-                let vc = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "ProfileView") as! ProfileViewController
-        
-                vc.userID = self.userID
-        
-                navigationController?.pushViewController(vc, animated: true)
+        Routes.showUserProfile(userID: self.userID!, presentingVC: self)
         
     }
     
     @IBAction func ShowComments(_ sender: Any) {
         
-        let vc = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "CommentsStoryboard") as! CommentsTableViewController
-        
-        vc.selectedEventID = selectedEventID
-        
-        navigationController?.pushViewController(vc, animated: true)
-        
+ 
+        Routes.showComments(selectedEventID: selectedEventID!, presentingVC: self)
         
     }
     

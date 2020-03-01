@@ -51,6 +51,26 @@ class Routes{
         
     }
     
+    static func showUserProfile(userID:String,presentingVC: UIViewController){
+        
+        let vc = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "ProfileView") as! ProfileViewController
+        
+        vc.userID = userID
+        
+        presentingVC.navigationController?.pushViewController(vc, animated: true)
+        
+    }
+    
+    static func showComments(selectedEventID:String,presentingVC: UIViewController){
+        
+        let vc = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "CommentsStoryboard") as! CommentsTableViewController
+        
+        vc.selectedEventID = selectedEventID
+        
+        presentingVC.navigationController?.pushViewController(vc, animated: true)
+        
+        
+    }
     
     
 }

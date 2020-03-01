@@ -39,34 +39,9 @@ class PostEventViewController: UIViewController ,CLLocationManagerDelegate{
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
-        self.imagePicker = ImagePicker(presentationController: self, delegate: self)
-        
-        let tap = UITapGestureRecognizer(target: self.view, action: #selector(UIView.endEditing(_:)))
-        view.addGestureRecognizer(tap)
-        
-         self.view.backgroundColor = UIColor(patternImage: UIImage(named: "backimage.jpg")!)
-        
-        if(selectedEvent != nil){
-            
-            txtEventTitle.text = selectedEvent?.Title
-            txtEventDescription.text = selectedEvent?.Descrption
-            txtEventLocation.text = selectedEvent?.Location
-            
-            let imageURL = URL(string: selectedEvent!.EventImageUrl)
-            imgEventImage.kf.setImage(with: imageURL)
-            
-            let dateFormatter = DateFormatter()
-            
-            dateFormatter.dateStyle = DateFormatter.Style.short
-            dateFormatter.timeStyle = DateFormatter.Style.short
-            
-            dtEventDate.date = DateHandler.castStringToDate(date:selectedEvent!.EventDate)
-            
-            
-            btnPostEvent.setTitle("Update Event", for: .normal)
-            lblEventType.text = "Update Event"
-            
-        }
+
+        setupView()
+        addStylesToView()
         
         
     }
@@ -177,6 +152,45 @@ class PostEventViewController: UIViewController ,CLLocationManagerDelegate{
         return true
         
     }
+    
+    
+    func setupView(){
+        
+        
+        self.imagePicker = ImagePicker(presentationController: self, delegate: self)
+        
+        let tap = UITapGestureRecognizer(target: self.view, action: #selector(UIView.endEditing(_:)))
+        view.addGestureRecognizer(tap)
+        
+        
+        if(selectedEvent != nil){
+            
+            txtEventTitle.text = selectedEvent?.Title
+            txtEventDescription.text = selectedEvent?.Descrption
+            txtEventLocation.text = selectedEvent?.Location
+            
+            let imageURL = URL(string: selectedEvent!.EventImageUrl)
+            imgEventImage.kf.setImage(with: imageURL)
+            
+            let dateFormatter = DateFormatter()
+            
+            dateFormatter.dateStyle = DateFormatter.Style.short
+            dateFormatter.timeStyle = DateFormatter.Style.short
+            
+            dtEventDate.date = DateHandler.castStringToDate(date:selectedEvent!.EventDate)
+            
+            
+            btnPostEvent.setTitle("Update Event", for: .normal)
+            lblEventType.text = "Update Event"
+            
+        }
+        
+    }
+    
+    func addStylesToView(){
+        self.setBackgroundImage()
+    }
+
     
     
     
