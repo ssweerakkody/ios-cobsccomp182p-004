@@ -174,7 +174,7 @@ class RegistrationViewController: UIViewController{
     
         func addStylesToRegister()  {
             
-            self.view.backgroundColor = UIColor(patternImage: UIImage(named: "backimage.jpg")!)
+           self.setBackgroundImage()
             
             self.navigationController?.navigationBar.tintColor = UIColor.white
             self.navigationController?.navigationBar.barStyle = UIBarStyle.black
