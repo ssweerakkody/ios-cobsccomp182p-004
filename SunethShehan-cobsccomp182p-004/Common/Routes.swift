@@ -22,5 +22,13 @@ class Routes{
         
     }
     
+    static func redirectToGuest(presentingVC: UIViewController){
+        
+        let vc = UIStoryboard(name: "Guest", bundle: nil).instantiateViewController(withIdentifier: "GuestNavigation")
+        presentingVC.navigationController?.pushViewController(vc, animated: true)
+        
+    }
+    
+    
 }
 
