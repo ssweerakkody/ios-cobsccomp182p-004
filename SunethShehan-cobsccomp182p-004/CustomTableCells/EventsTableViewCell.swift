@@ -49,6 +49,16 @@ class EventsTableViewCell: UITableViewCell {
         
         FirestoreClient.updateAttendees(selectedEventID: lblDocID.text!)
         lblAttendeesCount.text  = String(Int(lblAttendeesCount.text!)!+1)
+        
+        if(Int(lblAttendeesCount.text!)! > 1)
+        {
+            lblAttendees.text = "Attendees"
+        }
+        else if(Int(lblAttendeesCount.text!)! == 1)
+        {
+            lblAttendees.text = "Attendee"
+        }
+        
         btnAttend.setTitle("Going", for: .normal)
         btnAttend.isUserInteractionEnabled = false
     }

@@ -49,9 +49,6 @@ class LoginViewController: UIViewController ,UITextFieldDelegate {
     @IBAction func SignIn(_ sender: Any) {
         
         
-        txtEmail.text = "sachith@mail.com"
-        txtPassword.text = "456789"
-        
         signInUser(email: txtEmail.text!, password: txtPassword.text!)
         
         
