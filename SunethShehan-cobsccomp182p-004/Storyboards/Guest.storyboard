@@ -147,6 +147,11 @@
                     </tableView>
                     <navigationItem key="navigationItem" title="Feed" id="D7G-Cv-JyX">
                         <barButtonItem key="backBarButtonItem" title="Feed" id="FT6-Uo-yw4"/>
+                        <barButtonItem key="leftBarButtonItem" title="Go to Login" style="plain" id="TTV-iJ-ssZ">
+                            <connections>
+                                <action selector="GoToLogin:" destination="jI4-yd-xGx" id="4yd-0a-kNv"/>
+                            </connections>
+                        </barButtonItem>
                     </navigationItem>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="MYF-F2-j6f" userLabel="First Responder" sceneMemberID="firstResponder"/>

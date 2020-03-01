@@ -34,6 +34,11 @@ final class GuestTableViewController: UITableViewController {
 
     }
     
+    @IBAction func GoToLogin(_ sender: Any) {
+        
+        Routes.redirectToLogin(presentingVC: self)
+        
+    }
     override func numberOfSections(in tableView: UITableView) -> Int {
         return 1
     }
