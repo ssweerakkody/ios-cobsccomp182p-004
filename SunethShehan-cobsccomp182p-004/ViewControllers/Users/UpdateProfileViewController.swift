@@ -75,28 +75,7 @@ class UpdateProfileViewController: UIViewController{
         
         if(authenticationWithTouchID())
         {
-            
-            
-            self.imagePicker = ImagePicker(presentationController: self, delegate: self)
-            
-            let tap = UITapGestureRecognizer(target: self.view, action: #selector(UIView.endEditing(_:)))
-            view.addGestureRecognizer(tap)
-            
-            
-            if Auth.auth().currentUser != nil {
-                
-               self.txtFName.text  = UserDefaults.standard.string(forKey: "FirstName")
-               self.txtLName.text  = UserDefaults.standard.string(forKey: "LastName")
-               self.txtEmail.text  = UserDefaults.standard.string(forKey: "Email")
-               self.txtDisplayName.text = UserDefaults.standard.string(forKey: "DisplayName")
-               self.txtMobileNo.text  = UserDefaults.standard.string(forKey: "MobileNo")
-               self.txtFBProfileUrl.text  = UserDefaults.standard.string(forKey: "FBProfileUrl")
-                let imageURL = URL(string: UserDefaults.standard.string(forKey: "ProfileImageUrl")!)
-                imgProPicture.kf.setImage(with: imageURL)
-                
-                
-            }
-            
+            setupView()
             
         }
         
@@ -136,7 +115,7 @@ class UpdateProfileViewController: UIViewController{
                     Auth.auth().currentUser?.updateEmail(to: self.txtEmail.text!, completion: { (err) in
                         if(err != nil)
                         {
-                              self.alert!.dismiss(animated: false, completion: nil)
+                            self.alert!.dismiss(animated: false, completion: nil)
                             Alerts.showAlert(title: "Error",message: "Error updating email: \(err!.localizedDescription)",presentingVC: self)
                             return
                         }
@@ -166,8 +145,6 @@ class UpdateProfileViewController: UIViewController{
                 else{
                     self.proceedData()
                 }
-                
-                
                 
                 
             }
@@ -272,17 +249,6 @@ class UpdateProfileViewController: UIViewController{
         
     }
     
-    func showAlert(title:String,message:String){
-        
-        let alertController = UIAlertController(title: title, message: message, preferredStyle: .alert)
-        let defaultAction = UIAlertAction(title: "OK", style: .cancel, handler: nil)
-        
-        alertController.addAction(defaultAction)
-        self.present(alertController, animated: true, completion: nil)
-        
-        
-    }
-    
     func authenticationWithTouchID()->Bool {
         let localAuthenticationContext = LAContext()
         localAuthenticationContext.localizedFallbackTitle = "Please use your Passcode"
@@ -320,11 +286,34 @@ class UpdateProfileViewController: UIViewController{
     
     func addStylesToView(){
         
-        self.view.backgroundColor = UIColor(patternImage: UIImage(named: "backimage.jpg")!)
+        self.setBackgroundImage()
         
         imgProPicture.toRoundedImage()
         imgProPicture.addWhiteBorder()
         
+    }
+    
+    func setupView(){
+        
+        self.imagePicker = ImagePicker(presentationController: self, delegate: self)
+        
+        let tap = UITapGestureRecognizer(target: self.view, action: #selector(UIView.endEditing(_:)))
+        view.addGestureRecognizer(tap)
+        
+        
+        if Auth.auth().currentUser != nil {
+            
+            self.txtFName.text  = UserDefaults.standard.string(forKey: "FirstName")
+            self.txtLName.text  = UserDefaults.standard.string(forKey: "LastName")
+            self.txtEmail.text  = UserDefaults.standard.string(forKey: "Email")
+            self.txtDisplayName.text = UserDefaults.standard.string(forKey: "DisplayName")
+            self.txtMobileNo.text  = UserDefaults.standard.string(forKey: "MobileNo")
+            self.txtFBProfileUrl.text  = UserDefaults.standard.string(forKey: "FBProfileUrl")
+            let imageURL = URL(string: UserDefaults.standard.string(forKey: "ProfileImageUrl")!)
+            imgProPicture.kf.setImage(with: imageURL)
+            
+            
+        }
     }
     
     
