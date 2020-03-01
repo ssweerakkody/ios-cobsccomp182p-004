@@ -288,6 +288,15 @@ class UpdateProfileViewController: UIViewController{
         imgProPicture.toRoundedImage()
         imgProPicture.addWhiteBorder()
         
+        txtFName.toStyledTextField()
+        txtLName.toStyledTextField()
+        txtEmail.toStyledTextField()
+        txtDisplayName.toStyledTextField()
+        txtPassword.toStyledTextField()
+        txtConfirmPassword.toStyledTextField()
+        txtMobileNo.toStyledTextField()
+        txtFBProfileUrl.toStyledTextField()
+        
     }
     
     func setupView(){
