@@ -64,11 +64,11 @@ extension UIImageView{
     }
     
     func addWhiteBorder(){
-       
-       self.layer.borderColor = UIColor(red: 1.0, green: 1.0, blue: 1.0, alpha: 1.0).cgColor
-       self.layer.masksToBounds = true
-       self.contentMode = .scaleToFill
-       self.layer.borderWidth = 5
+        
+        self.layer.borderColor = UIColor(red: 1.0, green: 1.0, blue: 1.0, alpha: 1.0).cgColor
+        self.layer.masksToBounds = true
+        self.contentMode = .scaleToFill
+        self.layer.borderWidth = 5
     }
     
     func addThinWhiteBorder(){
@@ -109,6 +109,8 @@ extension UpdateProfileViewController: ImagePickerDelegate {
 
 extension UIViewController{
     
-   
+    func setBackgroundImage(){
+        self.view.backgroundColor = UIColor(patternImage: UIImage(named: "backimage.jpg")!)
+    }
     
 }
