@@ -28,7 +28,7 @@ class RegistrationViewController: UIViewController{
     
     @IBAction func btnSignUp(_ sender: Any) {
         
-        databaseOperation()
+        proceedData()
         
     }
     
@@ -36,22 +36,9 @@ class RegistrationViewController: UIViewController{
     
     override func viewDidLoad() {
         super.viewDidLoad()
-                addStylesToRegister()
         
-        
-        
-        imgProPicture.layer.masksToBounds = true
-        imgProPicture.layer.cornerRadius = imgProPicture.bounds.width / 2
-        
-        self.imagePicker = ImagePicker(presentationController: self, delegate: self)
-        
-        let tap = UITapGestureRecognizer(target: self.view, action: #selector(UIView.endEditing(_:)))
-        view.addGestureRecognizer(tap)
-        
-        
-        
-        //        Load the exsting data values to view and update functionality should be done
-        //                print("Current User ",Auth.auth().currentUser?.email)
+        addStylesToRegister()
+        setupView()
         
         
     }
@@ -62,7 +49,7 @@ class RegistrationViewController: UIViewController{
         
     }
     
-    func databaseOperation(){
+    func proceedData(){
         
         
         if(validateInputs())
@@ -75,7 +62,6 @@ class RegistrationViewController: UIViewController{
                     guard let image = self.imgProPicture.image,
                         let imgData = image.jpegData(compressionQuality: 1.0) else {
                             
-                            //                        showAlert(title: "Check input",message: "Profile Picture must be selected")
                             return
                     }
                     
@@ -145,6 +131,10 @@ class RegistrationViewController: UIViewController{
         {
             return false
         }
+        if(!FormValidation.isValidEmail(txtEmail.text!, presentingVC: self))
+        {
+            return false
+        }
         if(!FormValidation.isValidField(textField: txtMobileNo, textFiledName: "Mobile No", presentingVC: self))
         {
             return false
@@ -165,6 +155,10 @@ class RegistrationViewController: UIViewController{
         {
             return false
         }
+        if(!FormValidation.isEqualPasswords(password: txtPassword, confirmPassword: txtConfirmPassword, presentingVC: self))
+        {
+            return false
+        }
         
         
         return true
@@ -179,6 +173,10 @@ class RegistrationViewController: UIViewController{
             self.navigationController?.navigationBar.tintColor = UIColor.white
             self.navigationController?.navigationBar.barStyle = UIBarStyle.black
     
+            
+            imgProPicture.layer.masksToBounds = true
+            imgProPicture.layer.cornerRadius = imgProPicture.bounds.width / 2
+            
     
             txtFName.toStyledTextField()
             txtLName.toStyledTextField()
@@ -191,18 +189,12 @@ class RegistrationViewController: UIViewController{
             
         }
     
-    
-    func showAlert(title:String,message:String){
+    func setupView(){
+        self.imagePicker = ImagePicker(presentationController: self, delegate: self)
         
-        let alertController = UIAlertController(title: title, message: message, preferredStyle: .alert)
-        let defaultAction = UIAlertAction(title: "OK", style: .cancel, handler: nil)
-        
-        alertController.addAction(defaultAction)
-        self.present(alertController, animated: true, completion: nil)
-        
-        
+        let tap = UITapGestureRecognizer(target: self.view, action: #selector(UIView.endEditing(_:)))
+        view.addGestureRecognizer(tap)
     }
-    
     
 }
 
