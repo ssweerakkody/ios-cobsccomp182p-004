@@ -45,13 +45,9 @@ class UpdateProfileViewController: UIViewController{
             
             try! Auth.auth().signOut()
             
-            let domain = Bundle.main.bundleIdentifier!
+            CurrentUser.cleanUserDefaults()
             
-            UserDefaults.standard.removePersistentDomain(forName: domain)
-            UserDefaults.standard.synchronize()
-            
-            let vc = UIStoryboard(name: "UserAuthentication", bundle: nil).instantiateViewController(withIdentifier: "RootUserNavigation")
-            self.present(vc, animated: true, completion: nil)
+            Routes.redirectToLogin(presentingVC: self)
             
         })
         

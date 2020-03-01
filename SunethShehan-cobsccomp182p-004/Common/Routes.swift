@@ -29,6 +29,14 @@ class Routes{
         
     }
     
+    static func redirectToLogin(presentingVC: UIViewController){
+        
+        let vc = UIStoryboard(name: "UserAuthentication", bundle: nil).instantiateViewController(withIdentifier: "RootUserNavigation")
+        self.present(vc, animated: true, completion: nil)
+        
+    }
+    
+    
     static func viewEvent(selectedEvent : Event ,selectedEventID:String,presentingTVC: UITableViewController){
         
         let vc = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "EventsViewController") as! EventViewController
