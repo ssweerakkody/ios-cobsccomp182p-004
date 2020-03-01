@@ -13,6 +13,7 @@ class Routes{
     static func redirectToFeed(presentingVC: UIViewController){
         
         let tabVC = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "EventNavigation") as! UITabBarController
+        
         tabVC.selectedIndex = 1
         
         presentingVC.present(tabVC, animated: true, completion: nil)

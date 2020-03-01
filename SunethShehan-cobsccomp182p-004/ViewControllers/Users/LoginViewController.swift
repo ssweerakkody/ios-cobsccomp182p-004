@@ -29,13 +29,11 @@ class LoginViewController: UIViewController ,UITextFieldDelegate {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
         
-        if Auth.auth().currentUser != nil {
-            redirectToEventFeed()
+        if (Auth.auth().currentUser) != nil {
+            Routes.redirectToFeed(presentingVC: self)
         }
         
         addFormStyles()
-        
-        txtEmail.delegate = self
         
     }
     
@@ -122,7 +120,7 @@ class LoginViewController: UIViewController ,UITextFieldDelegate {
                     }
                     
                     
-                    self.redirectToEventFeed()
+                    Routes.redirectToFeed(presentingVC: self)
                 }
             }
             
@@ -147,23 +145,10 @@ class LoginViewController: UIViewController ,UITextFieldDelegate {
         
         imgLogo.toRoundEdges()
         
-        self.view.backgroundColor = UIColor(patternImage: UIImage(named: "backimage.jpg")!)
+        self.setBackgroundImage()
         
     }
     
-    func redirectToEventFeed(){
-        
-        
-        let tabVC = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "EventNavigation") as! UITabBarController
-
-        
-        tabVC.selectedIndex = 1
-
-        self.present(tabVC, animated: true, completion: nil)
-        self.loadView()
-        self.view.setNeedsLayout()
-        
-    }
     
     func validateInputs()->Bool{
         
