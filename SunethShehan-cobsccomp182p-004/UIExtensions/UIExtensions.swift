@@ -14,7 +14,7 @@ extension UITextField {
         self.layer.borderWidth = 0.6
         self.layer.masksToBounds = true
         self.layer.cornerRadius = 9
-        self.leftView = UIView(frame: CGRect(x: 0, y: 0, width: 15, height: 0))
+        self.leftView = UIView(frame: CGRect(x: 0, y: 0, width: 4, height: 0))
         self.leftViewMode = UITextField.ViewMode.always
         self.layer.borderColor =  UIColor.gray.cgColor
     }
