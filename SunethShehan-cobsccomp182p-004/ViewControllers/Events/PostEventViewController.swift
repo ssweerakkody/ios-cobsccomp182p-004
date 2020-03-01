@@ -26,6 +26,10 @@ class PostEventViewController: UIViewController ,CLLocationManagerDelegate{
     
     @IBOutlet weak var btnPostEvent: UIButton!
     
+    
+    
+    @IBOutlet weak var btnViewEvent: UIButton!
+    
     let locationManager = CLLocationManager()
     
     var imagePicker: ImagePicker!
@@ -183,15 +187,25 @@ class PostEventViewController: UIViewController ,CLLocationManagerDelegate{
             btnPostEvent.setTitle("Update Event", for: .normal)
             lblEventType.text = "Update Event"
             
+            btnViewEvent.isHidden = false
+            
         }
         
     }
     
     func addStylesToView(){
         self.setBackgroundImage()
+        
     }
+    
 
     
+    @IBAction func ViewEvent(_ sender: Any) {
+        
+        
+        Routes.authourViewEvent(selectedEvent: self.selectedEvent!, selectedEventID: self.selectedEventID!, presentingVC: self)
+        
+    }
     
     
     @IBAction func GetCurrentLocation(_ sender: Any) {

@@ -48,6 +48,18 @@ class Routes{
         
     }
     
+    static func authourViewEvent(selectedEvent : Event ,selectedEventID:String,presentingVC: UIViewController){
+        
+        let vc = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "EventsViewController") as! EventViewController
+        
+        vc.selectedEvent = selectedEvent
+        vc.selectedEventID = selectedEventID
+        
+        presentingVC.navigationController?.pushViewController(vc, animated: true)
+        
+    }
+    
+    
     static func editEvent(selectedEvent : Event ,selectedEventID:String,presentingTVC: UITableViewController){
         
         let vc = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "PostEventView") as! PostEventViewController
