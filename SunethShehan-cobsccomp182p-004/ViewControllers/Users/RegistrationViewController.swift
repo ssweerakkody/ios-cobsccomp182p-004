@@ -182,7 +182,12 @@ class RegistrationViewController: UIViewController{
     
             txtFName.toStyledTextField()
             txtLName.toStyledTextField()
-           
+            txtEmail.toStyledTextField()
+            txtDisplayName.toStyledTextField()
+            txtPassword.toStyledTextField()
+            txtConfirmPassword.toStyledTextField()
+            txtMobileNo.toStyledTextField()
+            txtFBProfileUrl.toStyledTextField()
             
         }
     
