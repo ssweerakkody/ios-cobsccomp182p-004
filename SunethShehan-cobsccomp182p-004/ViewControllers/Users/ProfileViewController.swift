@@ -35,6 +35,27 @@ class ProfileViewController :  UIViewController {
         addStylesToView()
         
         
+      
+        
+        
+    }
+    
+    func addStylesToView(){
+        self.view.backgroundColor = UIColor(patternImage: UIImage(named: "backimage.jpg")!)
+        
+        imgUserProfile.toRoundedImage()
+        imgUserProfile.addWhiteBorder()
+        
+        
+    }
+    
+    func setupView(){
+        
+        if(!Reach.isConnectedToInternet(viewController: self))
+        {
+            return
+        }
+        
         FirestoreClient.getUserProfile(uID: userID!) { (user) in
             
             self.lblFName.text =  user.FirstName
@@ -47,19 +68,9 @@ class ProfileViewController :  UIViewController {
             
             let imageURL = URL(string: user.ProfileImageUrl)
             self.imgUserProfile.kf.setImage(with: imageURL)
-        
+            
             
         }
-        
-        
-    }
-    
-    func addStylesToView(){
-        self.view.backgroundColor = UIColor(patternImage: UIImage(named: "backimage.jpg")!)
-        
-        imgUserProfile.toRoundedImage()
-        imgUserProfile.addWhiteBorder()
-        
         
     }
 }

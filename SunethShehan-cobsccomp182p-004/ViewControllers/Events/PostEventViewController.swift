@@ -65,6 +65,11 @@ class PostEventViewController: UIViewController ,CLLocationManagerDelegate{
     
     func proceedData(){
         
+        if(!Reach.isConnectedToInternet(viewController: self))
+        {
+            return
+        }
+        
         
         if(self.validateInputs()){
             

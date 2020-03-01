@@ -106,6 +106,12 @@ class EventsTableViewController: UITableViewController {
     
     func setupView(){
         
+        if(!Reach.isConnectedToInternet(viewController: self))
+        {
+            return
+        }
+        
+        
         FirestoreClient.getAllEvents(completion: {events , eventIDs in
             
             self.Events.removeAll()

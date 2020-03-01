@@ -55,6 +55,11 @@ class EventViewController: UIViewController {
     
     @IBAction func AttendEvent(_ sender: Any) {
         
+        if(!Reach.isConnectedToInternet(viewController: self))
+        {
+            return
+        }
+        
         
         FirestoreClient.updateAttendees(selectedEventID: lblDocID.text!)
         lblAttendeesC.text  = String(Int(lblAttendeesC.text!)!+1)
@@ -64,6 +69,12 @@ class EventViewController: UIViewController {
     }
     
     func setupView(){
+        
+        if(!Reach.isConnectedToInternet(viewController: self))
+        {
+            return
+        }
+        
         
         if(!selectedEventID!.isEmpty){
             FirestoreClient.getEvent(selectedEventID: selectedEventID!) { (event) in

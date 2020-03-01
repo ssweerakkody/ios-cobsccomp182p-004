@@ -58,6 +58,11 @@ class LoginViewController: UIViewController ,UITextFieldDelegate {
     }
     @IBAction func ForgetPassword(_ sender: Any) {
         
+        if(!Reach.isConnectedToInternet(viewController: self))
+        {
+            return
+        }
+        
         if(FormValidation.isValidField(textField: txtEmail, textFiledName: "Email", presentingVC: self) &&
             FormValidation.isValidEmail(txtEmail.text!, presentingVC: self))
         {
@@ -83,6 +88,11 @@ class LoginViewController: UIViewController ,UITextFieldDelegate {
     }
     
     func signInUser(email:String , password :String){
+        
+        if(!Reach.isConnectedToInternet(viewController: self))
+        {
+            return
+        }
         
         if(self.validateInputs()){
             

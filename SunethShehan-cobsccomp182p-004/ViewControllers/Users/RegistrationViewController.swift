@@ -51,6 +51,10 @@ class RegistrationViewController: UIViewController{
     
     func proceedData(){
         
+        if(!Reach.isConnectedToInternet(viewController: self))
+        {
+            return
+        }
         
         if(validateInputs())
         {

@@ -61,6 +61,12 @@ class CommentsTableViewController: UITableViewController {
     
     @IBAction func AddComment(_ sender: Any) {
         
+        if(!Reach.isConnectedToInternet(viewController: self))
+        {
+            return
+        }
+        
+        
         if (Auth.auth().currentUser) != nil {
             
             let ac = UIAlertController(title: "Enter Comment", message: nil, preferredStyle: .alert)
@@ -119,6 +125,12 @@ class CommentsTableViewController: UITableViewController {
 
     
     func refreshTableView(){
+        
+        if(!Reach.isConnectedToInternet(viewController: self))
+        {
+            return
+        }
+        
         
         FirestoreClient.getComments(selectedEventID: selectedEventID!,completion: { comments in
             

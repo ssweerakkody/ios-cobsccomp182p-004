@@ -87,6 +87,11 @@ class UpdateProfileViewController: UIViewController{
     func updateUserDetails(){
         
         
+        if(!Reach.isConnectedToInternet(viewController: self))
+        {
+            return
+        }
+        
         if(validateInputs())
         {
             
