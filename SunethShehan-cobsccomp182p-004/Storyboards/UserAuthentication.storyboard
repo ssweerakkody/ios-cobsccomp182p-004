@@ -19,7 +19,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="1kP-mv-8fu">
-                                <rect key="frame" x="20" y="454" width="335" height="90"/>
+                                <rect key="frame" x="20" y="485" width="335" height="90"/>
                                 <subviews>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="4YR-4K-J94">
                                         <rect key="frame" x="0.0" y="0.0" width="335" height="41"/>
@@ -54,7 +54,7 @@
                                 </constraints>
                             </stackView>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="NTv-un-1Xu">
-                                <rect key="frame" x="20" y="352" width="335" height="94"/>
+                                <rect key="frame" x="20" y="383" width="335" height="94"/>
                                 <subviews>
                                     <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="bezel" placeholder="Username or email" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="HtK-FZ-DKB">
                                         <rect key="frame" x="0.0" y="0.0" width="335" height="43"/>
@@ -85,7 +85,7 @@
                                 </constraints>
                             </stackView>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="uLT-zA-Xdu">
-                                <rect key="frame" x="92" y="118" width="191" height="191"/>
+                                <rect key="frame" x="92" y="110.99999999999999" width="191" height="236.66666666666663"/>
                                 <subviews>
                                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="nibm-logo" translatesAutoresizingMaskIntoConstraints="NO" id="1qr-he-nnU">
                                         <rect key="frame" x="0.0" y="0.0" width="191" height="191"/>
@@ -95,10 +95,20 @@
                                             <constraint firstAttribute="height" constant="191" id="lP0-OH-6o0"/>
                                         </constraints>
                                     </imageView>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Events" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="no0-sO-at8">
+                                        <rect key="frame" x="0.0" y="191" width="191" height="45.666666666666657"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="191" id="a5I-rt-1Bx"/>
+                                            <constraint firstAttribute="height" constant="45.670000000000002" id="pJL-au-tw0"/>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" name="Chalkduster" family="Chalkduster" pointSize="36"/>
+                                        <color key="textColor" white="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
                                 </subviews>
                             </stackView>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="3a5-cx-mdF">
-                                <rect key="frame" x="20" y="570" width="335" height="68"/>
+                                <rect key="frame" x="20" y="605" width="335" height="68"/>
                                 <subviews>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Br3-7u-TKL">
                                         <rect key="frame" x="0.0" y="0.0" width="335" height="30"/>
@@ -131,13 +141,13 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
-                            <constraint firstItem="NTv-un-1Xu" firstAttribute="top" secondItem="uLT-zA-Xdu" secondAttribute="bottom" constant="43" id="4r2-zG-K0q"/>
-                            <constraint firstItem="3a5-cx-mdF" firstAttribute="top" secondItem="1kP-mv-8fu" secondAttribute="bottom" constant="26" id="GSi-WP-6bI"/>
+                            <constraint firstItem="NTv-un-1Xu" firstAttribute="top" secondItem="uLT-zA-Xdu" secondAttribute="bottom" constant="35.333333333333371" id="4r2-zG-K0q"/>
+                            <constraint firstItem="3a5-cx-mdF" firstAttribute="top" secondItem="1kP-mv-8fu" secondAttribute="bottom" constant="30" id="GSi-WP-6bI"/>
                             <constraint firstItem="uLT-zA-Xdu" firstAttribute="centerX" secondItem="tRf-XY-qU6" secondAttribute="centerX" id="MGD-MA-BN3"/>
-                            <constraint firstItem="1kP-mv-8fu" firstAttribute="top" secondItem="NTv-un-1Xu" secondAttribute="bottom" constant="8" symbolic="YES" id="MTN-NP-rGa"/>
+                            <constraint firstItem="1kP-mv-8fu" firstAttribute="top" secondItem="NTv-un-1Xu" secondAttribute="bottom" constant="8" id="MTN-NP-rGa"/>
                             <constraint firstItem="1kP-mv-8fu" firstAttribute="centerX" secondItem="tRf-XY-qU6" secondAttribute="centerX" id="QYC-pf-eEj"/>
                             <constraint firstItem="3a5-cx-mdF" firstAttribute="centerX" secondItem="tRf-XY-qU6" secondAttribute="centerX" id="VDw-Gf-kjr"/>
-                            <constraint firstItem="uLT-zA-Xdu" firstAttribute="top" secondItem="tRf-XY-qU6" secondAttribute="top" constant="30" id="kGe-Af-GS4"/>
+                            <constraint firstItem="uLT-zA-Xdu" firstAttribute="top" secondItem="tRf-XY-qU6" secondAttribute="top" constant="23" id="kGe-Af-GS4"/>
                             <constraint firstItem="NTv-un-1Xu" firstAttribute="centerX" secondItem="tRf-XY-qU6" secondAttribute="centerX" id="tFg-l4-8AQ"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="tRf-XY-qU6"/>
