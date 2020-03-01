@@ -75,9 +75,14 @@ class EventsTableViewController: UITableViewController {
         
         cell.lblAttendeesCount.text = String(event.AttendeesCount)
         
-        if (event.Attendees.contains(Auth.auth().currentUser!.uid)) {
+        if (0 < event.AttendeesCount && 0 < event.Attendees.count && event.Attendees.contains(Auth.auth().currentUser!.uid)) {
+            
             cell.btnAttend.setTitle("Going",for: .normal)
             cell.btnAttend.isUserInteractionEnabled = false
+        }
+        else{
+            cell.btnAttend.setTitle("Attend",for: .normal)
+            cell.btnAttend.isUserInteractionEnabled = true
         }
         
         
