@@ -29,6 +29,29 @@ class Routes{
         
     }
     
+    static func viewEvent(selectedEvent : Event ,selectedEventID:String,presentingTVC: UITableViewController){
+        
+        let vc = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "EventsViewController") as! EventViewController
+        
+        vc.selectedEvent = selectedEvent
+        vc.selectedEventID = selectedEventID
+        
+        presentingTVC.navigationController?.pushViewController(vc, animated: true)
+        
+    }
+    
+    static func editEvent(selectedEvent : Event ,selectedEventID:String,presentingTVC: UITableViewController){
+        
+        let vc = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "PostEventView") as! PostEventViewController
+        
+        vc.selectedEvent = selectedEvent
+        vc.selectedEventID = selectedEventID
+        
+        presentingTVC.navigationController?.pushViewController(vc, animated: true)
+        
+    }
+    
+    
     
 }
 

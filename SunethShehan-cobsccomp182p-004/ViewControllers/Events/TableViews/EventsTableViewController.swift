@@ -30,16 +30,8 @@ class EventsTableViewController: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        self.view.backgroundColor = UIColor(patternImage: UIImage(named: "backimage.jpg")!)
-        
-        FirestoreClient.getAllEvents(completion: {events , eventIDs in
-            
-            self.Events.removeAll()
-            self.EventIDs.removeAll()
-            
-            self.Events = events
-            self.EventIDs = eventIDs
-        })
+        addStylesToTableView()
+        setupView()
         
         
     }
@@ -101,38 +93,35 @@ class EventsTableViewController: UITableViewController {
         
         if(UserDefaults.standard.string(forKey: "UserID") != Events[indexPath.row].CreatedBy){
             
-            let vc = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "EventsViewController") as! EventViewController
-            
-            vc.selectedEvent = Events[indexPath.row]
-            vc.selectedEventID = EventIDs[indexPath.row]
-            
-            print("view post")
-            
-            navigationController?.pushViewController(vc, animated: true)
+            Routes.viewEvent(selectedEvent: Events[indexPath.row], selectedEventID: EventIDs[indexPath.row], presentingTVC: self)
             
         }
         else{
             
-            let vc = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "PostEventView") as! PostEventViewController
-            
-            vc.selectedEvent = Events[indexPath.row]
-            vc.selectedEventID = EventIDs[indexPath.row]
-            
-            navigationController?.pushViewController(vc, animated: true)
+            Routes.editEvent(selectedEvent: Events[indexPath.row], selectedEventID: EventIDs[indexPath.row], presentingTVC: self)
             
         }
         
-        
-        
-        
     }
     
-    
-   
-    override func viewWillAppear(_ animated: Bool) {
-    
+    func setupView(){
+        
+        FirestoreClient.getAllEvents(completion: {events , eventIDs in
+            
+            self.Events.removeAll()
+            self.EventIDs.removeAll()
+            
+            self.Events = events
+            self.EventIDs = eventIDs
+        })
     }
     
+    func addStylesToTableView(){
+        
+        
+        self.setTableViewBackgroundImage()
+        
+    }
     
 }
 
