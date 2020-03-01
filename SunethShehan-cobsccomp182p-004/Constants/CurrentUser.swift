@@ -10,6 +10,6 @@ import Foundation
 
 class CurrentUser{
     
-//    var user : User()
+   static var UserDetails : User?
     
 }
