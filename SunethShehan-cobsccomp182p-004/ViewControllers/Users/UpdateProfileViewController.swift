@@ -30,17 +30,15 @@ class UpdateProfileViewController: UIViewController{
     
     @IBAction func SaveUserInfo(_ sender: Any) {
         
-        databaseOperation()
+        proceedData()
         
     }
-    
-    var ref: DatabaseReference!
     
     @IBAction func Logout(_ sender: Any) {
         
         let confirmDialog = UIAlertController(title: "Confirm", message: "Are you sure you want to Logout?", preferredStyle: .alert)
         
-       
+        
         let ok = UIAlertAction(title: "Logout", style: .default, handler: { (action) -> Void in
             
             try! Auth.auth().signOut()
@@ -55,7 +53,7 @@ class UpdateProfileViewController: UIViewController{
             
         })
         
-       
+        
         let cancel = UIAlertAction(title: "Cancel", style: .cancel) { (action) -> Void in
             return
         }
@@ -91,8 +89,8 @@ class UpdateProfileViewController: UIViewController{
                 txtDisplayName.text = UserDefaults.standard.string(forKey: "DisplayName")
                 txtMobileNo.text  = UserDefaults.standard.string(forKey: "MobileNo")
                 txtFBProfileUrl.text  = UserDefaults.standard.string(forKey: "FBProfileUrl")
-//                let imageURL = URL(string: UserDefaults.standard.string(forKey: "ProfileImageUrl")!)
-//                imgProPicture.kf.setImage(with: imageURL)
+                //                let imageURL = URL(string: UserDefaults.standard.string(forKey: "ProfileImageUrl")!)
+                //                imgProPicture.kf.setImage(with: imageURL)
                 
                 
             }
@@ -109,65 +107,62 @@ class UpdateProfileViewController: UIViewController{
         
     }
     
-    func databaseOperation(){
+    func proceedData(){
         
         
         if(validateInputs())
         {
-            FAuthClient.createNewUser(email: txtEmail.text!, password: txtPassword.text!, presentingVC: self) { uid in
+            
+            self.userID = Auth.auth().currentUser!.uid
+            
+            if(!userID.isEmpty)
+            {
+                guard let image = self.imgProPicture.image,
+                    let imgData = image.jpegData(compressionQuality: 1.0) else {
+                        
+                        return
+                }
                 
-                if(!uid.isEmpty)
-                {
-                    //Make this optional or alternation
-                    guard let image = self.imgProPicture.image,
-                        let imgData = image.jpegData(compressionQuality: 1.0) else {
-                            
-                            //                        showAlert(title: "Check input",message: "Profile Picture must be selected")
-                            return
-                    }
-                    
-                    let alert = UIAlertController(title: nil, message: "Saving ", preferredStyle: .alert)
-                    
-                    let loadingIndicator = UIActivityIndicatorView(frame: CGRect(x: 10, y: 5, width: 50, height: 50))
-                    loadingIndicator.hidesWhenStopped = true
-                    loadingIndicator.style = UIActivityIndicatorView.Style.gray
-                    loadingIndicator.startAnimating();
-                    
-                    alert.view.addSubview(loadingIndicator)
-                    self.present(alert, animated: true, completion: nil)
+                let alert = UIAlertController(title: nil, message: "Saving ", preferredStyle: .alert)
+                
+                let loadingIndicator = UIActivityIndicatorView(frame: CGRect(x: 10, y: 5, width: 50, height: 50))
+                loadingIndicator.hidesWhenStopped = true
+                loadingIndicator.style = UIActivityIndicatorView.Style.gray
+                loadingIndicator.startAnimating();
+                
+                alert.view.addSubview(loadingIndicator)
+                self.present(alert, animated: true, completion: nil)
+                
+                
+                FirebaseStorageClient.getUserImageUrl(imgData: imgData, presentingVC: self, completion: { imgUrl in
                     
                     
-                    FirebaseStorageClient.getUserImageUrl(imgData: imgData, presentingVC: self, completion: { imgUrl in
+                    let user = User(FirstName: self.txtFName.text!, LastName: self.txtLName.text!, Email: self.txtEmail.text!, MobileNo: self.txtMobileNo.text!, ProfileImageUrl: imgUrl, FBProfileUrl: self.txtFBProfileUrl.text!, DisplayName: self.txtDisplayName.text!)
+                    
+                    FirebaseStorageClient.removeExistingImageUrl(url: UserDefaults.standard.string(forKey: "ProfileImageUrl")!)
+                    
+                    FirestoreClient.updateUser( updatedUser: user, viewController: self,uID: self.userID, completion: {  (userDoc,err) in
+                        
+                        alert.dismiss(animated: false, completion: nil)
                         
                         
-                        let user = User(FirstName: self.txtFName.text!, LastName: self.txtLName.text!, Email: self.txtEmail.text!, MobileNo: self.txtMobileNo.text!, ProfileImageUrl: imgUrl, FBProfileUrl: self.txtFBProfileUrl.text!, DisplayName: self.txtDisplayName.text!)
+                        UserDefaults.standard.set(self.txtDisplayName.text!, forKey: "DisplayName")
+                        UserDefaults.standard.set(self.txtEmail.text!, forKey: "Email")
+                        UserDefaults.standard.set(self.txtFBProfileUrl.text!, forKey: "FBProfileUrl")
+                        UserDefaults.standard.set(self.txtFName.text!, forKey: "FirstName")
+                        UserDefaults.standard.set(self.txtLName.text!, forKey: "LastName")
+                        UserDefaults.standard.set(self.txtMobileNo.text!, forKey: "MobileNo")
+                        UserDefaults.standard.set(imgUrl, forKey: "ProfileImageUrl")
                         
-                        FirebaseStorageClient.removeExistingImageUrl(url: UserDefaults.standard.string(forKey: "ProfileImageUrl")!)
+                        UserDefaults.standard.synchronize()
                         
-                        FirestoreClient.updateUser( updatedUser: user, viewController: self,uID: uid, completion: {  (userDoc,err) in
-                            
-                            alert.dismiss(animated: false, completion: nil)
-                            
-                            
-                            UserDefaults.standard.set(self.txtDisplayName.text!, forKey: "DisplayName")
-                            UserDefaults.standard.set(self.txtEmail.text!, forKey: "Email")
-                            UserDefaults.standard.set(self.txtFBProfileUrl.text!, forKey: "FBProfileUrl")
-                            UserDefaults.standard.set(self.txtFName.text!, forKey: "FirstName")
-                            UserDefaults.standard.set(self.txtLName.text!, forKey: "LastName")
-                            UserDefaults.standard.set(self.txtMobileNo.text!, forKey: "MobileNo")
-                            UserDefaults.standard.set(imgUrl, forKey: "ProfileImageUrl")
-                            UserDefaults.standard.set(uid, forKey: "UserID")
-                            
-                            UserDefaults.standard.synchronize()
-                            
-                            
-                        })
                         
                     })
                     
-                }
+                })
                 
             }
+            
         }
         
     }
