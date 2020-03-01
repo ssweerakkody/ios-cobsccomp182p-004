@@ -28,9 +28,11 @@ class UpdateProfileViewController: UIViewController{
     
     var userID :String = ""
     
+    var alert : UIAlertController?
+    
     @IBAction func SaveUserInfo(_ sender: Any) {
         
-        proceedData()
+        updateUserDetails()
         
     }
     
@@ -83,14 +85,14 @@ class UpdateProfileViewController: UIViewController{
             
             if Auth.auth().currentUser != nil {
                 
-                txtFName.text  = UserDefaults.standard.string(forKey: "FirstName")
-                txtLName.text  = UserDefaults.standard.string(forKey: "LastName")
-                txtEmail.text  = UserDefaults.standard.string(forKey: "Email")
-                txtDisplayName.text = UserDefaults.standard.string(forKey: "DisplayName")
-                txtMobileNo.text  = UserDefaults.standard.string(forKey: "MobileNo")
-                txtFBProfileUrl.text  = UserDefaults.standard.string(forKey: "FBProfileUrl")
-                //                let imageURL = URL(string: UserDefaults.standard.string(forKey: "ProfileImageUrl")!)
-                //                imgProPicture.kf.setImage(with: imageURL)
+               self.txtFName.text  = UserDefaults.standard.string(forKey: "FirstName")
+               self.txtLName.text  = UserDefaults.standard.string(forKey: "LastName")
+               self.txtEmail.text  = UserDefaults.standard.string(forKey: "Email")
+               self.txtDisplayName.text = UserDefaults.standard.string(forKey: "DisplayName")
+               self.txtMobileNo.text  = UserDefaults.standard.string(forKey: "MobileNo")
+               self.txtFBProfileUrl.text  = UserDefaults.standard.string(forKey: "FBProfileUrl")
+//                let imageURL = URL(string: UserDefaults.standard.string(forKey: "ProfileImageUrl")!)
+//                imgProPicture.kf.setImage(with: imageURL)
                 
                 
             }
@@ -107,7 +109,7 @@ class UpdateProfileViewController: UIViewController{
         
     }
     
-    func proceedData(){
+    func updateUserDetails(){
         
         
         if(validateInputs())
@@ -117,49 +119,56 @@ class UpdateProfileViewController: UIViewController{
             
             if(!userID.isEmpty)
             {
-                guard let image = self.imgProPicture.image,
-                    let imgData = image.jpegData(compressionQuality: 1.0) else {
-                        
-                        return
-                }
                 
-                let alert = UIAlertController(title: nil, message: "Saving ", preferredStyle: .alert)
+                
+                alert = UIAlertController(title: nil, message: "Saving ", preferredStyle: .alert)
                 
                 let loadingIndicator = UIActivityIndicatorView(frame: CGRect(x: 10, y: 5, width: 50, height: 50))
                 loadingIndicator.hidesWhenStopped = true
                 loadingIndicator.style = UIActivityIndicatorView.Style.gray
                 loadingIndicator.startAnimating();
                 
-                alert.view.addSubview(loadingIndicator)
-                self.present(alert, animated: true, completion: nil)
+                alert!.view.addSubview(loadingIndicator)
+                self.present(alert!, animated: true, completion: nil)
                 
-                
-                FirebaseStorageClient.getUserImageUrl(imgData: imgData, presentingVC: self, completion: { imgUrl in
+                if(UserDefaults.standard.string(forKey: "Email") != self.txtEmail.text || !txtPassword.text!.isEmpty){
                     
-                    
-                    let user = User(FirstName: self.txtFName.text!, LastName: self.txtLName.text!, Email: self.txtEmail.text!, MobileNo: self.txtMobileNo.text!, ProfileImageUrl: imgUrl, FBProfileUrl: self.txtFBProfileUrl.text!, DisplayName: self.txtDisplayName.text!)
-                    
-                    FirebaseStorageClient.removeExistingImageUrl(url: UserDefaults.standard.string(forKey: "ProfileImageUrl")!)
-                    
-                    FirestoreClient.updateUser( updatedUser: user, viewController: self,uID: self.userID, completion: {  (userDoc,err) in
+                    Auth.auth().currentUser?.updateEmail(to: self.txtEmail.text!, completion: { (err) in
+                        if(err != nil)
+                        {
+                              self.alert!.dismiss(animated: false, completion: nil)
+                            Alerts.showAlert(title: "Error",message: "Error updating email: \(err!.localizedDescription)",presentingVC: self)
+                            return
+                        }
                         
-                        alert.dismiss(animated: false, completion: nil)
-                        
-                        
-                        UserDefaults.standard.set(self.txtDisplayName.text!, forKey: "DisplayName")
-                        UserDefaults.standard.set(self.txtEmail.text!, forKey: "Email")
-                        UserDefaults.standard.set(self.txtFBProfileUrl.text!, forKey: "FBProfileUrl")
-                        UserDefaults.standard.set(self.txtFName.text!, forKey: "FirstName")
-                        UserDefaults.standard.set(self.txtLName.text!, forKey: "LastName")
-                        UserDefaults.standard.set(self.txtMobileNo.text!, forKey: "MobileNo")
-                        UserDefaults.standard.set(imgUrl, forKey: "ProfileImageUrl")
-                        
-                        UserDefaults.standard.synchronize()
+                        if(!self.txtPassword.text!.isEmpty){
+                            Auth.auth().currentUser?.updatePassword(to: self.txtPassword.text!, completion: { (err) in
+                                if(err != nil)
+                                {
+                                    self.alert!.dismiss(animated: false, completion: nil)
+                                    Alerts.showAlert(title: "Error",message: "Error updating password: \(err!.localizedDescription)",presentingVC: self)
+                                    return
+                                }
+                                
+                                self.proceedData()
+                                
+                            })
+                        }
+                        else
+                        {
+                            self.proceedData()
+                        }
                         
                         
                     })
                     
-                })
+                }
+                else{
+                    self.proceedData()
+                }
+                
+                
+                
                 
             }
             
@@ -181,6 +190,10 @@ class UpdateProfileViewController: UIViewController{
         {
             return false
         }
+        if(!FormValidation.isValidEmail(txtEmail.text!, presentingVC: self))
+        {
+            return false
+        }
         if(!FormValidation.isValidField(textField: txtMobileNo, textFiledName: "Mobile No", presentingVC: self))
         {
             return false
@@ -193,12 +206,69 @@ class UpdateProfileViewController: UIViewController{
         {
             return false
         }
-        //        if(!txtPassword.text!.isEmpty && !FormValidation.isEqualPasswords(password: txtPassword, confirmPassword: txtConfirmPassword, presentingVC: self)){
-        //
-        //        }
+        
+        if(!txtPassword.text!.isEmpty)
+        {
+            if(!FormValidation.isValidField(textField: txtPassword, textFiledName: "Password", presentingVC: self))
+            {
+                return false
+            }
+            if(!FormValidation.isValidField(textField: txtConfirmPassword, textFiledName: "Confirm Password", presentingVC: self))
+            {
+                return false
+            }
+            if(!FormValidation.isEqualPasswords(password: txtPassword, confirmPassword: txtConfirmPassword, presentingVC: self))
+            {
+                return false
+            }
+        }
         
         
         return true
+        
+    }
+    
+    func proceedData(){
+        
+        guard let image = self.imgProPicture.image,
+            let imgData = image.jpegData(compressionQuality: 1.0) else {
+                
+                return
+        }
+        
+        FirebaseStorageClient.getUserImageUrl(imgData: imgData, presentingVC: self, completion: { imgUrl in
+            
+            
+            let user = User(FirstName: self.txtFName.text!, LastName: self.txtLName.text!, Email: self.txtEmail.text!, MobileNo: self.txtMobileNo.text!, ProfileImageUrl: imgUrl, FBProfileUrl: self.txtFBProfileUrl.text!, DisplayName: self.txtDisplayName.text!)
+            
+            FirebaseStorageClient.removeExistingImageUrl(url: UserDefaults.standard.string(forKey: "ProfileImageUrl")!)
+            
+            FirestoreClient.updateUser( updatedUser: user, viewController: self,uID: self.userID, completion: {  (userDoc,err) in
+                
+                self.alert!.dismiss(animated: false, completion: nil)
+                
+                UserDefaults.standard.set(self.txtDisplayName.text!, forKey: "DisplayName")
+                UserDefaults.standard.set(self.txtEmail.text!, forKey: "Email")
+                UserDefaults.standard.set(self.txtFBProfileUrl.text!, forKey: "FBProfileUrl")
+                UserDefaults.standard.set(self.txtFName.text!, forKey: "FirstName")
+                UserDefaults.standard.set(self.txtLName.text!, forKey: "LastName")
+                UserDefaults.standard.set(self.txtMobileNo.text!, forKey: "MobileNo")
+                UserDefaults.standard.set(imgUrl, forKey: "ProfileImageUrl")
+                
+                UserDefaults.standard.synchronize()
+                
+                
+            })
+            
+            self.cleanPasswordFields()
+            
+        })
+    }
+    
+    func cleanPasswordFields(){
+        
+        txtPassword.text = ""
+        txtConfirmPassword.text = ""
         
     }
     
