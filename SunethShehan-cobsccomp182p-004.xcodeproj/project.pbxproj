@@ -43,6 +43,7 @@
 		997C811E23EC7AC6003844D9 /* RegistrationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 997C811D23EC7AC6003844D9 /* RegistrationViewController.swift */; };
 		9980DD8523FF870B000BEEBC /* Alerts.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9980DD8423FF870B000BEEBC /* Alerts.swift */; };
 		9980DD8723FF93E9000BEEBC /* Routes.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9980DD8623FF93E9000BEEBC /* Routes.swift */; };
+		99E01926240B592300E8E671 /* Reach.swift in Sources */ = {isa = PBXBuildFile; fileRef = 99E01925240B592300E8E671 /* Reach.swift */; };
 		99E15E66240A09A700AFB51E /* CommentsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 99E15E65240A09A700AFB51E /* CommentsTableViewCell.swift */; };
 		99E15E6A240A0CC100AFB51E /* CommentsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 99E15E69240A0CC100AFB51E /* CommentsTableViewController.swift */; };
 		99E15E6C240A202C00AFB51E /* Comment.swift in Sources */ = {isa = PBXBuildFile; fileRef = 99E15E6B240A202C00AFB51E /* Comment.swift */; };
@@ -113,6 +114,7 @@
 		997C811D23EC7AC6003844D9 /* RegistrationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegistrationViewController.swift; sourceTree = "<group>"; };
 		9980DD8423FF870B000BEEBC /* Alerts.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Alerts.swift; sourceTree = "<group>"; };
 		9980DD8623FF93E9000BEEBC /* Routes.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Routes.swift; sourceTree = "<group>"; };
+		99E01925240B592300E8E671 /* Reach.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Reach.swift; sourceTree = "<group>"; };
 		99E15E65240A09A700AFB51E /* CommentsTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommentsTableViewCell.swift; sourceTree = "<group>"; };
 		99E15E69240A0CC100AFB51E /* CommentsTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommentsTableViewController.swift; sourceTree = "<group>"; };
 		99E15E6B240A202C00AFB51E /* Comment.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Comment.swift; sourceTree = "<group>"; };
@@ -249,6 +251,7 @@
 				99631BDF23FDAB2F00F0F7C0 /* Location.swift */,
 				9980DD8423FF870B000BEEBC /* Alerts.swift */,
 				9980DD8623FF93E9000BEEBC /* Routes.swift */,
+				99E01925240B592300E8E671 /* Reach.swift */,
 			);
 			path = Common;
 			sourceTree = "<group>";
@@ -634,6 +637,7 @@
 				993AED5723FE72320030BA47 /* FStorageClient.swift in Sources */,
 				99E15E6A240A0CC100AFB51E /* CommentsTableViewController.swift in Sources */,
 				9933C43123E82805000818B6 /* AppDelegate.swift in Sources */,
+				99E01926240B592300E8E671 /* Reach.swift in Sources */,
 				995EFE5823FA7C73000FA9E4 /* User.swift in Sources */,
 				993A2FC323F1D4DA00E38439 /* EventViewController.swift in Sources */,
 				993D093C23ED264C002F14FA /* ImagePicker.swift in Sources */,
