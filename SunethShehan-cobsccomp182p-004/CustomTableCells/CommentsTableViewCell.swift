@@ -21,12 +21,15 @@ class CommentsTableViewCell: UITableViewCell {
     override func awakeFromNib() {
         super.awakeFromNib()
         
-        // addStylesToCell()
+         addStylesToCell()
     }
     
     override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
     }
     
+    func addStylesToCell(){
+        imgUser.toRoundedImage()
+    }
 
 }

@@ -24,8 +24,8 @@ class CommentsTableViewController: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        self.view.backgroundColor = UIColor(patternImage: UIImage(named: "backimage.jpg")!)
         
+        addStylesToTableView()
         refreshTableView()
         
         
@@ -119,6 +119,12 @@ class CommentsTableViewController: UITableViewController {
             
             
         })
+    }
+    
+    func addStylesToTableView(){
+        
+        self.setTableViewBackgroundImage()
+        
     }
     
 }
