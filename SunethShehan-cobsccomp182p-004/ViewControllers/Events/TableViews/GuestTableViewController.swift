@@ -28,12 +28,10 @@ final class GuestTableViewController: UITableViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        
-        FirestoreClient.getAllEvents(completion: {events , eventIDs in
-            self.Events = events
-            self.EventIDs = eventIDs
-        })
+       
+        addStylesToTableView()
+        setupView()
+
     }
     
     override func numberOfSections(in tableView: UITableView) -> Int {
@@ -53,7 +51,7 @@ final class GuestTableViewController: UITableViewController {
         
         let event = Events[indexPath.row]
         
-//        cell.lblDocID.text = EventIDs[indexPath.row]
+        // cell.lblDocID.text = EventIDs[indexPath.row]
         
         
         cell.lblEventDate.text = event.EventDate
@@ -82,16 +80,27 @@ final class GuestTableViewController: UITableViewController {
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath)
     {
         
-        let vc = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "EventsViewController") as! EventViewController
-        
-        vc.selectedEvent = Events[indexPath.row]
-        vc.selectedEventID = EventIDs[indexPath.row]
-        
-        navigationController?.pushViewController(vc, animated: true)
+        Routes.viewEvent(selectedEvent: Events[indexPath.row], selectedEventID: EventIDs[indexPath.row], presentingTVC: self)
         
     }
-   
     
+    func setupView(){
+        
+        FirestoreClient.getAllEvents(completion: {events , eventIDs in
+            
+            self.Events.removeAll()
+            self.EventIDs.removeAll()
+            
+            self.Events = events
+            self.EventIDs = eventIDs
+        })
+    }
+    
+    func addStylesToTableView(){
+        
+        self.setTableViewBackgroundImage()
+        
+    }
     
 }
 
